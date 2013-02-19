@@ -77,3 +77,33 @@
 2013-02-19 17:06:09,046 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2013-02-19 17:06:09,048 [Worker-8] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
 2013-02-19 17:06:09,051 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2013-02-19 17:20:41,074 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-egit does not contain lifecycle mapping metadata
+2013-02-19 17:20:41,100 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-subversive does not contain lifecycle mapping metadata
+2013-02-19 17:20:41,104 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-subclipse does not contain lifecycle mapping metadata
+2013-02-19 17:21:17,287 [Worker-1] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.cs400:waitermate:1.0.0-BUILD-SNAPSHOT @ C:\Users\cantonioli01\Documents\spring13\Samples\waitermate\WaiterMate\pom.xml.
+2013-02-19 17:21:22,293 [Worker-1] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /waitermate/src/main/java
+2013-02-19 17:21:22,294 [Worker-1] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Resources folder /waitermate/src/main/resources overlaps with sources folder /waitermate/src/main/resources
+2013-02-19 17:21:22,295 [Worker-1] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /waitermate/src/test/java
+2013-02-19 17:21:22,296 [Worker-1] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Resources folder /waitermate/src/test/resources overlaps with sources folder /waitermate/src/test/resources
+2013-02-19 17:21:22,469 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.cs400:waitermate:1.0.0-BUILD-SNAPSHOT @ C:\Users\cantonioli01\Documents\spring13\Samples\waitermate\WaiterMate\pom.xml.
+2013-02-19 17:21:22,659 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.cs400:waitermate:1.0.0-BUILD-SNAPSHOT @ C:\Users\cantonioli01\Documents\spring13\Samples\waitermate\WaiterMate\pom.xml.
+2013-02-19 17:21:22,818 [Worker-1] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Project import completed 8 sec
+2013-02-19 17:21:23,359 [Worker-4] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2013-02-19 17:21:23,359 [Worker-4] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
+2013-02-19 17:21:24,778 [Worker-4] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.cs400:waitermate:1.0.0-BUILD-SNAPSHOT @ C:\Users\cantonioli01\Documents\spring13\Samples\waitermate\WaiterMate\pom.xml.
+2013-02-19 17:21:25,621 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2013-02-19 17:21:25,628 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2013-02-19 17:21:25,665 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2013-02-19 17:21:25,669 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2013-02-19 17:21:38,089 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2013-02-19 17:21:38,105 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2013-02-19 17:21:38,107 [Worker-3] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2013-02-19 17:21:38,110 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2013-02-19 17:21:50,058 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2013-02-19 17:21:50,061 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2013-02-19 17:21:50,064 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2013-02-19 17:21:50,067 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2013-02-19 17:21:54,032 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2013-02-19 17:21:54,036 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2013-02-19 17:21:54,038 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2013-02-19 17:21:54,043 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource

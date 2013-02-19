@@ -1,18 +1,16 @@
-INDEX VERSION 1.126+C:\Users\Joe\Documents\spring13\Samples\.metadata\.plugins\org.eclipse.jdt.core
-5051000.index
-512817337.index
-786080586.index
-2899802475.index
-2489204251.index
-72423760.index
-92157042.index
-2445720804.index
-1759209251.index
-460569605.index
-259118764.index
-2374369193.index
-1918855662.index
+INDEX VERSION 1.126+C:\Users\cantonioli01\Documents\spring13\Samples\.metadata\.plugins\org.eclipse.jdt.core
+78969829.index
+40468915.index
 3168022539.index
-4267783833.index
-3685183273.index
-1831863310.index
+933069780.index
+969871674.index
+3093173433.index
+3678571932.index
+2596184184.index
+3150105371.index
+3472079297.index
+92157042.index
+4270917893.index
+2371886364.index
+2809119152.index
+1748927894.index
