@@ -1,0 +1,6 @@
+INDEX VERSION 1.122+C:\Users\Joe\Documents\WaiterMate\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1453572137.index
+1404804325.index
+3764714753.index
+4188766540.index
+2961945557.index

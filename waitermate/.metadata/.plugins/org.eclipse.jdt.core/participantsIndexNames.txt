@@ -1,0 +1,5 @@
+INDEX VERSION 1.126
+C:\Users\Joe\Documents\WaiterMate\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4188766540.index
+\WaiterMate\src\main\java
+C:\Users\Joe\Documents\WaiterMate\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3561175440.index
+\WaiterMate\src\main\java

@@ -1,0 +1,17 @@
+INDEX VERSION 1.126+C:\Users\Joe\Documents\WaiterMate\.metadata\.plugins\org.eclipse.jdt.core
+2374369193.index
+460569605.index
+5051000.index
+1831863310.index
+1759209251.index
+786080586.index
+512817337.index
+259118764.index
+2489204251.index
+2445720804.index
+1404804325.index
+3685183273.index
+4267783833.index
+2899802475.index
+72423760.index
+1918855662.index
