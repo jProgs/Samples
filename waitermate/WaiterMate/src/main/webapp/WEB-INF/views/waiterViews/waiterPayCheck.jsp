@@ -9,10 +9,10 @@
 <body>
 <article id="divPage">
 	<section id="divHeader">
-		<jsp:include page="/partials/header.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/partials/header.jsp"></jsp:include>
 	</section>
 	<section id="divNav">
-		<aside id="divNav"><jsp:include page="/partials/nav.jsp"></jsp:include></aside>
+		<aside id="divNav"><jsp:include page="/WEB-INF/partials/nav.jsp"></jsp:include></aside>
 	</section>
 	<section id="divContent">
 	
@@ -49,7 +49,7 @@
 	
 	</section>
 	<section id="divFooter">
-		<jsp:include page="/partials/footer.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/partials/footer.jsp"></jsp:include>
 	</section>
 
 </article>
