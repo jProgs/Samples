@@ -12,7 +12,7 @@ public class WaiterServiceMock implements IWaiterService {
 	{
 		waiters = new ArrayList<WaiterBean>();
 		
-		// make up waiters to be past around here. 
+		// make up waiters to be passed around here. 
 		
 		
 	}
