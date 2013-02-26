@@ -1,11 +1,25 @@
 package com.cs400.waitermate.dao.waiter;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import com.cs400.waitermate.beans.WaiterBean;
 
-public class WaiterService implements IWaiterService {
+public class WaiterServiceMock implements IWaiterService {
 
+	private static List<WaiterBean>waiters;
+	{
+		waiters = new ArrayList<WaiterBean>();
+		
+		// make up waiters to be past around here. 
+		
+		
+	}
+	
+	
+	
+	
 	@Override
 	public List<WaiterBean> listWaiters() {
 		// TODO Auto-generated method stub

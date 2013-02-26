@@ -21,7 +21,7 @@
 	</section>
 
 	<section id="divFooter">
-		<jsp:include page="/WEB-INF//partials/footer.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/partials/footer.jsp"></jsp:include>
 	</section>
 
 </article>
