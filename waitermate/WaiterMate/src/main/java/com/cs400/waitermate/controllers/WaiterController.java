@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +15,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cs400.waitermate.dao.*;
 import com.cs400.waitermate.dao.waiter.IWaiterService;
 import com.cs400.waitermate.dao.waiter.WaiterService;
+import com.cs400.waitermate.dao.waiter.WaiterServiceMock;
+import com.cs400.waitermate.beans.WaiterBean;
+
+import com.cs400.waitermate.dao.table.ITableService;
+import com.cs400.waitermate.dao.table.TableService;
+import com.cs400.waitermate.dao.table.TableServiceMock;
+import com.cs400.waitermate.beans.TableBean;
+
+import com.cs400.waitermate.dao.check.ICheckService;
+import com.cs400.waitermate.dao.check.CheckService;
+import com.cs400.waitermate.dao.check.CheckServiceMock;
+import com.cs400.waitermate.beans.CheckBean;
 
 
 @Controller
@@ -25,7 +37,19 @@ public class WaiterController {
 	@Inject
 	private static IWaiterService waiterService;
 	{
-		waiterService = new WaiterService();
+		waiterService = new WaiterService();		
+	}
+	
+	@Inject 
+	private static ITableService tableService;
+	{
+		tableService = new TableService();
+	}
+	
+	@Inject
+	private static ICheckService checkService;
+	{
+		checkService = new CheckService();
 	}
 
 }
