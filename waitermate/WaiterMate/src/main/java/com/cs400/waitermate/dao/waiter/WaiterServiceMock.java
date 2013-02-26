@@ -33,7 +33,7 @@ public class WaiterServiceMock implements IWaiterService {
 	}
 
 	@Override
-	public void reomveWatier(WaiterBean waiter) {
+	public void removeWaiter(WaiterBean waiter) {
 		// TODO Auto-generated method stub
 		
 	}

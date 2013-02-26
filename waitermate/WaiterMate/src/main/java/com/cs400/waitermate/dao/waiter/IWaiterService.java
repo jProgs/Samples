@@ -7,7 +7,7 @@ public interface IWaiterService {
 	
 	public List<WaiterBean> listWaiters();
 	public void addWaiter(WaiterBean waiter);
-	public void reomveWatier(WaiterBean waiter);
+	public void removeWaiter(WaiterBean waiter);
 	public WaiterBean findWaiterById(WaiterBean waiter);
 	public void editWaiter(WaiterBean waiter);
 	
