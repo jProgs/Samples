@@ -1,33 +1,17 @@
 package com.cs400.waitermate.beans;
 
-public class DrinkBean {
-	private int ID;
-	private String name;
-	private float price;
-	private String category;
-	public int getID() {
-		return ID;
+public class DrinkBean extends MenuItemBean {
+
+	private double abv;
+
+	public double getAbv() {
+		return abv;
 	}
-	public void setID(int iD) {
-		ID = iD;
+
+	public void setAbv(double abv) {
+		this.abv = abv;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public float getPrice() {
-		return price;
-	}
-	public void setPrice(float price) {
-		this.price = price;
-	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
+	
+	
 	
 }

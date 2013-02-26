@@ -1,16 +1,22 @@
 package com.cs400.waitermate.beans;
 
+import java.util.List;
+import java.util.ArrayList;
+import com.cs400.waitermate.beans.MenuItemBean;
+
 public class CheckBean {
-	private int ID;
+	private long ID;
 	private int table;
-	private Boolean closed;
-	private float bill;
+	private Boolean open;
+	private float subtotal;
 	private float tip;
+	private float tax;
+	private List<MenuItemBean> menuItemsList;
 	
-	public int getID() {
+	public long getID() {
 		return ID;
 	}
-	public void setID(int iD) {
+	public void setID(long iD) {
 		ID = iD;
 	}
 	public int getTable() {
@@ -19,23 +25,42 @@ public class CheckBean {
 	public void setTable(int table) {
 		this.table = table;
 	}
-	public Boolean getClosed() {
-		return closed;
+	
+	public Boolean getOpen() {
+		return open;
 	}
-	public void setClosed(Boolean closed) {
-		this.closed = closed;
+	public void setOpen(Boolean open) {
+		this.open = open;
 	}
-	public float getBill() {
-		return bill;
+	
+	public float getSubtotal() {
+		return subtotal;
 	}
-	public void setBill(float bill) {
-		this.bill = bill;
+	public void setSubtotal(float subtotal) {
+		this.subtotal = subtotal;
+	}
+	public float getTax() {
+		return tax;
+	}
+	public void setTax(float tax) {
+		this.tax = tax;
 	}
 	public float getTip() {
 		return tip;
 	}
 	public void setTip(float tip) {
 		this.tip = tip;
+	}
+	
+	public CheckBean(int table){
+		this.open = true;
+		this.subtotal = 0;
+		this.tax = 0;
+		this.tip = 0;
+		this.table = table;
+		this.ID = 0;
+		
+		
 	}
 	
 }

@@ -1,10 +1,20 @@
 package com.cs400.waitermate.beans;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class TableBean {
 	private int ID;
 	private Boolean occupied;
-	private int Waiter;
+	private List<CheckBean> checkList;
 	
+	
+	public List<CheckBean> getCheckList() {
+		return checkList;
+	}
+	public void setCheckList(List<CheckBean> checkList) {
+		this.checkList = checkList;
+	}
 	public int getID() {
 		return ID;
 	}
@@ -17,11 +27,6 @@ public class TableBean {
 	public void setOccupied(Boolean occupied) {
 		this.occupied = occupied;
 	}
-	public int getWaiter() {
-		return Waiter;
-	}
-	public void setWaiter(int waiter) {
-		Waiter = waiter;
-	}
+	
 	
 }

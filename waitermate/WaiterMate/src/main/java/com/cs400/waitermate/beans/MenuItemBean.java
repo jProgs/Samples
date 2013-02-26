@@ -2,15 +2,23 @@ package com.cs400.waitermate.beans;
 
 import java.util.List;
 import java.util.ArrayList;
-import com.cs400.waitermate.beans.IngredientBean;
 
-public class SideBean {
+public class MenuItemBean {
+	
 	private int ID;
-	private String name;	
+	private String name;
 	private float price;
+	private String category;
 	private List<IngredientBean> ingredientsList;
 	
 	
+
+	public List<IngredientBean> getIngredientsList() {
+		return ingredientsList;
+	}
+	public void setIngredientsList(List<IngredientBean> ingredientsList) {
+		this.ingredientsList = ingredientsList;
+	}
 	public int getID() {
 		return ID;
 	}
@@ -23,19 +31,19 @@ public class SideBean {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	public float getPrice() {
 		return price;
 	}
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public List<IngredientBean> getIngredientsList() {
-		return ingredientsList;
+	public String getCategory() {
+		return category;
 	}
-	public void setIngredientsList(List<IngredientBean> ingredientsList) {
-		this.ingredientsList = ingredientsList;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	
 	
+
 }
