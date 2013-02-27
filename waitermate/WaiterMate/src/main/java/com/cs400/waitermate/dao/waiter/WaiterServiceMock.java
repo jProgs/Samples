@@ -45,12 +45,12 @@ public class WaiterServiceMock implements IWaiterService {
 		WaiterBean wb = new WaiterBean(12345, "Joe", "Bettger", false);
 		TableBean tb1 = new TableBean(1);
 		TableBean tb2 = new TableBean(2);
-		CheckBean cb1 = new CheckBean(tb1.getID());
-		CheckBean cb2 = new CheckBean(tb2.getID());
-		CheckBean cb3 = new CheckBean(tb2.getID());
-		tb1.addCheckToTable(cb1);
-		tb2.addCheckToTable(cb2);
-		tb2.addCheckToTable(cb3);
+		//CheckBean cb1 = new CheckBean(tb1.getID());
+		//CheckBean cb2 = new CheckBean(tb2.getID());
+		//CheckBean cb3 = new CheckBean(tb2.getID());
+		//tb1.addCheckToTable(cb1);
+		//tb2.addCheckToTable(cb2);
+		//tb2.addCheckToTable(cb3);
 		
 		wb.addTableToWaiter(tb1);
 		wb.addTableToWaiter(tb2);
