@@ -1,1 +1,3 @@
-<p>Links Go Here </p>
+<p>
+<a href="/waitermate/waiterLogIn">Waiters</a>
+</p>

@@ -44,6 +44,13 @@ public class WaiterBean {
 	}
 	
 	// constructors
+	public WaiterBean(){
+		this.ID = 0;
+		this.fname = "";
+		this.lname = "";
+		this.admin = false;
+		currentTables = new ArrayList<TableBean>();
+	}
 	
 	public WaiterBean(int id, String fname, String lname, Boolean admin){
 		this.ID = id;

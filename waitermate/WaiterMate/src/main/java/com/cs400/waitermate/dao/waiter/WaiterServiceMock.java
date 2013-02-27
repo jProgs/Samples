@@ -50,4 +50,10 @@ public class WaiterServiceMock implements IWaiterService {
 		
 	}
 
+	@Override
+	public boolean testWaiterLogIn(WaiterBean waiter) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

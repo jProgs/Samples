@@ -51,5 +51,25 @@ public class WaiterController {
 	{
 		checkService = new CheckService();
 	}
+	
+	
+	@RequestMapping("/waiterLogIn")
+	public ModelAndView goToWaiterLogIn(){
+		return new ModelAndView("waiterViews/waiterLogIn", "command", new WaiterBean());
+	}
+	
+	@RequestMapping(value = "/waiterHome", method = RequestMethod.POST)
+	public ModelAndView goToWaiterHome(@ModelAttrbute("waiterBean")WaiterBean waiterBean, Model model){
+		if(waiterService.testWaiterLogIn(waiterBean))
+		{
+			ModelAndView mav1 = new ModelAndView("waiterViews/waiterHome", "command", new TableBean());
+			return mav1;
+		}else{
+			ModelAndView mav2 = new ModelAndView("waiterViews/waiterLogIn", "command", new WaiterBean());
+			return mav2;
+		}
+		
+		
+	}
 
 }

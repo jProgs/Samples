@@ -21,8 +21,8 @@
 	<form:form method="POST" action="waiterHome.html">
 		<table>
 			<tr>
-				<td><form:label path="iD">Social Last 5: </form:label></td>
-				<td><form:input path="iD" /> </td>
+				<td><form:label path="ID">Social Last 5: </form:label></td>
+				<td><form:input path="ID" /> </td>
 			</tr>
 			
 			<tr><td><input type="submit" value="Enter" /></td></tr>
