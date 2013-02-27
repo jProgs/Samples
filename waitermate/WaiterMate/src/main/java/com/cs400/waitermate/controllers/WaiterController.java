@@ -37,7 +37,7 @@ public class WaiterController {
 	@Inject
 	private static IWaiterService waiterService;
 	{
-		waiterService = new WaiterService();		
+		waiterService = new WaiterServiceMock();		
 	}
 	
 	@Inject 
@@ -59,10 +59,14 @@ public class WaiterController {
 	}
 	
 	@RequestMapping(value = "/waiterHome", method = RequestMethod.POST)
-	public ModelAndView goToWaiterHome(@ModelAttrbute("waiterBean")WaiterBean waiterBean, Model model){
+	public ModelAndView goToWaiterHome(@ModelAttribute("waiterBean")WaiterBean waiterBean, Model model){
 		if(waiterService.testWaiterLogIn(waiterBean))
 		{
 			ModelAndView mav1 = new ModelAndView("waiterViews/waiterHome", "command", new TableBean());
+			WaiterBean wb = waiterService.findWaiterById(waiterBean);
+			mav1.addObject("waiterTableList", wb.getCurrentTables());
+			mav1.addObject("waiterFname", wb.getFname());
+			mav1.addObject("waiterLname", wb.getLname());
 			return mav1;
 		}else{
 			ModelAndView mav2 = new ModelAndView("waiterViews/waiterLogIn", "command", new WaiterBean());

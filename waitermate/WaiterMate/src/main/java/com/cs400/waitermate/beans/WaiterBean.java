@@ -60,4 +60,9 @@ public class WaiterBean {
 		currentTables = new ArrayList<TableBean>();
 	}
 	
+	public void addTableToWaiter(TableBean table){
+		TableBean tb = new TableBean(table.getID());
+		this.currentTables.add(tb);		
+	}
+	
 }

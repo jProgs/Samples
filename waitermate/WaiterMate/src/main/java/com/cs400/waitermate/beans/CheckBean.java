@@ -59,8 +59,7 @@ public class CheckBean {
 		this.tip = 0;
 		this.table = table;
 		this.ID = 0;
-		
-		
+				
 	}
 	
 }

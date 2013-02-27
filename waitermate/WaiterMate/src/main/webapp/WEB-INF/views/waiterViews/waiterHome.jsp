@@ -16,17 +16,21 @@
 	</section>
 	<section id="divContent">
 	
+	<h2>${waiterFname} ${waiterLname}</h2>
+	
 	<a href="/waterMate/waiterAddTable">Add a Table to Serve</a>
 	
 	<p id="waiterTablesServing" class="instructions"></p>
 	<br />
 	
 	<!--  CREATE A COLUMN OF ALL OF THE TABLES WHICH THE SERVER HAS -->
-	
+	<h3>Tables You Are Serving:</h3>
 	<table>
 		<c:forEach items="${waiterTableList}" var="table">
-		<tr><td><a href="/waiterMate/SelectTableOfWaiter?tableId=${table.id}">Table # ${table.id}</a></td></tr>		
+		<tr><td><a href="/waiterMate/SelectTableOfWaiter?tableId=${table.ID}">Table # ${table.ID}</a></td></tr>		
 	</c:forEach>
+	
+	<!--  -->
 	
 	</table>
 	
