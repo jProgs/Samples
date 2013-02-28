@@ -9,8 +9,15 @@ public class TableBean {
 	private int ID;
 	private Boolean occupied;
 	private List<CheckBean> checkList;
+	private int waiterID;
 	
 	
+	public int getWaiterID() {
+		return waiterID;
+	}
+	public void setWaiterID(int waiterID) {
+		this.waiterID = waiterID;
+	}
 	public List<CheckBean> getCheckList() {
 		return checkList;
 	}

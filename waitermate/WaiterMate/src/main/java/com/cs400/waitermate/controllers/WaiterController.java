@@ -43,7 +43,7 @@ public class WaiterController {
 	@Inject 
 	private static ITableService tableService;
 	{
-		tableService = new TableService();
+		tableService = new TableServiceMock();
 	}
 	
 	@Inject
@@ -67,12 +67,43 @@ public class WaiterController {
 			mav1.addObject("waiterTableList", wb.getCurrentTables());
 			mav1.addObject("waiterFname", wb.getFname());
 			mav1.addObject("waiterLname", wb.getLname());
+			mav1.addObject("waiterID", wb.getID());
 			return mav1;
 		}else{
 			ModelAndView mav2 = new ModelAndView("waiterViews/waiterLogIn", "command", new WaiterBean());
 			return mav2;
 		}
 		
+		
+	}
+	
+	@RequestMapping("/waiterTablePage")
+	public ModelAndView goToWaiterTablePage(HttpServletRequest request, HttpServletResponse response){
+		
+		int tableId = Integer.parseInt(request.getParameter("tableId"));
+		System.out.println(tableId);
+		tableService.getTableCheckList(tableId);
+		
+		// for practice
+		
+		TableBean tb = new TableBean();
+		tb.setCheckList(tableService.getTableCheckList(1));
+		
+		// need to find out here what the next check number will be		
+		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean(11));
+		mav.addObject("tableCheckList", tb.getCheckList());
+		return mav;
+	}
+	
+	@RequestMapping(value = "/waiterTablePagePost", method = RequestMethod.POST)
+	public ModelAndView goToWaiterHomePost(@ModelAttribute("tableBean")TableBean tableBean, Model model){
+		tableService.addTable(tableBean);
+		System.out.println(tableBean.getID());
+		
+		// need to get next check number and pass it into the constructor. May need to 
+		// add into the constructor one with takes the table number also for simplicity. 
+		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean(12));
+		return mav;
 		
 	}
 

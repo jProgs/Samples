@@ -11,7 +11,7 @@ public class CheckBean {
 	private float subtotal;
 	private float tip;
 	private float tax;
-	private List<MenuItemBean> menuItemsList;
+	private List<OrderBean> ordersList;
 	
 	public long getID() {
 		return ID;
@@ -52,6 +52,14 @@ public class CheckBean {
 		this.tip = tip;
 	}
 	
+	
+	
+	public List<OrderBean> getOrdersList() {
+		return ordersList;
+	}
+	public void setOrdersList(List<OrderBean> ordersList) {
+		this.ordersList = ordersList;
+	}
 	public CheckBean(int table){
 		this.open = true;
 		this.subtotal = 0;
@@ -60,6 +68,10 @@ public class CheckBean {
 		this.table = table;
 		this.ID = 0;
 				
+	}
+	
+	public void addOrder(OrderBean order){
+		this.ordersList.add(order);
 	}
 	
 }

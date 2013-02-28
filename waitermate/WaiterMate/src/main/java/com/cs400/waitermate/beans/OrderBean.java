@@ -32,7 +32,28 @@ public class OrderBean {
 		this.category = category;
 	}
 	
+	public OrderBean()
+	{
+		this.ID = 0;
+		this.name = "";
+		this.price = 0;
+		this.category = "";
+					
+	}
 	
+	public OrderBean(int id, String name, float price, String category){
+		this.ID = id;
+		this.name = name;
+		this.price = price;
+		this.category = category;
+	}
 	
+	public OrderBean(String name){
+		this.ID = 0;
+		this.name = name;
+		this.price = 0;
+		this.category = "";
+	
+	}
 	
 }

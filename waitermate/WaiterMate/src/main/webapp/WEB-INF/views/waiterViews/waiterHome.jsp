@@ -18,6 +18,20 @@
 	
 	<h2>${waiterFname} ${waiterLname}</h2>
 	
+	<form:form method="POST" action="waiterTablePagePost.html">
+		<table>
+			<tr>
+				<td><form:label path="ID">New Table Number: </form:label></td>
+				<td><form:input path="ID" /> </td>
+				
+				<form:hidden path="waiterID" value="${waiterID}"/>
+			</tr>
+			
+			<tr><td><input type="submit" value="Enter" /></td></tr>
+		
+		</table>
+	</form:form>
+	
 	<a href="/waterMate/waiterAddTable">Add a Table to Serve</a>
 	
 	<p id="waiterTablesServing" class="instructions"></p>
@@ -27,10 +41,10 @@
 	<h3>Tables You Are Serving:</h3>
 	<table>
 		<c:forEach items="${waiterTableList}" var="table">
-		<tr><td><a href="/waiterMate/SelectTableOfWaiter?tableId=${table.ID}">Table # ${table.ID}</a></td></tr>		
-	</c:forEach>
+			<tr><td><a href="/waitermate/waiterTablePage?tableId=${table.ID}">Table # ${table.ID}</a></td></tr>		
+		</c:forEach>
 	
-	<!--  -->
+	<!--/waitermate/waiterLogIn  -->
 	
 	</table>
 	
