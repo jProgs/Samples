@@ -17,8 +17,8 @@ public class CheckBean {
 	public long getID() {
 		return ID;
 	}
-	public void setID(long iD) {
-		ID = iD;
+	public void setID(long ID) {
+		this.ID = ID;
 	}
 	public int getTable() {
 		return table;

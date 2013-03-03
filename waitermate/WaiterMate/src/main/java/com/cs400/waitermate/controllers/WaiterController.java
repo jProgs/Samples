@@ -77,11 +77,11 @@ public class WaiterController {
 			ModelAndView mav1 = new ModelAndView("waiterViews/waiterHome", "command", new TableBean());
 			WaiterBean wb = new WaiterBean();
 			wb = waiterService.findWaiterById(waiterBean);
-			System.out.println(wb.getID() + " wb's ID");
-			System.out.println(wb.getLname());
-			System.out.println(wb.getCurrentTables().size() + " tables serving");
-			System.out.println(wb.getCurrentTables().get(0).getID());
-			System.out.println(wb.getCurrentTables().get(0).getCheckList().size());
+			//System.out.println(wb.getID() + " wb's ID");
+			//System.out.println(wb.getLname());
+			//System.out.println(wb.getCurrentTables().size() + " tables serving");
+			//System.out.println(wb.getCurrentTables().get(0).getID());
+			//System.out.println(wb.getCurrentTables().get(0).getCheckList().size());
 			//WaiterBean wb = new WaiterBean(waiterService.findWaiterById(waiterBean));
 			//WaiterBean nb = new waiterBean();
 			//wb = waiterService.findWaiterById(waiterBean);			
@@ -105,19 +105,11 @@ public class WaiterController {
 		
 		int tableId = Integer.parseInt(request.getParameter("tableId"));
 		System.out.println(currentWaiter.getCurrentTables().get(0).getCheckList().size());
-		currentTable = currentWaiter.getSpecificTable(tableId);
-		
-		
-		//tableService.getTableCheckList(tableId);
-		// for practice
-		//TableBean tb = new TableBean();
-		//tb.setCheckList(tableService.getTableCheckList(1));
-		
-		// need to find out here what the next check number will be		
+		currentTable = currentWaiter.getSpecificTable(tableId);		
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean(11));
 		mav.addObject("currentWaiter", currentWaiter);
 		mav.addObject("currentTable", currentTable);
-		//mav.addObject("tableCheckList", tb.getCheckList());
+		
 		return mav;
 	}
 	
@@ -125,9 +117,7 @@ public class WaiterController {
 	public ModelAndView goToWaiterHomePost(@ModelAttribute("tableBean")TableBean tableBean, Model model){
 		tableService.addTable(tableBean);
 		System.out.println(tableBean.getID());
-		
-		// need to get next check number and pass it into the constructor. May need to 
-		// add into the constructor one with takes the table number also for simplicity. 
+		currentTable = currentWaiter.getSpecificTable(tableBean.getID());		
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean(12));
 		return mav;
 		

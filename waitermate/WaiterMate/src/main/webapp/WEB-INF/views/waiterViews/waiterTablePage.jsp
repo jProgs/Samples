@@ -18,27 +18,43 @@
 	
 	<h2>${currentWaiter.fname} ${currentWaiter.lname}</h2>	
 	
-	<h3> ADD LINKS TO EXIT THE TABLE AND EXIT THE WAITER</h3>
+	<!-- CLICK THESE TO EXIT THE TABLE OR WAITER -->
+	<table>
+	<tr>
+	<td><a>Exit Table</a></td>
+	<td><a>Exit Waiter</a></td>
+	</tr>
+	</table>
 	
-	<c:forEach items="${currentTable.checkList}" var="check">
-		<p>at a new check</p>
+	<c:forEach items="${currentTable.checkList}" var="check">		
 		<table>
-			<c:forEach items="currentTable.checkList.ordersList" var="order">
-			<p>at a new order</p>
-				<tr>
-					<td><a href="/waiterMate/cancelItemOnCheck?checkId=${check.ID}&orderId=${order.ID}">XXX</a></td>
-					<td><p>${order.name}</p></td>
-					<td><p>${order.price}</p></td>
-					<td><p>${order.comment}</p></td>
+			<c:forEach items="${check.ordersList}" var="order">
+			
+				<tr>		
+					<td><a href="/waiterMate/cancelItemOnCheck?checkId=${check.ID}&orderId=${order.ID}">XXX</a></td>					
+					<td>${order.name}</td>
+					<td>${order.price}</td>
+					<td>${order.comment}</td>
+				</tr>
 			</c:forEach>
 		</table>
 		<table>
-		<tr><td>PAY CHECK</td><td>ADD TIP</td><td>CLOSE CHECK</td></tr>
+		<tr>
+		<td>SubTotal: ${check.subtotal} </td>
+		<td>Tax: ${check.tax} </td>
+		<td>Tip: ${check.tip} </td>
+		<td>Total: ${check.subtotal + check.tax + check.tip} </td>
+		</tr>
 		</table>
+		<table>
+		<tr><td><a>PAY CHECK</a></td><td><a>ADD TIP</a></td><td><a>CLOSE CHECK</a></td></tr>
+		</table>
+		<br />
+		<br />
 	</c:forEach>
 	
 	<!--  <tr><td><a href="/waiterMate/SelectTableOfWaiter?tableId=${table.id}">Table # ${table.id}</a></td></tr> -->		
-	
+	<!-- <td><a href="/waiterMate/cancelItemOnCheck?checkId=${check.Id}&orderId=${order.ID}">XXX</a></td> -->
 	<p id="waiterTablesServing" class="instructions"></p>
 	<br />
 	
@@ -46,7 +62,7 @@
 	
 	<table>
 		<c:forEach items="${waiterTableList}" var="table">
-		<tr><td><a href="/waiterMate/SelectTableOfWaiter?tableId=${table.id}">Table # ${table.id}</a></td></tr>		
+		<tr><td><a href="/waiterMate/SelectTableOfWaiter?tableId=${table.ID}">Table # ${table.ID}</a></td></tr>		
 	</c:forEach>
 	
 	</table>

@@ -46,22 +46,29 @@ public class WaiterServiceMock implements IWaiterService {
 		WaiterBean wb = new WaiterBean(12345, "Joe", "Bettger", false);		
 		TableBean tb1 = new TableBean(23);
 		CheckBean cb1 = new CheckBean(tb1.getID(), 78);
-		OrderBean ob1 = new OrderBean(cb1.getID(), 1000); 
+		OrderBean ob1 = new OrderBean(658, "Garden Salad",new Float(6.99), "salad", "", cb1.getID()); 
+		OrderBean ob2 = new OrderBean(781, "Bison Burger",new Float(8.59) , "hamburger", "no cheese", cb1.getID());
 		
-		cb1.addOrder(ob1);
-		System.out.println(cb1.getOrdersList().size() + "orders on check cb1");
-		tb1.addCheckToTable(cb1);		
-		System.out.println(tb1.getCheckList().size() + "checks on table tb1");
+		cb1.addOrder(ob1);	
+		cb1.addOrder(ob2);
+		tb1.addCheckToTable(cb1);
 		wb.addTableToWaiter(tb1);
-		System.out.println(wb.getCurrentTables().size() + "tables under waiter wb");
 		
-		System.out.println("IN THE MOCK");
-		System.out.println(wb.getLname());
-		System.out.println(wb.getCurrentTables().size());
-		System.out.println(wb.getCurrentTables().get(0).getID());
-		//System.out.println(wb.getCurrentTables().get(0).getCheckList().get(0).getID());
-		//System.out.println(wb.getCurrentTables().get(0).getCheckList().get(0).getOrdersList().size());
-		System.out.println("END THE MOCK");
+		TableBean tb2 = new TableBean(35);
+		CheckBean cb2 = new CheckBean(tb2.getID(), 79);
+		CheckBean cb3 = new CheckBean(tb2.getID(), 80);
+		OrderBean ob3 = new OrderBean(700, "Garden Salad",new Float(6.99), "salad", "", cb2.getID()); 
+		OrderBean ob4 = new OrderBean(658, "Buffalo Chicken Sandwich",new Float(7.99), "sandwich", "", cb2.getID()); 
+		OrderBean ob5 = new OrderBean(658, "Buffalo Chicken Sandwich",new Float(7.99), "sandwich", "", cb3.getID()); 
+		
+		cb2.addOrder(ob3);
+		cb2.addOrder(ob4);
+		cb3.addOrder(ob5);
+		tb2.addCheckToTable(cb2);
+		tb2.addCheckToTable(cb3);
+		wb.addTableToWaiter(tb2);
+		
+		
 		return wb;
 	}
 
