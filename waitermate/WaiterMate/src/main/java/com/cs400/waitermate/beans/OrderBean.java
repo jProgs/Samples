@@ -3,14 +3,18 @@ package com.cs400.waitermate.beans;
 public class OrderBean {
 
 	
-	private int ID;
+	private long ID;
 	private String name;
 	private float price;
 	private String category;
-	public int getID() {
+	private String comment;
+	private long check;
+	
+	
+	public long getID() {
 		return ID;
 	}
-	public void setID(int iD) {
+	public void setID(long iD) {
 		ID = iD;
 	}
 	public String getName() {
@@ -32,20 +36,46 @@ public class OrderBean {
 		this.category = category;
 	}
 	
+		
+	public long getCheck() {
+		return check;
+	}
+	public void setCheck(long check) {
+		this.check = check;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 	public OrderBean()
 	{
 		this.ID = 0;
 		this.name = "";
 		this.price = 0;
 		this.category = "";
+		this.comment = "";
+		this.check = 0;
 					
 	}
 	
-	public OrderBean(int id, String name, float price, String category){
+	public OrderBean(long check, long id){
+		this.ID = id;
+		this.check = check;
+		this.name = "";
+		this.category = "";
+		this.comment = "";
+				
+	}
+	
+	public OrderBean(long id, String name, float price, String category, String comment, long check){
 		this.ID = id;
 		this.name = name;
 		this.price = price;
 		this.category = category;
+		this.comment = comment;
+		this.check = check;
 	}
 	
 	public OrderBean(String name){
@@ -53,6 +83,8 @@ public class OrderBean {
 		this.name = name;
 		this.price = 0;
 		this.category = "";
+		this.comment = "";
+		this.check = 0;
 	
 	}
 	

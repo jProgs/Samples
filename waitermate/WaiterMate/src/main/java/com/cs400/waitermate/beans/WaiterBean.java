@@ -43,6 +43,17 @@ public class WaiterBean {
 		this.currentTables = currentTables;
 	}
 	
+	public TableBean getSpecificTable(int tableId){		
+		for(TableBean myTable: this.currentTables)
+		{
+			if(myTable.getID() == tableId)
+				return myTable;		
+		}
+		// NEED TO HANDLE TABLE BEAN NOT FOUND EXCEPTION
+		TableBean tb = new TableBean();
+		return tb;
+	}
+	
 	// constructors
 	public WaiterBean(){
 		this.ID = 0;

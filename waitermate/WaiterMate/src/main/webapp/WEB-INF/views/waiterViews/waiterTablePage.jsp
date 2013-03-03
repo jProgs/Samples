@@ -16,17 +16,18 @@
 	</section>
 	<section id="divContent">
 	
+	<h2>${currentWaiter.fname} ${currentWaiter.lname}</h2>	
 	
-	<h2> ADD LINKS TO EXIT THE TABLE AND EXIT THE WAITER</h2>
+	<h3> ADD LINKS TO EXIT THE TABLE AND EXIT THE WAITER</h3>
 	
-	<c:forEach items="${tableCheckList}" var="check">
+	<c:forEach items="${currentTable.checkList}" var="check">
 		<table>
-			<c:forEach items="tableCheckList.menuItems" var="menuItem">
+			<c:forEach items="currentTable.checkList.ordersList" var="order">
 				<tr>
-					<td><a href="/waiterMate/cancelItemOnCheck?checkId=${check.checkId}&menuItemId=${menuItem.menuItemId}">XXX</a></td>
-					<td><p>${menuItem.name}</p></td>
-					<td><p>${menuItem.price}</p></td>
-					<td><p>	${menuItem.comment}</p></td>
+					<td><a href="/waiterMate/cancelItemOnCheck?checkId=${check.ID}&orderId=${order.ID}">XXX</a></td>
+					<td><p>${order.name}</p></td>
+					<td><p>${order.price}</p></td>
+					<td><p>${order.comment}</p></td>
 			</c:forEach>
 		</table>
 		<table>

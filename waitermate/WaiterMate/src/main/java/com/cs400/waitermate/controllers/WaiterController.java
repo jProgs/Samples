@@ -52,6 +52,18 @@ public class WaiterController {
 		checkService = new CheckService();
 	}
 	
+	@Inject
+	private static WaiterBean currentWaiter;
+	{
+		currentWaiter = new WaiterBean();
+	}
+	
+	@Inject
+	private static TableBean currentTable;
+	{
+		currentTable = new TableBean();
+	}
+	
 	
 	@RequestMapping("/waiterLogIn")
 	public ModelAndView goToWaiterLogIn(){
@@ -63,11 +75,9 @@ public class WaiterController {
 		if(waiterService.testWaiterLogIn(waiterBean))
 		{
 			ModelAndView mav1 = new ModelAndView("waiterViews/waiterHome", "command", new TableBean());
-			WaiterBean wb = waiterService.findWaiterById(waiterBean);
-			mav1.addObject("waiterTableList", wb.getCurrentTables());
-			mav1.addObject("waiterFname", wb.getFname());
-			mav1.addObject("waiterLname", wb.getLname());
-			mav1.addObject("waiterID", wb.getID());
+			WaiterBean wb = waiterService.findWaiterById(waiterBean);			
+			currentWaiter = wb;
+			mav1.addObject("currentWaiter", currentWaiter);
 			return mav1;
 		}else{
 			ModelAndView mav2 = new ModelAndView("waiterViews/waiterLogIn", "command", new WaiterBean());
@@ -82,16 +92,18 @@ public class WaiterController {
 		
 		int tableId = Integer.parseInt(request.getParameter("tableId"));
 		System.out.println(tableId);
-		tableService.getTableCheckList(tableId);
+		currentTable = currentWaiter.getSpecificTable(tableId);
 		
+		//tableService.getTableCheckList(tableId);
 		// for practice
-		
-		TableBean tb = new TableBean();
-		tb.setCheckList(tableService.getTableCheckList(1));
+		//TableBean tb = new TableBean();
+		//tb.setCheckList(tableService.getTableCheckList(1));
 		
 		// need to find out here what the next check number will be		
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean(11));
-		mav.addObject("tableCheckList", tb.getCheckList());
+		mav.addObject("currentWaiter", currentWaiter);
+		mav.addObject("currentTable", currentTable);
+		//mav.addObject("tableCheckList", tb.getCheckList());
 		return mav;
 	}
 	

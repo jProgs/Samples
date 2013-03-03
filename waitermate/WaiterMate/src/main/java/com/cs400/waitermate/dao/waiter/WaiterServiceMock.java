@@ -7,6 +7,7 @@ import java.util.Date;
 import com.cs400.waitermate.beans.WaiterBean;
 import com.cs400.waitermate.beans.TableBean;
 import com.cs400.waitermate.beans.CheckBean;
+import com.cs400.waitermate.beans.OrderBean;
 
 public class WaiterServiceMock implements IWaiterService {
 
@@ -43,17 +44,26 @@ public class WaiterServiceMock implements IWaiterService {
 	@Override
 	public WaiterBean findWaiterById(WaiterBean waiter) {
 		WaiterBean wb = new WaiterBean(12345, "Joe", "Bettger", false);
-		TableBean tb1 = new TableBean(1);
-		TableBean tb2 = new TableBean(2);
-		//CheckBean cb1 = new CheckBean(tb1.getID());
-		//CheckBean cb2 = new CheckBean(tb2.getID());
-		//CheckBean cb3 = new CheckBean(tb2.getID());
-		//tb1.addCheckToTable(cb1);
-		//tb2.addCheckToTable(cb2);
-		//tb2.addCheckToTable(cb3);
 		
+		TableBean tb1 = new TableBean(1);
+		CheckBean cb1 = new CheckBean(1, 100);
+		OrderBean ob1 = new OrderBean(cb1.getID(), 1000); 
+		
+		cb1.addOrder(ob1);
+		tb1.addCheckToTable(cb1);		
 		wb.addTableToWaiter(tb1);
-		wb.addTableToWaiter(tb2);
+		
+		/*
+		TableBean tb2 = new TableBean(2);
+		
+		CheckBean cb2 = new CheckBean(tb2.getID());
+		CheckBean cb3 = new CheckBean(tb2.getID());
+		tb1.addCheckToTable(cb1);
+		tb2.addCheckToTable(cb2);
+		tb2.addCheckToTable(cb3);
+		*/
+		
+		//wb.addTableToWaiter(tb2);
 		
 		
 		return wb;

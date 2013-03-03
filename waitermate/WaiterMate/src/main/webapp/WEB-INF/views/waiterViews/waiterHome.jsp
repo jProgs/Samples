@@ -16,7 +16,8 @@
 	</section>
 	<section id="divContent">
 	
-	<h2>${waiterFname} ${waiterLname}</h2>
+	
+	<h2>${currentWaiter.fname} ${currentWaiter.lname}</h2>
 	
 	<form:form method="POST" action="waiterTablePagePost.html">
 		<table>
@@ -32,7 +33,7 @@
 		</table>
 	</form:form>
 	
-	<a href="/waterMate/waiterAddTable">Add a Table to Serve</a>
+	<!--  <a href="/waterMate/waiterAddTable">Add a Table to Serve</a>  -->
 	
 	<p id="waiterTablesServing" class="instructions"></p>
 	<br />
@@ -40,7 +41,7 @@
 	<!--  CREATE A COLUMN OF ALL OF THE TABLES WHICH THE SERVER HAS -->
 	<h3>Tables You Are Serving:</h3>
 	<table>
-		<c:forEach items="${waiterTableList}" var="table">
+		<c:forEach items="${currentWaiter.currentTables}" var="table">
 			<tr><td><a href="/waitermate/waiterTablePage?tableId=${table.ID}">Table # ${table.ID}</a></td></tr>		
 		</c:forEach>
 	

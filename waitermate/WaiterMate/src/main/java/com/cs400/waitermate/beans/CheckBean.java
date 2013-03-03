@@ -51,6 +51,9 @@ public class CheckBean {
 	public void setTip(float tip) {
 		this.tip = tip;
 	}
+	public void addOrder(OrderBean order){
+		this.ordersList.add(order);
+	}
 	
 	
 	
@@ -69,9 +72,15 @@ public class CheckBean {
 		this.ID = 0;
 				
 	}
-	
-	public void addOrder(OrderBean order){
-		this.ordersList.add(order);
+	public CheckBean(int table, long id){
+		this.open = true;
+		this.subtotal = 0;
+		this.tax = 0;
+		this.tip = 0;
+		this.table = table;
+		this.ID = id;
 	}
+	
+	
 	
 }
