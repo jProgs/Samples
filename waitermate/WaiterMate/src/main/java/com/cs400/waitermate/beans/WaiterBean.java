@@ -47,7 +47,17 @@ public class WaiterBean {
 		for(TableBean myTable: this.currentTables)
 		{
 			if(myTable.getID() == tableId)
+			{
+				/*
+				System.out.println("00000000000");
+				System.out.println(myTable.getID());
+				System.out.println(myTable.toString());
+				System.out.println(myTable.getCheckList().size());
+				System.out.println("00000000000");
+				*/
 				return myTable;		
+				
+			}
 		}
 		// NEED TO HANDLE TABLE BEAN NOT FOUND EXCEPTION
 		TableBean tb = new TableBean();
@@ -68,7 +78,15 @@ public class WaiterBean {
 		this.fname = fname;
 		this.lname = lname;
 		this.admin = admin;
-		currentTables = new ArrayList<TableBean>();
+		this.currentTables = new ArrayList<TableBean>();
+	}
+	
+	public WaiterBean(WaiterBean wb){
+		this.ID = wb.getID();
+		this.fname = wb.getFname();
+		this.lname = wb.getLname();
+		this.admin = wb.getAdmin();
+		this.currentTables = wb.getCurrentTables();
 	}
 	
 	public void addTableToWaiter(TableBean table){

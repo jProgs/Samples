@@ -43,29 +43,25 @@ public class WaiterServiceMock implements IWaiterService {
 
 	@Override
 	public WaiterBean findWaiterById(WaiterBean waiter) {
-		WaiterBean wb = new WaiterBean(12345, "Joe", "Bettger", false);
-		
-		TableBean tb1 = new TableBean(1);
-		CheckBean cb1 = new CheckBean(1, 100);
+		WaiterBean wb = new WaiterBean(12345, "Joe", "Bettger", false);		
+		TableBean tb1 = new TableBean(23);
+		CheckBean cb1 = new CheckBean(tb1.getID(), 78);
 		OrderBean ob1 = new OrderBean(cb1.getID(), 1000); 
 		
 		cb1.addOrder(ob1);
+		System.out.println(cb1.getOrdersList().size() + "orders on check cb1");
 		tb1.addCheckToTable(cb1);		
+		System.out.println(tb1.getCheckList().size() + "checks on table tb1");
 		wb.addTableToWaiter(tb1);
+		System.out.println(wb.getCurrentTables().size() + "tables under waiter wb");
 		
-		/*
-		TableBean tb2 = new TableBean(2);
-		
-		CheckBean cb2 = new CheckBean(tb2.getID());
-		CheckBean cb3 = new CheckBean(tb2.getID());
-		tb1.addCheckToTable(cb1);
-		tb2.addCheckToTable(cb2);
-		tb2.addCheckToTable(cb3);
-		*/
-		
-		//wb.addTableToWaiter(tb2);
-		
-		
+		System.out.println("IN THE MOCK");
+		System.out.println(wb.getLname());
+		System.out.println(wb.getCurrentTables().size());
+		System.out.println(wb.getCurrentTables().get(0).getID());
+		//System.out.println(wb.getCurrentTables().get(0).getCheckList().get(0).getID());
+		//System.out.println(wb.getCurrentTables().get(0).getCheckList().get(0).getOrdersList().size());
+		System.out.println("END THE MOCK");
 		return wb;
 	}
 

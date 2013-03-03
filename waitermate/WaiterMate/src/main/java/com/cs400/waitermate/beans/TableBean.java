@@ -50,8 +50,7 @@ public class TableBean {
 	}
 	
 	public void addCheckToTable(CheckBean check){
-		CheckBean cb = new CheckBean(this.ID);
-		this.checkList.add(cb);
+		this.checkList.add(check);
 	}
 	
 	

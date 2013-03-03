@@ -3,6 +3,7 @@ package com.cs400.waitermate.beans;
 import java.util.List;
 import java.util.ArrayList;
 import com.cs400.waitermate.beans.MenuItemBean;
+import com.cs400.waitermate.beans.OrderBean;
 
 public class CheckBean {
 	private long ID;
@@ -70,6 +71,7 @@ public class CheckBean {
 		this.tip = 0;
 		this.table = table;
 		this.ID = 0;
+		ordersList = new ArrayList<OrderBean>();
 				
 	}
 	public CheckBean(int table, long id){
@@ -79,6 +81,7 @@ public class CheckBean {
 		this.tip = 0;
 		this.table = table;
 		this.ID = id;
+		ordersList = new ArrayList<OrderBean>();
 	}
 	
 	

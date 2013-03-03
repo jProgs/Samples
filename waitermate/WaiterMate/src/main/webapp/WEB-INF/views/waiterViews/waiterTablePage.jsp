@@ -21,8 +21,10 @@
 	<h3> ADD LINKS TO EXIT THE TABLE AND EXIT THE WAITER</h3>
 	
 	<c:forEach items="${currentTable.checkList}" var="check">
+		<p>at a new check</p>
 		<table>
 			<c:forEach items="currentTable.checkList.ordersList" var="order">
+			<p>at a new order</p>
 				<tr>
 					<td><a href="/waiterMate/cancelItemOnCheck?checkId=${check.ID}&orderId=${order.ID}">XXX</a></td>
 					<td><p>${order.name}</p></td>
