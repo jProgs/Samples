@@ -169,12 +169,15 @@ public class WaiterController {
 		long orderId = Integer.parseInt(request.getParameter("orderId"));
 		long checkId = Long.parseLong(request.getParameter("checkId"));
 		orderService.cancelOrder(orderId, checkId);
-		
-		
-		
-		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean(0));
+		// in orderservice, the cancel order needs to change the comment in the order to "cancelled" and nothing else 
+		// so that we can make changes to the table in the kitchen, they can then be notified of the difference
+		// in case they already started cooking it.	
+		currentWaiter = this.reloadCurrentWaiter();
+		currentTable = currentWaiter.getSpecificTable(currentTable.getID());			
+		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		mav.addObject("currentWaiter", currentWaiter);
 		mav.addObject("currentTable", currentTable);		
 		return mav;
+	}
 
 }

@@ -34,6 +34,7 @@
 	
 	<c:forEach items="${currentTable.checkList}" var="check">		
 		<table>
+		<tr><td>Check ID: ${check.ID}</td></tr>
 			<c:forEach items="${check.ordersList}" var="order">
 			
 				<tr>		
