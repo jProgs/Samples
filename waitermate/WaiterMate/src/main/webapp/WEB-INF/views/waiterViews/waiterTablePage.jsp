@@ -21,17 +21,23 @@
 	<!-- CLICK THESE TO EXIT THE TABLE OR WAITER -->
 	<table>
 	<tr>
-	<td><a>Exit Table</a></td>
-	<td><a>Exit Waiter</a></td>
+	<td><a href="/waitermate/exitTable">Exit Table</a></td>
+	<td><a href="/waitermate/exitWaiter">Exit Waiter</a></td>
 	</tr>
 	</table>
+	<br />
+	
+	<a href="/waiterMate/addCheck">ADD A NEW CHECK</a>
+	
+	<br />
+	<br />
 	
 	<c:forEach items="${currentTable.checkList}" var="check">		
 		<table>
 			<c:forEach items="${check.ordersList}" var="order">
 			
 				<tr>		
-					<td><a href="/waiterMate/cancelItemOnCheck?checkId=${check.ID}&orderId=${order.ID}">XXX</a></td>					
+					<td><a href="/waitermate/cancelItemOnCheck?checkId=${check.ID}&orderId=${order.ID}">XXX</a></td>					
 					<td>${order.name}</td>
 					<td>${order.price}</td>
 					<td>${order.comment}</td>

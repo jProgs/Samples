@@ -76,20 +76,8 @@ public class WaiterController {
 		{
 			ModelAndView mav1 = new ModelAndView("waiterViews/waiterHome", "command", new TableBean());
 			WaiterBean wb = new WaiterBean();
-			wb = waiterService.findWaiterById(waiterBean);
-			//System.out.println(wb.getID() + " wb's ID");
-			//System.out.println(wb.getLname());
-			//System.out.println(wb.getCurrentTables().size() + " tables serving");
-			//System.out.println(wb.getCurrentTables().get(0).getID());
-			//System.out.println(wb.getCurrentTables().get(0).getCheckList().size());
-			//WaiterBean wb = new WaiterBean(waiterService.findWaiterById(waiterBean));
-			//WaiterBean nb = new waiterBean();
-			//wb = waiterService.findWaiterById(waiterBean);			
-			currentWaiter = wb;	
-			//System.out.println("******");
-			//System.out.println(wb.getCurrentTables().get(0).getCheckList().size());
-			//System.out.println(currentWaiter.getCurrentTables().get(0).getCheckList().size());
-			//System.out.println("******");
+			wb = waiterService.findWaiterById(waiterBean);						
+			currentWaiter = wb;				
 			mav1.addObject("currentWaiter", currentWaiter);
 			return mav1;
 		}else{
@@ -121,6 +109,18 @@ public class WaiterController {
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean(12));
 		return mav;
 		
+	}
+	
+	@RequestMapping("/exitTable")
+	public ModelAndView exitTable(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mav = new ModelAndView("waiterViews/waiterHome", "command", new TableBean());	
+		mav.addObject("currentWaiter", currentWaiter);
+		return mav;
+	}
+	
+	@RequestMapping("/exitWaiter")
+	public ModelAndView exitWaiter(HttpServletRequest request, HttpServletResponse response){		 
+		return new ModelAndView("waiterViews/waiterLogIn", "command", new WaiterBean());
 	}
 
 }
