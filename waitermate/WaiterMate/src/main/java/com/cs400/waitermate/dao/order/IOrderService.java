@@ -10,6 +10,6 @@ public interface IOrderService {
 	public void removeOrder(OrderBean order);
 	public OrderBean findOrdrById(OrderBean order);
 	public void editOrder(OrderBean order);
-	
+	public void cancelOrder(long orderId, long checkId);
 
 }

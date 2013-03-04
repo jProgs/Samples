@@ -27,7 +27,7 @@
 	</table>
 	<br />
 	
-	<a href="/waiterMate/addCheck">ADD A NEW CHECK</a>
+	<a href="/waitermate/addCheck">ADD A NEW CHECK</a>
 	
 	<br />
 	<br />
@@ -37,7 +37,7 @@
 			<c:forEach items="${check.ordersList}" var="order">
 			
 				<tr>		
-					<td><a href="/waitermate/cancelItemOnCheck?checkId=${check.ID}&orderId=${order.ID}">XXX</a></td>					
+					<td><a href="/waitermate/cancelOrderOnCheck?checkId=${check.ID}&orderId=${order.ID}">XXX</a></td>					
 					<td>${order.name}</td>
 					<td>${order.price}</td>
 					<td>${order.comment}</td>

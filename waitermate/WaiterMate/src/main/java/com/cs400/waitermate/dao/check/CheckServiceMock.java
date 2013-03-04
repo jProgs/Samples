@@ -47,4 +47,10 @@ public class CheckServiceMock implements ICheckService{
 		
 	}
 
+	@Override
+	public long getNextCheckId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

@@ -10,4 +10,5 @@ public interface ICheckService {
 	public void removeCheck(CheckBean check);
 	public CheckBean findCheckById(CheckBean check);
 	public void editCheck(CheckBean check);
+	public long getNextCheckId();
 }

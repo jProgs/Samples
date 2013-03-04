@@ -84,6 +84,16 @@ public class CheckBean {
 		ordersList = new ArrayList<OrderBean>();
 	}
 	
+	public CheckBean(){
+		this.open = true;
+		this.subtotal = 0;
+		this.tax = 0;
+		this.tip = 0;
+		this.table = 0;
+		this.ID = 0;
+		ordersList = new ArrayList<OrderBean>();
+	}
+	
 	
 	
 }

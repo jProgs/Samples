@@ -36,4 +36,10 @@ public class CheckService implements ICheckService {
 		
 	}
 
+	@Override
+	public long getNextCheckId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

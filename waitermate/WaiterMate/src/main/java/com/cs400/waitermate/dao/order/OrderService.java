@@ -37,4 +37,10 @@ public class OrderService implements IOrderService {
 		
 	}
 
+	@Override
+	public void cancelOrder(long orderId, long checkId) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

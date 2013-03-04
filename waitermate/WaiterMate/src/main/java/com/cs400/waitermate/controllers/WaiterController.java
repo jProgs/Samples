@@ -30,6 +30,11 @@ import com.cs400.waitermate.dao.check.CheckService;
 import com.cs400.waitermate.dao.check.CheckServiceMock;
 import com.cs400.waitermate.beans.CheckBean;
 
+import com.cs400.waitermate.dao.order.IOrderService;
+import com.cs400.waitermate.dao.order.OrderService;
+import com.cs400.waitermate.dao.order.OrderServiceMock;
+import com.cs400.waitermate.beans.OrderBean;
+
 
 @Controller
 public class WaiterController {
@@ -49,7 +54,13 @@ public class WaiterController {
 	@Inject
 	private static ICheckService checkService;
 	{
-		checkService = new CheckService();
+		checkService = new CheckServiceMock();
+	}
+	
+	@Inject
+	private static IOrderService orderService;
+	{
+		orderService = new OrderServiceMock();
 	}
 	
 	@Inject
@@ -62,6 +73,23 @@ public class WaiterController {
 	private static TableBean currentTable;
 	{
 		currentTable = new TableBean();
+	}
+	
+	@Inject
+	private static CheckBean currentCheck;
+	{
+		currentCheck = new CheckBean();
+	}
+	
+	@Inject private static OrderBean currentOrder;
+	{
+		currentOrder = new OrderBean();
+	}
+	
+	private WaiterBean reloadCurrentWaiter()
+	{
+		WaiterBean waiter = waiterService.findWaiterById(currentWaiter);
+		return waiter;
 	}
 	
 	
@@ -83,30 +111,28 @@ public class WaiterController {
 		}else{
 			ModelAndView mav2 = new ModelAndView("waiterViews/waiterLogIn", "command", new WaiterBean());
 			return mav2;
-		}
-		
-		
+		}		
 	}
 	
 	@RequestMapping("/waiterTablePage")
-	public ModelAndView goToWaiterTablePage(HttpServletRequest request, HttpServletResponse response){
-		
+	public ModelAndView goToWaiterTablePage(HttpServletRequest request, HttpServletResponse response){		
 		int tableId = Integer.parseInt(request.getParameter("tableId"));
 		System.out.println(currentWaiter.getCurrentTables().get(0).getCheckList().size());
 		currentTable = currentWaiter.getSpecificTable(tableId);		
-		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean(11));
+		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean(0));
 		mav.addObject("currentWaiter", currentWaiter);
-		mav.addObject("currentTable", currentTable);
-		
+		mav.addObject("currentTable", currentTable);		
 		return mav;
 	}
 	
 	@RequestMapping(value = "/waiterTablePagePost", method = RequestMethod.POST)
 	public ModelAndView goToWaiterHomePost(@ModelAttribute("tableBean")TableBean tableBean, Model model){
-		tableService.addTable(tableBean);
-		System.out.println(tableBean.getID());
-		currentTable = currentWaiter.getSpecificTable(tableBean.getID());		
-		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean(12));
+		tableBean.setWaiterID(currentWaiter.getID());
+		tableService.addTable(tableBean);		
+		//currentTable = currentWaiter.getSpecificTable(tableBean.getID());		
+		currentWaiter.addTableToWaiter(tableBean);
+		currentTable = tableBean;		
+		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean(0));
 		return mav;
 		
 	}
@@ -119,8 +145,36 @@ public class WaiterController {
 	}
 	
 	@RequestMapping("/exitWaiter")
-	public ModelAndView exitWaiter(HttpServletRequest request, HttpServletResponse response){		 
+	public ModelAndView exitWaiter(HttpServletRequest request, HttpServletResponse response){
+		// STORE INFORMATION ABOUT THIS WAITER AND HIS OBJECTS IN THE DATABASE BEFORE WE LEAVE
 		return new ModelAndView("waiterViews/waiterLogIn", "command", new WaiterBean());
 	}
+	
+	@RequestMapping("/addCheck")
+	public ModelAndView addCheck(HttpServletRequest request, HttpServletResponse response){
+		//long checkId = checkService.getNextCheckId();
+		long checkId = 10101;
+		CheckBean cb = new CheckBean(currentTable.getID(), checkId);	
+		checkService.addCheck(cb);
+		currentWaiter = this.reloadCurrentWaiter();
+		currentTable = currentWaiter.getSpecificTable(currentTable.getID());
+		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
+		mav.addObject("currentWaiter", currentWaiter);
+		mav.addObject("currentTable", currentTable);
+		return mav;
+	}
+	
+	@RequestMapping("/cancelOrderOnCheck")
+	public ModelAndView cancelOrderOnCheck(HttpServletRequest request, HttpServletResponse response){		
+		long orderId = Integer.parseInt(request.getParameter("orderId"));
+		long checkId = Long.parseLong(request.getParameter("checkId"));
+		orderService.cancelOrder(orderId, checkId);
+		
+		
+		
+		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean(0));
+		mav.addObject("currentWaiter", currentWaiter);
+		mav.addObject("currentTable", currentTable);		
+		return mav;
 
 }
