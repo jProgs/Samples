@@ -48,4 +48,10 @@ public class TableService implements ITableService {
 		return checkList;		
 	}
 
+	@Override
+	public CheckBean getSpecificCheck(long checkId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

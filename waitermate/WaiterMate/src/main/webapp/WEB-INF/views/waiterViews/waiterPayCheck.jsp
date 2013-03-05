@@ -17,34 +17,26 @@
 	<section id="divContent">
 	
 	<p class="instructions">Bill: </p>
-	<p class="billAmount">${check.bill}</p>
+	<p class="billAmount">${currentCheck.subtotal}</p>
 	<br />
 	<p class="instructions">Tax: </p>
-	<p class="taxAmount">${check.tax} </p>
+	<p class="taxAmount">${currentCheck.tax} </p>
 	<br />
 	<p class="instructions">Total: </p>
-	<p class="billTotal">${check.total} </p>
-	
-	<table>
-	<tr>
-        <td><form:label path="amountPaid">Amount Paid:</form:label></td>
-        <td><form:input path="amountPaid"/></td> 
-    </tr>
-    <tr>
-        <td><form:label path="changeQuestion">Did They Ask for Change?</form:label></td>
-        <td><form:checkbox  path="changeQuestion" /></td> 
-    </tr>
-    <tr>
-        <td><form:label path="change">Change to Give:</form:label></td>
-        <td><form:input path="change"/></td> 
-    </tr>
-    <tr>
-        <td><form:label path="tip">Tip:</form:label></td>
-        <td><form:input path="tip"/></td> 
-    </tr>
-    
-	
-	</table>
+	<p class="billTotal">${currentCheck.subtotal + currentCheck.tax} </p>
+	 
+		
+	<form:form method="POST" action="payCheckSubmitted.html">
+		<table>
+			<tr>
+				<td><form:label path="">Social Last 5: </form:label></td>
+				<td><form:input path="ID" /> </td>
+			</tr>
+			
+			<tr><td><input type="submit" value="Enter" /></td></tr>
+		
+		</table>
+	</form:form>
 	
 	
 	</section>

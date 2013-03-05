@@ -53,5 +53,17 @@ public class TableBean {
 		this.checkList.add(check);
 	}
 	
+	public CheckBean getSpecificCheck(long checkId){		
+		for(CheckBean myCheck: this.getCheckList())
+		{
+			if(myCheck.getID() == checkId)
+			{
+				return myCheck;
+			}
+		}		
+		CheckBean check = new CheckBean();
+		return check;
+	}
+	
 	
 }

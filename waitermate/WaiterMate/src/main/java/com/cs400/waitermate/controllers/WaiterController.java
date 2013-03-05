@@ -179,5 +179,15 @@ public class WaiterController {
 		mav.addObject("currentTable", currentTable);		
 		return mav;
 	}
+	
+	@RequestMapping("/payCheck")
+	public ModelAndView payCheck(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mav = new ModelAndView("waiterViews/waiterPayCheck", "command", new CheckBean());
+		long checkId = Long.parseLong(request.getParameter("checkId"));
+		System.out.println("paying check " + checkId);
+		currentCheck = currentTable.getSpecificCheck(checkId);
+		mav.addObject("currentCheck", currentCheck);
+		return mav;
+	}
 
 }

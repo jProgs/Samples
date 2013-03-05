@@ -70,4 +70,10 @@ public class TableServiceMock implements ITableService{
 		return checkList;
 	}
 
+	@Override
+	public CheckBean getSpecificCheck(long checkId) {
+		CheckBean check = new CheckBean();
+		return null;
+	}
+
 }

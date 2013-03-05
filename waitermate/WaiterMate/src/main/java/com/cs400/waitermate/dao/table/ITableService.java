@@ -14,4 +14,5 @@ public interface ITableService {
 	public void editTable(TableBean table);
 	//public List<CheckBean>
 	public List<CheckBean> getTableCheckList(int tableId);
+	public CheckBean getSpecificCheck(long checkId);
 }

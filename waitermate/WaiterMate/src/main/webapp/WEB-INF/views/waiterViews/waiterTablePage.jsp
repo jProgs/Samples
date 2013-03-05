@@ -54,14 +54,17 @@
 		</tr>
 		</table>
 		<table>
-		<tr><td><a>PAY CHECK</a></td><td><a>ADD TIP</a></td><td><a>CLOSE CHECK</a></td></tr>
+		<tr>
+		<td><a href="/waitermate/payCheck?checkId=${check.ID}">PAY CHECK</a></td>
+		<td><a>ADD TIP</a></td>
+		<td><a>CLOSE CHECK</a></td></tr>
 		</table>
 		<br />
 		<br />
 	</c:forEach>
 	
-	<!--  <tr><td><a href="/waiterMate/SelectTableOfWaiter?tableId=${table.id}">Table # ${table.id}</a></td></tr> -->		
-	<!-- <td><a href="/waiterMate/cancelItemOnCheck?checkId=${check.Id}&orderId=${order.ID}">XXX</a></td> -->
+	<!--  <tr><td><a href="/waitermate/SelectTableOfWaiter?tableId=${table.id}">Table # ${table.id}</a></td></tr> -->		
+	<!-- <td><a href="/waitermate/cancelItemOnCheck?checkId=${check.Id}&orderId=${order.ID}">XXX</a></td> -->
 	<p id="waiterTablesServing" class="instructions"></p>
 	<br />
 	
