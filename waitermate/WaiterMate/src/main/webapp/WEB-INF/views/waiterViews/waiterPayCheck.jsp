@@ -16,27 +16,16 @@
 	</section>
 	<section id="divContent">
 	
-	<p class="instructions">Bill: </p>
-	<p class="billAmount">${currentCheck.subtotal}</p>
-	<br />
-	<p class="instructions">Tax: </p>
-	<p class="taxAmount">${currentCheck.tax} </p>
-	<br />
-	<p class="instructions">Total: </p>
-	<p class="billTotal">${currentCheck.subtotal + currentCheck.tax} </p>
+	<table>
+	<tr>
+		<td>Subtotal: $${currentCheck.subtotal}</td>
+		<td>Tax: $${currentCheck.tax}</td>
+		<td>Total: $${currentCheck.subtotal + currentCheck.tax}</td>	
+	</tr>
+	</table>
 	 
 		
-	<form:form method="POST" action="payCheckSubmitted.html">
-		<table>
-			<tr>
-				<td><form:label path="">Social Last 5: </form:label></td>
-				<td><form:input path="ID" /> </td>
-			</tr>
-			
-			<tr><td><input type="submit" value="Enter" /></td></tr>
-		
-		</table>
-	</form:form>
+	
 	
 	
 	</section>

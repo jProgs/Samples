@@ -50,7 +50,7 @@
 		<td>SubTotal: ${check.subtotal} </td>
 		<td>Tax: ${check.tax} </td>
 		<td>Tip: ${check.tip} </td>
-		<td>Total: ${check.subtotal + check.tax + check.tip} </td>
+		<td>Total: ${check.total}</td>
 		</tr>
 		</table>
 		<table>

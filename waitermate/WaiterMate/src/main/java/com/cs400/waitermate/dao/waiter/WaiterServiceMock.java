@@ -51,6 +51,7 @@ public class WaiterServiceMock implements IWaiterService {
 		
 		cb1.addOrder(ob1);	
 		cb1.addOrder(ob2);
+		cb1.updateMoneyTotals();
 		tb1.addCheckToTable(cb1);
 		wb.addTableToWaiter(tb1);
 		
@@ -63,7 +64,9 @@ public class WaiterServiceMock implements IWaiterService {
 		
 		cb2.addOrder(ob3);
 		cb2.addOrder(ob4);
+		cb2.updateMoneyTotals();
 		cb3.addOrder(ob5);
+		cb3.updateMoneyTotals();
 		tb2.addCheckToTable(cb2);
 		tb2.addCheckToTable(cb3);
 		wb.addTableToWaiter(tb2);
