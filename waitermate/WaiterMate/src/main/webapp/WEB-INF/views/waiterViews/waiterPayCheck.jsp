@@ -6,24 +6,36 @@
 <title>Waiter Pay Check</title>
 
 <script type="text/javascript">
-	var subtotal = parseFloat('${currentCheck.subtotal}');
-	var tax = parseFloat('{currentCheck.tax}');
-	var total = parseFloat('{currentCheck.total}');
-	float tendered = 0;
+	
+	var total;
+	var tendered;
+	var change = 0;
+	var tip = 0;
 	
 	function updateTendered(){
-		tendered = document.getElementById('tendered').value.parseFloat();		
+		total =  parseFloat(document.getElementById('total').value);
+		tendered = parseFloat (document.getElementById('tendered').value);
 	}
 
 	function updateForm(){
 		if(tendered != 0)
 			{
-				alert(tendered);
-			}		
-			
-			
-		
-				
+				if(document.getElementById('yesChange').checked){
+					change = tendered - total;
+					change = Math.round(change*100);
+					change = change/100;
+					change = change.toFixed(2);
+					document.getElementById('change').value = change;
+					document.getElementById('tip').value = 0;
+				}else if(document.getElementById('noChange').checked){
+					tip = tendered - total;
+					tip = Math.round(change*100);
+					tip = tip/100;
+					tip = tip.toFixed(2);
+					document.getElementById('tip').value = tip;
+					document.getElementById('change').value = 0;
+				}
+			}	
 	}
 		
 		
@@ -51,9 +63,11 @@
 			</table>
 <!-- FORMS FOR AMOUNT TENDERED, ADDING A TIP -->
 			<form>
+				<input type="hidden" id="total" value="${currentCheck.total}" />
+				
 				<table>
 					<tr>
-						<td>AMOUNT TENDERED: <input type="text" id="tendered" name="tendered" onchange="updateTendered()" /></td>
+						<td>AMOUNT TENDERED: <input type="text" id="tendered" name="tendered" onchange="updateTendered()" value="0" /></td>
 					</tr>
 				</table>
 				<table>
@@ -65,9 +79,8 @@
 				</table>
 				<table>
 					<tr>
-					<td>
-					<input type="text" id="change" /> 
-					</td>
+						<td>CHANGE TO GIVE:</td>
+						<td><input type="text" id="change" value="0" /></td>
 					</tr>
 				</table>
 			</form>
@@ -75,7 +88,7 @@
 			<table>
 				<form:form method="POST" action="payCheckCompleted">
 					<tr>
-						<td><form:label path="tip" >Tip: </form:label></td>
+						<td><form:label path="tip" >TIP: </form:label></td>
 						<td><form:input path="tip" id="tip" /></td>
 					</tr>
 					<tr>

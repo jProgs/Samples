@@ -119,7 +119,7 @@ public class WaiterController {
 		int tableId = Integer.parseInt(request.getParameter("tableId"));
 		System.out.println(currentWaiter.getCurrentTables().get(0).getCheckList().size());
 		currentTable = currentWaiter.getSpecificTable(tableId);		
-		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean(0));
+		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		mav.addObject("currentWaiter", currentWaiter);
 		mav.addObject("currentTable", currentTable);		
 		return mav;
@@ -132,7 +132,7 @@ public class WaiterController {
 		//currentTable = currentWaiter.getSpecificTable(tableBean.getID());		
 		currentWaiter.addTableToWaiter(tableBean);
 		currentTable = tableBean;		
-		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean(0));
+		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		return mav;
 		
 	}
@@ -187,6 +187,20 @@ public class WaiterController {
 		System.out.println("paying check " + checkId);
 		currentCheck = currentTable.getSpecificCheck(checkId);
 		mav.addObject("currentCheck", currentCheck);
+		mav.addObject("subtotal2", currentCheck.getSubtotal());
+		return mav;
+	}
+	
+	@RequestMapping("payCheckCompleted")
+	public ModelAndView payCheckCompleted(@ModelAttribute("checkBean")CheckBean checkBean, Model model){
+		currentCheck.setTip(checkBean.getTip());
+		currentCheck.setOpen(false);
+		// NEED TO SAVE THE CHANGES TO THE DATABASE HERE
+		// FOR REAL
+		System.out.println("the tip is " + currentCheck.getTip());		
+		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
+		mav.addObject("currentWaiter", currentWaiter);
+		mav.addObject("currentTable", currentTable);		
 		return mav;
 	}
 
