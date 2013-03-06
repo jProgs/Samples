@@ -57,7 +57,9 @@
 		<tr>
 		<td><a href="/waitermate/payCheck?checkId=${check.ID}">PAY CHECK</a></td>
 		<td><a>ADD TIP</a></td>
+		<c:if test="${check.open == false}">
 		<td><a>CLOSE CHECK</a></td></tr>
+		</c:if>		
 		</table>
 		<br />
 		<br />
