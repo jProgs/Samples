@@ -68,7 +68,9 @@ public class CheckBean {
 		this.ordersList.add(order);
 	}
 	
-	
+	public void reCalculateTotal(){
+		this.total = this.subtotal + this.tax + this.tip;
+	}	
 	
 	public List<OrderBean> getOrdersList() {
 		return ordersList;

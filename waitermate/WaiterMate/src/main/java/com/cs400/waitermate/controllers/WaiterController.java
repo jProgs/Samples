@@ -187,20 +187,41 @@ public class WaiterController {
 		System.out.println("paying check " + checkId);
 		currentCheck = currentTable.getSpecificCheck(checkId);
 		mav.addObject("currentCheck", currentCheck);
-		mav.addObject("subtotal2", currentCheck.getSubtotal());
 		return mav;
 	}
 	
 	@RequestMapping("payCheckCompleted")
 	public ModelAndView payCheckCompleted(@ModelAttribute("checkBean")CheckBean checkBean, Model model){
-		currentCheck.setTip(checkBean.getTip());
+		currentCheck.setTip(checkBean.getTip() + currentCheck.getTip());
 		currentCheck.setOpen(false);
+		currentCheck.reCalculateTotal();
 		// NEED TO SAVE THE CHANGES TO THE DATABASE HERE
 		// FOR REAL
-		System.out.println("the tip is " + currentCheck.getTip());		
+		//System.out.println("the tip is " + currentCheck.getTip());		
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		mav.addObject("currentWaiter", currentWaiter);
 		mav.addObject("currentTable", currentTable);		
+		return mav;
+	}
+	
+	@RequestMapping("/addTip")
+	public ModelAndView addTip(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mav = new ModelAndView("waiterViews/waiterAddTip", "command", new CheckBean());
+		long checkId = Long.parseLong(request.getParameter("checkId"));
+		currentCheck = currentTable.getSpecificCheck(checkId);
+		mav.addObject("currentCheck", currentCheck);
+		return mav;
+	}
+	
+	@RequestMapping("/addTipCompleted")
+	public ModelAndView attTipCompleted(@ModelAttribute("checkBean")CheckBean checkBean, Model model){
+		currentCheck.setTip(checkBean.getTip() + currentCheck.getTip());
+		currentCheck.reCalculateTotal();
+		// NEED TO SAVE THE CHANGES TO THE DATABASE HERE
+		// FOR REAL DUDES
+		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
+		mav.addObject("currentWaiter", currentWaiter);
+		mav.addObject("currentTable", currentTable);
 		return mav;
 	}
 

@@ -31,42 +31,45 @@
 	
 	<br />
 	<br />
-	
-	<c:forEach items="${currentTable.checkList}" var="check">		
-		<table>
-		<tr><td>Check ID: ${check.ID}</td></tr>
-			<c:forEach items="${check.ordersList}" var="order">
-			
-				<tr>		
-					<td><a href="/waitermate/cancelOrderOnCheck?checkId=${check.ID}&orderId=${order.ID}">XXX</a></td>					
-					<td>${order.name}</td>
-					<td>${order.price}</td>
-					<td>${order.comment}</td>
-				</tr>
+
+			<c:forEach items="${currentTable.checkList}" var="check">
+				<table>
+					<tr>
+						<td>Check ID: ${check.ID}</td>
+					</tr>
+					<c:forEach items="${check.ordersList}" var="order">
+
+						<tr>
+							<td><a
+								href="/waitermate/cancelOrderOnCheck?checkId=${check.ID}&orderId=${order.ID}">XXX</a></td>
+							<td>${order.name}</td>
+							<td>${order.price}</td>
+							<td>${order.comment}</td>
+						</tr>
+					</c:forEach>
+				</table>
+				<table>
+					<tr>
+						<td>SubTotal: ${check.subtotal}</td>
+						<td>Tax: ${check.tax}</td>
+						<td>Tip: ${check.tip}</td>
+						<td>Total: ${check.total}</td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td><a href="/waitermate/payCheck?checkId=${check.ID}">PAYCHECK</a></td>
+						<td><a href="/waitermate/addTip?checkId=${check.ID}">ADD TIP</a></td>
+						<c:if test="${check.open == false}">
+							<td><a>CLOSE CHECK</a></td>
+						</c:if>
+					</tr>
+				</table>
+				<br />
+				<br />
 			</c:forEach>
-		</table>
-		<table>
-		<tr>
-		<td>SubTotal: ${check.subtotal} </td>
-		<td>Tax: ${check.tax} </td>
-		<td>Tip: ${check.tip} </td>
-		<td>Total: ${check.total}</td>
-		</tr>
-		</table>
-		<table>
-		<tr>
-		<td><a href="/waitermate/payCheck?checkId=${check.ID}">PAY CHECK</a></td>
-		<td><a>ADD TIP</a></td>
-		<c:if test="${check.open == false}">
-		<td><a>CLOSE CHECK</a></td></tr>
-		</c:if>		
-		</table>
-		<br />
-		<br />
-	</c:forEach>
-	
-	<!--  <tr><td><a href="/waitermate/SelectTableOfWaiter?tableId=${table.id}">Table # ${table.id}</a></td></tr> -->		
-	<!-- <td><a href="/waitermate/cancelItemOnCheck?checkId=${check.Id}&orderId=${order.ID}">XXX</a></td> -->
+
+			
 	<p id="waiterTablesServing" class="instructions"></p>
 	<br />
 	

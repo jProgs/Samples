@@ -18,15 +18,13 @@
 	
 	<p id="logInInstructions" class="instructions">ENTER THE TIP AMOUNT YOU WERE GIVEN:</p>
 	
-	<form:form method="POST" action="waiterHome.html">
+	<form:form method="POST" action="addTipCompleted">
 		<table>
 			<tr>
 				<td><form:label path="tip">Tip: </form:label></td>
 				<td><form:input path="tip"/> </td>
-			</tr>
-			
-			<tr><td><input type="submit" value="Enter" /></td></tr>
-		
+			</tr>			
+			<tr><td><input type="submit" value="Enter" /></td></tr>		
 		</table>
 	</form:form>
 	
