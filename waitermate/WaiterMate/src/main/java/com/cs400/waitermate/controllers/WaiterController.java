@@ -224,5 +224,14 @@ public class WaiterController {
 		mav.addObject("currentTable", currentTable);
 		return mav;
 	}
+	
+	@RequestMapping("/addOrder")
+	public ModelAndView addOrder(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mav = new ModelAndView("menuViews/menuHome", "command", new OrderBean());
+		long checkId = Long.parseLong(request.getParameter("checkId"));
+		currentCheck = currentTable.getSpecificCheck(checkId);
+		mav.addObject("currentCheck", currentCheck);
+		return mav;
+	}
 
 }

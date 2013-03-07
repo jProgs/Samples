@@ -36,12 +36,11 @@
 				<table>
 					<tr>
 						<td>Check ID: ${check.ID}</td>
+						<td><a href="/waitermate/addOrder?checkId=${check.ID}">Add Order</a></td>
 					</tr>
 					<c:forEach items="${check.ordersList}" var="order">
-
 						<tr>
-							<td><a
-								href="/waitermate/cancelOrderOnCheck?checkId=${check.ID}&orderId=${order.ID}">XXX</a></td>
+							<td><a href="/waitermate/cancelOrderOnCheck?checkId=${check.ID}&orderId=${order.ID}">XXX</a></td>
 							<td>${order.name}</td>
 							<td>${order.price}</td>
 							<td>${order.comment}</td>
