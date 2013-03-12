@@ -15,6 +15,7 @@
 	function updateTendered(){
 		total =  parseFloat(document.getElementById('total').value);
 		tendered = parseFloat (document.getElementById('tendered').value);
+		this.updateForm();
 	}
 
 	function updateForm(){
@@ -68,7 +69,7 @@
 				<table>
 					<tr>
 						<td>CHANGE WANTED?</td>
-						<td>YES <input id="yesChange" class="changeRadio" onclick="updateForm()" type="radio" name="changeWanted" value="yes" /></td>
+						<td>YES <input id="yesChange" class="changeRadio" onclick="updateForm()" type="radio" name="changeWanted" value="yes" checked/></td>
 						<td>NO <input id="noChange" class="changeRadio" onclick="updateForm()" type="radio" name="changeWanted" value="no" /></td>
 					</tr>					
 				</table>
