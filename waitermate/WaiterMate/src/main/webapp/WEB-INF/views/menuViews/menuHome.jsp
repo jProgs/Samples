@@ -18,6 +18,8 @@
 	
 	<h2>MENU HOME</h2>
 	
+	
+	
 	</section>
 	<section id="divFooter">
 		<jsp:include page="/WEB-INF/partials/footer.jsp"></jsp:include>

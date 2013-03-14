@@ -35,6 +35,11 @@ import com.cs400.waitermate.dao.order.OrderService;
 import com.cs400.waitermate.dao.order.OrderServiceMock;
 import com.cs400.waitermate.beans.OrderBean;
 
+import com.cs400.waitermate.beans.MenuBean;
+import com.cs400.waitermate.dao.menu.*;
+//import com.cs400.waitermate.dao.menu.*;
+//import com.cs400.waitermate.dao.menu.MenuServiceMock;
+//import com.cs400.waitermate.dao.menu.MenuService;
 
 @Controller
 public class WaiterController {
@@ -64,6 +69,12 @@ public class WaiterController {
 	}
 	
 	@Inject
+	private static IMenuService menuService;
+	{
+		menuService = new MenuServiceMock();		
+	}
+	
+	@Inject
 	private static WaiterBean currentWaiter;
 	{
 		currentWaiter = new WaiterBean();
@@ -86,6 +97,11 @@ public class WaiterController {
 		currentOrder = new OrderBean();
 	}
 	
+	@Inject private static MenuBean currentMenu;
+	{
+		currentMenu = new MenuBean();
+	}
+	
 	private WaiterBean reloadCurrentWaiter()
 	{
 		WaiterBean waiter = waiterService.findWaiterById(currentWaiter);
@@ -95,6 +111,10 @@ public class WaiterController {
 	
 	@RequestMapping("/waiterLogIn")
 	public ModelAndView goToWaiterLogIn(){
+		if(currentMenu.getMenu().size() == 0)
+		{
+			currentMenu = menuService.loadMenu();
+		}			
 		return new ModelAndView("waiterViews/waiterLogIn", "command", new WaiterBean());
 	}
 	
@@ -231,6 +251,7 @@ public class WaiterController {
 		long checkId = Long.parseLong(request.getParameter("checkId"));
 		currentCheck = currentTable.getSpecificCheck(checkId);
 		mav.addObject("currentCheck", currentCheck);
+		// FETCH THE MENU FROM THE DATABASE IF IT ISN'T ALREADY LOADED
 		return mav;
 	}
 
