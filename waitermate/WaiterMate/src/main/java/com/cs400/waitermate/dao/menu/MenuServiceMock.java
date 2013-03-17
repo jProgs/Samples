@@ -25,6 +25,7 @@ public class MenuServiceMock implements IMenuService {
 		//menu.addMenuItem(new MenuItemBean(1, "Steak Burger", new Float (6.99), "Burgers"));
 		//menu.addMenuItem(new MenuItemBean(1, "Steak Burger", new Float (6.99), "Burgers"));
 		//menu.addMenuItem(new MenuItemBean(1, "Steak Burger", new Float (6.99), "Burgers"));
+		menu.updateCategoryList();
 		
 		return menu;
 	}

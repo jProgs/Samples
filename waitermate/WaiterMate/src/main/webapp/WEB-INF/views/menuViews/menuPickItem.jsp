@@ -3,7 +3,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Menu Home</title>
+	<title>Pick an item</title>
 	<link rel="stylesheet" type="text/css" href="/finalLab/src/main/webapp/resources/styles/style.css" media="screen" />
 </head>
 <body>
@@ -16,7 +16,7 @@
 	</section>
 	<section id="divContent">
 	
-	<h2>MENU HOME</h2>
+	<h2>PICK AN ITEM</h2>
 	
 	<table>	
 	<c:forEach items="${menu.menuCategoriesList}" var="category">

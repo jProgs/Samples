@@ -250,10 +250,18 @@ public class WaiterController {
 		ModelAndView mav = new ModelAndView("menuViews/menuHome", "command", new OrderBean());
 		long checkId = Long.parseLong(request.getParameter("checkId"));
 		currentCheck = currentTable.getSpecificCheck(checkId);
-		mav.addObject("currentCheck", currentCheck);
+		//mav.addObject("currentCheck", currentCheck);
 		// FETCH THE MENU FROM THE DATABASE IF IT ISN'T ALREADY LOADED
 		//mav.addObject("menuCategoriesList", currentMenu.getMenuCategoriesList());		
 		mav.addObject("menu", currentMenu);
+		System.out.println(currentMenu.getMenuCategoriesList().size() + " --- size of categories list");
+		return mav;
+	}
+	
+	@RequestMapping("/menuCategoryChosen")
+	public ModelAndView menuCategoryChosen(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mav = new ModelAndView("menuViews/menuPickItem", "command", new OrderBean());
+		
 		return mav;
 	}
 	
