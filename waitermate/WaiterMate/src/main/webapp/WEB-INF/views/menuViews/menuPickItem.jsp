@@ -17,14 +17,18 @@
 	<section id="divContent">
 	
 	<h2>PICK AN ITEM</h2>
-	
-	<table>	
-	<c:forEach items="${menu.menuCategoriesList}" var="category">
-		<tr><td><a href="/waitermate/menuCategoryChosen?category=${category}">${category}</a></td></tr>	
-	</c:forEach>
-	</table>
-	
-	</section>
+
+			<table>
+				<c:forEach items="${menuBean.menu}" var="item">
+					<c:if test="${item.category == currentCategory}">
+						<tr>
+							<td><a href="/waitermate/orderChosen?orderName=${item.name}">${item.name}</a></td>
+						</tr>
+					</c:if>
+				</c:forEach>
+			</table>
+
+		</section>
 	<section id="divFooter">
 		<jsp:include page="/WEB-INF/partials/footer.jsp"></jsp:include>
 	</section>

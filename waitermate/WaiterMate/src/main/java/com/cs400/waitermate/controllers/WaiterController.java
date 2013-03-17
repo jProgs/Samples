@@ -261,7 +261,28 @@ public class WaiterController {
 	@RequestMapping("/menuCategoryChosen")
 	public ModelAndView menuCategoryChosen(HttpServletRequest request, HttpServletResponse response){
 		ModelAndView mav = new ModelAndView("menuViews/menuPickItem", "command", new OrderBean());
-		
+		mav.addObject("currentCategory", request.getParameter("category"));
+		mav.addObject("menuBean", currentMenu);
+		return mav;
+	}
+	
+	@RequestMapping("/orderChosen")
+	public ModelAndView orderChosen(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mav = new ModelAndView("menuViews/menuAddComment", "command", new OrderBean());
+		currentOrder = currentMenu.createOrderFromName(request.getParameter("orderName"));
+		mav.addObject("currentOrder", currentOrder);		
+		return mav;		
+	}
+	
+	@RequestMapping("/readyToAddOrder")
+	public ModelAndView readyToAddOrder(@ModelAttribute("orderBean")OrderBean orderBean, Model model){
+		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
+		OrderBean order = orderBean;
+		currentCheck.addOrder(order);
+		currentTable.replaceCheck(currentCheck);
+		currentCheck.updateMoneyTotals();
+		mav.addObject("currentWaiter", currentWaiter);
+		mav.addObject("currentTable", currentTable);
 		return mav;
 	}
 	

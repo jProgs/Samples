@@ -65,5 +65,16 @@ public class TableBean {
 		return check;
 	}
 	
+	public void replaceCheck(CheckBean check){
+		for(CheckBean myCheck: this.getCheckList())
+		{
+			if(myCheck.getID() == check.getID()){
+				checkList.remove(myCheck);
+				checkList.add(check);
+				return;
+			}
+		}
+	}
+	
 	
 }

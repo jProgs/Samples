@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import com.cs400.waitermate.beans.MenuItemBean;
+import com.cs400.waitermate.beans.OrderBean;
 
 
 public class MenuBean {
@@ -56,6 +57,27 @@ public class MenuBean {
 		this.menu.add(mib);
 	}
 	
-	
+	public OrderBean createOrderFromName(String name){
+		System.out.println("in createOrderFromName");
+		OrderBean ob = new OrderBean();
+		ob.setName(name);
+		System.out.println(ob.getName() + " is the name of my order");
+		
+		// NEED TO PUT THIS IN SOME KIND OF TRY CATCH FOR IF THE MENU HASNT BEEN CREATED YET
+		for(MenuItemBean mib: menu)
+		{
+			System.out.println(mib.getName());
+			if(mib.getName().equalsIgnoreCase(ob.getName()))
+			{
+				System.out.println("I found a match");
+				ob.setCategory(mib.getCategory());
+				ob.setPrice(mib.getPrice());
+				System.out.println(ob.getPrice() + " it costs ");
+				return ob;
+			}
+		}	
+		
+		return ob;
+	}
 
 }
