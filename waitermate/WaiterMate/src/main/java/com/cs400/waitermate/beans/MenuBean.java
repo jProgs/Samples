@@ -52,6 +52,10 @@ public class MenuBean {
 
 	}// end updateCategoryList()
 	
+	public void addMenuItem(MenuItemBean mib){
+		this.menu.add(mib);
+	}
+	
 	
 
 }

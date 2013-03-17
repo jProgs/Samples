@@ -45,6 +45,19 @@ public class MenuItemBean {
 		this.category = category;
 	}
 	
+	public MenuItemBean(){
+		this.ID = 0;
+		this.name = "";
+		this.price = 0;
+		this.category = "";
+	}
 	
+	public MenuItemBean(int id, String name, float price, String category)
+	{
+		this.ID = id;
+		this.name = name;
+		this.price = price;
+		this.category = category;
+	}
 
 }

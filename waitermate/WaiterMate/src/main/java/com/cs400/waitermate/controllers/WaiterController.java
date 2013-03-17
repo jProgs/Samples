@@ -252,7 +252,14 @@ public class WaiterController {
 		currentCheck = currentTable.getSpecificCheck(checkId);
 		mav.addObject("currentCheck", currentCheck);
 		// FETCH THE MENU FROM THE DATABASE IF IT ISN'T ALREADY LOADED
+		//mav.addObject("menuCategoriesList", currentMenu.getMenuCategoriesList());		
+		mav.addObject("menu", currentMenu);
 		return mav;
 	}
+	
+	
+	
+	
+	
 
 }
