@@ -289,6 +289,43 @@ public class WaiterController {
 	
 	
 	
+	/*
+	 * END THE WAITERS STUFF
+	 * END THE WAITERS STUFF
+	 * END THE WAITERS STUFF
+	 * END THE WAITERS STUFF
+	 * END THE WAITERS STUFF
+	 * END THE WAITERS STUFF
+	 * END THE WAITERS STUFF
+	 * END THE WAITERS STUFF
+	 * 
+	 * 
+	 * 
+	 * 
+	 * BEGIN THE KITCHEN STUFF
+	 * BEGIN THE KITCHEN STUFF
+	 * BEGIN THE KITCHEN STUFF
+	 * BEGIN THE KITCHEN STUFF
+	 * BEGIN THE KITCHEN STUFF
+	 * BEGIN THE KITCHEN STUFF
+	 * BEGIN THE KITCHEN STUFF
+	 */
+	
+	@RequestMapping("/kitchenHome")
+	public ModelAndView kitchenHome(){
+		ModelAndView mav = new ModelAndView("kitchenViews/kitchenHome");
+		return mav;		
+	}
+	
+
+	@RequestMapping("/orderUp")
+	public ModelAndView orderUp(HttpServletRequest request, HttpServletResponse response){		
+		ModelAndView mav = new ModelAndView("kitchenViews/kitchenHome");
+		long orderId = Long.parseLong(request.getParameter("orderId"));
+		mav.addObject("allOrders", orderService.listOrders());
+		return mav;
+	}
+	
 	
 
 }

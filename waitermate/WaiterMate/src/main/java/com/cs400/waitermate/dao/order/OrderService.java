@@ -26,7 +26,7 @@ public class OrderService implements IOrderService {
 	}
 
 	@Override
-	public OrderBean findOrdrById(OrderBean order) {
+	public OrderBean findOrderById(OrderBean order) {
 		// TODO Auto-generated method stub
 		return null;
 	}

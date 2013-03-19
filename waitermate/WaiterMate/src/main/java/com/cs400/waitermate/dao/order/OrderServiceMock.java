@@ -26,7 +26,7 @@ public class OrderServiceMock implements IOrderService {
 	}
 
 	@Override
-	public OrderBean findOrdrById(OrderBean order) {
+	public OrderBean findOrderById(OrderBean order) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -42,5 +42,7 @@ public class OrderServiceMock implements IOrderService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }
