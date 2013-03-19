@@ -16,9 +16,9 @@
 	</section>
 	<section id="divContent">
 	
-	<h2><a href="/waitermate/refreshKitchen">REFRESH</a></h2>
+	<h2><a href="/waitermate/kitchenHome">REFRESH</a></h2>
 	
-		<table>
+		<table border="1">
 		<tr>
 			<td>TABLE</td>
 			<td>ORDER</td>
@@ -27,7 +27,7 @@
 			<c:forEach items="${allOrders}" var="order">
 				<tr>
 					<td><a href="/waitermate/orderUp?orderId=${order.ID}">FINISHED</a></td>
-					<td>${order.table}</td>
+					<td>${order.check}</td>
 					<td>${order.name}</td>
 					<td>${order.comment}</td>					
 				</tr>

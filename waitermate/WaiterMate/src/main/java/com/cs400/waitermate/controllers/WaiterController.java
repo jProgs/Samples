@@ -314,6 +314,7 @@ public class WaiterController {
 	@RequestMapping("/kitchenHome")
 	public ModelAndView kitchenHome(){
 		ModelAndView mav = new ModelAndView("kitchenViews/kitchenHome");
+		mav.addObject("allOrders", orderService.listOrders());
 		return mav;		
 	}
 	

@@ -9,8 +9,15 @@ public class OrderServiceMock implements IOrderService {
 
 	@Override
 	public List<OrderBean> listOrders() {
-		// TODO Auto-generated method stub
-		return null;
+		List allOrders = new ArrayList<OrderBean>();
+		OrderBean ob1 = new OrderBean(1, "Chicken Wrap", new Float(6.99), "Sandwiches", "", 10);
+		OrderBean ob2 = new OrderBean(2, "Southwest Burger", new Float(8.99), "Burgers", "Medium Rare", 10);
+		OrderBean ob3 = new OrderBean(3, "Tilapia", new Float(6.99), "Fish", "", 14);
+		allOrders.add(ob1);
+		allOrders.add(ob2);
+		allOrders.add(ob3);
+		
+		return allOrders;
 	}
 
 	@Override
