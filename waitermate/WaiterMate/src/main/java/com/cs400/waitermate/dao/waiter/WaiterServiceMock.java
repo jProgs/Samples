@@ -15,6 +15,8 @@ public class WaiterServiceMock implements IWaiterService {
 	{
 		waiters = new ArrayList<WaiterBean>();
 		
+		WaiterBean wb = new WaiterBean(12345, "Joe", "Bettger", true);
+		waiters.add(wb);
 		// make up waiters to be passed around here. 
 		
 		
@@ -25,8 +27,7 @@ public class WaiterServiceMock implements IWaiterService {
 	
 	@Override
 	public List<WaiterBean> listWaiters() {
-		// TODO Auto-generated method stub
-		return null;
+		return waiters;
 	}
 
 	@Override
@@ -83,6 +84,12 @@ public class WaiterServiceMock implements IWaiterService {
 
 	@Override
 	public boolean testWaiterLogIn(WaiterBean waiter) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean testWaiterAdminLogIn(WaiterBean waiterBean) {
 		// TODO Auto-generated method stub
 		return true;
 	}

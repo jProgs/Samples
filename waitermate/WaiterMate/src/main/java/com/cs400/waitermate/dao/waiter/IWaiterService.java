@@ -11,6 +11,7 @@ public interface IWaiterService {
 	public WaiterBean findWaiterById(WaiterBean waiter);
 	public void editWaiter(WaiterBean waiter);
 	public boolean testWaiterLogIn(WaiterBean waiter);
+	public boolean testWaiterAdminLogIn(WaiterBean waiterBean);
 	
 	
 }

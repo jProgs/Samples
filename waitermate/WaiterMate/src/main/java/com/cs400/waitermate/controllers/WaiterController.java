@@ -293,18 +293,7 @@ public class WaiterController {
 	 * END THE WAITERS STUFF
 	 * END THE WAITERS STUFF
 	 * END THE WAITERS STUFF
-	 * END THE WAITERS STUFF
-	 * END THE WAITERS STUFF
-	 * END THE WAITERS STUFF
-	 * END THE WAITERS STUFF
-	 * END THE WAITERS STUFF
 	 * 
-	 * 
-	 * 
-	 * 
-	 * BEGIN THE KITCHEN STUFF
-	 * BEGIN THE KITCHEN STUFF
-	 * BEGIN THE KITCHEN STUFF
 	 * BEGIN THE KITCHEN STUFF
 	 * BEGIN THE KITCHEN STUFF
 	 * BEGIN THE KITCHEN STUFF
@@ -330,5 +319,56 @@ public class WaiterController {
 	
 	
 	
+	/*
+	 * END THE KITCHEN STUFF
+	 * END THE KITCHEN STUFF
+	 * END THE KITCHEN STUFF
+	 * END THE KITCHEN STUFF
+	 * 
+	 * BEGIN THE ADMIN STUFF
+	 * BEGIN THE ADMIN STUFF
+	 * BEGIN THE ADMIN STUFF
+	 * BEGIN THE ADMIN STUFF
+	 * 
+	 */
+	
+	
+	@RequestMapping("/adminLogin")
+	public ModelAndView adminLogin()
+	{
+		return new ModelAndView("adminViews/adminLogin", "command", new WaiterBean());		
+		
+	}
+	
+	@RequestMapping(value = "/adminHome", method = RequestMethod.POST)
+	public ModelAndView adminHome(@ModelAttribute("waiterBean")WaiterBean waiterBean, Model model)
+	{
+		if(waiterService.testWaiterAdminLogIn(waiterBean)){
+			return new ModelAndView("adminViews/adminHome");
+		}else
+		{
+			return new ModelAndView("adminViews/adminLogin", "command", new WaiterBean());
+		}		
+	}
+	
+	@RequestMapping("/adminAddNewWaiter")
+	public ModelAndView adminAddNewWaiter(){
+		ModelAndView mav = new ModelAndView("adminViews/adminAddNewWaiter", "command", new WaiterBean());
+		mav.addObject("waiterList", waiterService.listWaiters());
+		return mav;
+	}
+	
+	@RequestMapping(value="/adminAddThisWaiter", method = RequestMethod.POST)
+	public ModelAndView adminAddThisWaiter(@ModelAttribute("waiterBean")WaiterBean waiterBean, Model model){
+		waiterService.addWaiter(waiterBean);
+		return new ModelAndView("adminViews/adminHome");
+	}
+	
+	@RequestMapping("/adminAddAdminRights")
+	public ModelAndView adminAddAdminRights(){
+		ModelAndView mav = new ModelAndView("adminViews/adminAddAdminRights", "command", new WaiterBean());
+		mav.addObject("waiterList", waiterService.listWaiters());
+		return mav;
+	}
 
 }

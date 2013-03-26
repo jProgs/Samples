@@ -23,10 +23,8 @@
 			<tr>
 				<td><form:label path="ID">Social Last 5: </form:label></td>
 				<td><form:input path="ID" /> </td>
-			</tr>
-			
-			<tr><td><input type="submit" value="Enter" /></td></tr>
-		
+			</tr>			
+			<tr><td><input type="submit" value="Enter" /></td></tr>		
 		</table>
 	</form:form>
 	

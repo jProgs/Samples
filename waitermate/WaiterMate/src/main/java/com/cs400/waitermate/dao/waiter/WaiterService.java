@@ -42,4 +42,10 @@ public class WaiterService implements IWaiterService {
 		return false;
 	}
 
+	@Override
+	public boolean testWaiterAdminLogIn(WaiterBean waiterBean) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

@@ -16,7 +16,16 @@
 	</section>
 	<section id="divContent">
 	
-	<h2>${currentWaiter.fname} ${currentWaiter.lname}</h2>
+	<h2>Admin Home</h2>
+	
+	<a href="/waitermate/adminAddNewWaiter">Add a New Waiter</a>
+	<br />
+	<a href="/waitermate/adminAddAdminRights">Add Admin Rights to a Waiter</a>
+	<br />
+	<a href="/waitermate/adminAddNewMenuItem">Add a New Menu Item</a>
+	<br />
+	<a href="/waitermate/adminChangeMenuItemPrice">Change Menu Item Price</a>
+	<br />
 	
 	
 	
