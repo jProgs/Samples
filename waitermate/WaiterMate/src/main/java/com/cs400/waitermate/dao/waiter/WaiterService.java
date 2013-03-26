@@ -2,38 +2,40 @@ package com.cs400.waitermate.dao.waiter;
 
 import java.util.List;
 
+import com.cs400.waitermate.beans.FoodBean;
 import com.cs400.waitermate.beans.WaiterBean;
+import com.cs400.waitermate.dao.foodorder.FoodOrderRowMapper;
 
-public class WaiterService implements IWaiterService {
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
+
+
+public class WaiterService extends JdbcDaoSupport implements IWaiterService {
 
 	@Override
 	public List<WaiterBean> listWaiters() {
-		// TODO Auto-generated method stub
-		return null;
+		List<WaiterBean> tempBean = getJdbcTemplate().query("SELECT id, fName, lName, admin FROM Waiter", new WaiterRowMapper());
+		return tempBean;
 	}
 
 	@Override
 	public void addWaiter(WaiterBean waiter) {
-		// TODO Auto-generated method stub
-		
+		getJdbcTemplate().update("INSERT INTO WaiterOrder(id, fName, lName, admin) VALUES(?,?,?,?)",new Object[]{waiter.getID(),waiter.getFname(), waiter.getLname(), waiter.getAdmin()});				
 	}
 
 	@Override
 	public void removeWaiter(WaiterBean waiter) {
-		// TODO Auto-generated method stub
-		
+		getJdbcTemplate().update("DELETE FROM Waiter WHERE id=?", new Object[]{waiter.getID()});
 	}
 
 	@Override
 	public WaiterBean findWaiterById(WaiterBean waiter) {
-		// TODO Auto-generated method stub
-		return null;
+		WaiterBean tempBean = (WaiterBean)getJdbcTemplate().queryForObject("SELECT id, fName, lName, admin FROM Waiter WHERE id=?", new Object[]{waiter.getID()}, new WaiterRowMapper());
+		return tempBean;
 	}
 
 	@Override
 	public void editWaiter(WaiterBean waiter) {
-		// TODO Auto-generated method stub
-		
+		getJdbcTemplate().update("UPDATE FoodOrder SET id=?, comment=?, check=?, sideId=?, menuId=? WHERE id=?", new Object[]{waiter.getID(),waiter.getFname(), waiter.getLname(), waiter.getAdmin(), waiter.getID()});		
 	}
 
 	@Override

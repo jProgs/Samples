@@ -1,15 +1,16 @@
 package com.cs400.waitermate.dao.drinkorder;
 
 import java.util.List;
-import com.cs400.waitermate.beans.OrderBean;
+
+import com.cs400.waitermate.beans.DrinkBean;
 
 public interface IDrinkOrderService {
 	
-	public List<OrderBean> listOrders();
-	public void addOrder(OrderBean order);
-	public void removeOrder(OrderBean order);
-	public OrderBean findOrdrById(OrderBean order);
-	public void editOrder(OrderBean order);
+	public List<DrinkBean> listOrders();
+	public void addOrder(DrinkBean order);
+	public void removeOrder(DrinkBean order);
+	public DrinkBean findOrdrById(DrinkBean order);
+	public void editOrder(DrinkBean order);
 	public void cancelOrder(long orderId, long checkId);
 
 }

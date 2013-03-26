@@ -3,37 +3,38 @@ package com.cs400.waitermate.dao.foodorder;
 import java.util.List;
 import java.util.ArrayList;
 
-import com.cs400.waitermate.beans.OrderBean;
+import com.cs400.waitermate.beans.FoodBean;
+import com.cs400.waitermate.dao.foodorder.FoodOrderRowMapper;
 
-public class FoodOrderService implements IFoodOrderService {
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
+
+public class FoodOrderService extends JdbcDaoSupport implements IFoodOrderService {
 
 	@Override
-	public List<OrderBean> listOrders() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<FoodBean> listOrders() {
+		List<FoodBean> tempBean = getJdbcTemplate().query("SELECT id, menuId, comment, check, sideId FROM FoodOrder", new FoodOrderRowMapper());
+		return tempBean;
 	}
 
 	@Override
-	public void addOrder(OrderBean order) {
-		// TODO Auto-generated method stub
-		
+	public void addOrder(FoodBean order) {
+		getJdbcTemplate().update("INSERT INTO FoodOrder(id, comment, check, sideId, menuId) VALUES(?,?,?,?,?)",new Object[]{order.getID(),order.getComment(), order.getCheck(), order.getSideID(), order.getMenuID()});		
 	}
 
 	@Override
-	public void removeOrder(OrderBean order) {
-		// TODO Auto-generated method stub
-		
+	public void removeOrder(FoodBean order) {
+		getJdbcTemplate().update("DELETE FROM FoodOrder WHERE id=?", new Object[]{order.getID()});
 	}
 
 	@Override
-	public OrderBean findOrdrById(OrderBean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public FoodBean findOrdrById(FoodBean order) {
+		FoodBean tempBean = (FoodBean)getJdbcTemplate().queryForObject("SELECT id, comment, check, sideId, menuId FROM FoodOrder WHERE id=?", new Object[]{order.getID()}, new FoodOrderRowMapper());
+		return tempBean;
 	}
 
 	@Override
-	public void editOrder(OrderBean order) {
-		// TODO Auto-generated method stub
+	public void editOrder(FoodBean order) {
+		getJdbcTemplate().update("UPDATE FoodOrder SET id=?, comment=?, check=?, sideId=?, menuId=? WHERE id=?", new Object[]{order.getID(),order.getComment(), order.getCheck(), order.getSideID(), order.getMenuID(), order.getID()});
 		
 	}
 
