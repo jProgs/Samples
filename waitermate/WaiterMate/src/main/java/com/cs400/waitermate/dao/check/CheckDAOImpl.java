@@ -21,25 +21,25 @@ public class CheckDAOImpl extends JdbcDaoSupport implements ICheckDAO {
 
 	@Override
 	public List<CheckBean> getCheckList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<CheckBean> tempBean = getJdbcTemplate().query("SELECT id, tableId, open, subtotal, tip, tax FROM Check", new CheckRowMapper());
+		return tempBean;
 	}
 
 	@Override
 	public CheckBean getCheckById(CheckBean check) {
-		// TODO Auto-generated method stub
-		return null;
+		CheckBean tempBean = (CheckBean)getJdbcTemplate().queryForObject("SELECT id, tableId, open, subtotal, tip, tax FROM Check WHERE id=?", new Object[]{check.getID()}, new CheckRowMapper());
+		return tempBean;
 	}
 
 	@Override
 	public void deleteCheck(CheckBean check) {
-		// TODO Auto-generated method stub
+		getJdbcTemplate().update("DELETE FROM Check WHERE id=?", new Object[]{check.getID()});
 		
 	}
 
 	@Override
 	public void updateCheck(CheckBean check) {
-		// TODO Auto-generated method stub
+		getJdbcTemplate().update("UPDATE Check SET id=?, tableId=?, open=?, subtotal=?, tip=?, tax=? WHERE id=?", new Object[]{ check.getID(), check.getTable(), check.getOpen(), check.getSubtotal(), check.getTip(), check.getTax(), check.getID()});
 		
 	}
 
@@ -51,8 +51,7 @@ public class CheckDAOImpl extends JdbcDaoSupport implements ICheckDAO {
 
 	@Override
 	public void addCheck(CheckBean check) {
-		// TODO Auto-generated method stub
-		
+		getJdbcTemplate().update("INSERT INTO Check(id, tableId, open, subtotal, tip, tax) VALUES(?,?,?,?,?,?)",new Object[]{check.getID(),check.getTable(), check.getOpen(), check.getSubtotal(), check.getTip(), check.getTax()});		
 	}
 
 }

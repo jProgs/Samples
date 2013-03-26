@@ -3,36 +3,36 @@ package com.cs400.waitermate.dao.drinkorder;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
-import com.cs400.waitermate.beans.OrderBean;
+import com.cs400.waitermate.beans.DrinkBean;
 
 public class DrinkOrderServiceMock implements IDrinkOrderService {
 
 	@Override
-	public List<OrderBean> listOrders() {
+	public List<DrinkBean> listOrders() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void addOrder(OrderBean order) {
+	public void addOrder(DrinkBean order) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void removeOrder(OrderBean order) {
+	public void removeOrder(DrinkBean order) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public OrderBean findOrdrById(OrderBean order) {
+	public DrinkBean findOrdrById(DrinkBean order) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void editOrder(OrderBean order) {
+	public void editOrder(DrinkBean order) {
 		// TODO Auto-generated method stub
 		
 	}

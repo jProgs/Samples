@@ -1,50 +1,56 @@
 package com.cs400.waitermate.dao.check;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.cs400.waitermate.beans.CheckBean;
 import com.cs400.waitermate.dao.check.CheckRowMapper;
 
 public class CheckService extends JdbcDaoSupport implements ICheckService {
 
+	private ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/Spring-Module.xml");
+	private ICheckDAO dao = (ICheckDAO) context.getBean("ICheckDAO");
+	
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<CheckBean> listChecks() {
-		List<CheckBean> tempBean = getJdbcTemplate().query("SELECT id, tableId, open, subtotal, tip, tax FROM Check", new CheckRowMapper());
-		return tempBean;
+		List<CheckBean> newList = new ArrayList<CheckBean>();
+		newList = dao.getCheckList();
+		return newList;
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void addCheck(CheckBean check) {
-		getJdbcTemplate().update("INSERT INTO Check(id, tableId, open, subtotal, tip, tax) VALUES(?,?,?,?,?,?)",new Object[]{check.getID(),check.getTable(), check.getOpen(), check.getSubtotal(), check.getTip(), check.getTax()});
+		dao.addCheck(check);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void removeCheck(CheckBean check) {
-		getJdbcTemplate().update("DELETE FROM Check WHERE id=?", new Object[]{check.getID()});
+		dao.deleteCheck(check);
 		
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public CheckBean findCheckById(CheckBean check) {
-		CheckBean tempBean = (CheckBean)getJdbcTemplate().queryForObject("SELECT id, tableId, open, subtotal, tip, tax FROM Check WHERE id=?", new Object[]{check.getID()}, new CheckRowMapper());
-		return tempBean;
+		return dao.getCheckById(check);
 	}
 
 	@Override
 	public void editCheck(CheckBean check) {
-		getJdbcTemplate().update("UPDATE Check SET id=?, tableId=?, open=?, subtotal=?, tip=?, tax=? WHERE id=?", new Object[]{ check.getID(), check.getTable(), check.getOpen(), check.getSubtotal(), check.getTip(), check.getTax(), check.getID()});
+		dao.updateCheck(check);
 	}
 
 	@Override
 	public long getNextCheckId() {
 		// TODO Figure out how to map results to a long
-		long checkID = getJdbcTemplate().query("SELECT MAX(ID) FROM Check");
+		//long checkID = getJdbcTemplate().query("SELECT MAX(ID) FROM Check");
 		return 0;
 	}
 
