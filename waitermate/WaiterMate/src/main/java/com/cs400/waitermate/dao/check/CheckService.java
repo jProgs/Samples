@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.cs400.waitermate.beans.CheckBean;
 import com.cs400.waitermate.dao.check.CheckRowMapper;
 
-public class CheckService extends JdbcDaoSupport implements ICheckService {
+public class CheckService implements ICheckService {
 
 	private ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/Spring-Module.xml");
 	private ICheckDAO dao = (ICheckDAO) context.getBean("ICheckDAO");
@@ -18,9 +18,7 @@ public class CheckService extends JdbcDaoSupport implements ICheckService {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<CheckBean> listChecks() {
-		List<CheckBean> newList = new ArrayList<CheckBean>();
-		newList = dao.getCheckList();
-		return newList;
+		return dao.getCheckList();
 	}
 
 	@Override

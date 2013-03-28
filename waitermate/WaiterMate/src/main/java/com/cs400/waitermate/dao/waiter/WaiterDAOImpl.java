@@ -20,25 +20,25 @@ public class WaiterDAOImpl extends JdbcDaoSupport implements IWaiterDAO {
 
 	@Override
 	public List<WaiterBean> getWaitersList() {
-		// TODO Auto-generated method stub
-		return null;
+		List<WaiterBean> tempBean = getJdbcTemplate().query("SELECT id, fName, lName, admin FROM Waiter", new WaiterRowMapper());
+		return tempBean;
 	}
 
 	@Override
 	public WaiterBean getWaiterById(WaiterBean waiter) {
-		// TODO Auto-generated method stub
-		return null;
+		WaiterBean tempBean = (WaiterBean)getJdbcTemplate().queryForObject("SELECT id, fName, lName, admin FROM Waiter WHERE id=?", new Object[]{waiter.getID()}, new WaiterRowMapper());
+		return tempBean;
 	}
 
 	@Override
 	public void deleteWaiter(WaiterBean waiter) {
-		// TODO Auto-generated method stub
+		getJdbcTemplate().update("DELETE FROM Waiter WHERE id=?", new Object[]{waiter.getID()});
 		
 	}
 
 	@Override
 	public void updateWaiter(WaiterBean waiter) {
-		// TODO Auto-generated method stub
+		getJdbcTemplate().update("UPDATE FoodOrder SET id=?, comment=?, check=?, sideId=?, menuId=? WHERE id=?", new Object[]{waiter.getID(),waiter.getFname(), waiter.getLname(), waiter.getAdmin(), waiter.getID()});		
 		
 	}
 
@@ -50,7 +50,7 @@ public class WaiterDAOImpl extends JdbcDaoSupport implements IWaiterDAO {
 
 	@Override
 	public void addWaiter(WaiterBean waiter) {
-		// TODO Auto-generated method stub
+		getJdbcTemplate().update("INSERT INTO WaiterOrder(id, fName, lName, admin) VALUES(?,?,?,?)",new Object[]{waiter.getID(),waiter.getFname(), waiter.getLname(), waiter.getAdmin()});				
 		
 	}
 

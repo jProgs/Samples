@@ -8,41 +8,44 @@ import java.util.ArrayList;
 import com.cs400.waitermate.beans.FoodBean;
 import com.cs400.waitermate.beans.TableBean;
 import com.cs400.waitermate.beans.CheckBean;
+import com.cs400.waitermate.dao.check.ICheckDAO;
 import com.cs400.waitermate.dao.foodorder.FoodOrderRowMapper;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
-public class TableService extends JdbcDaoSupport implements ITableService {
-
+public class TableService implements ITableService {
+	
+	private ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/Spring-Module.xml");
+	private ITableDAO dao = (ITableDAO) context.getBean("ITableDAO");
+	
 	@Override
 	public List<TableBean> listTables() {
-		List<TableBean> tempBean = getJdbcTemplate().query("SELECT id, waiterId, occupied FROM Table", new TableRowMapper());
-		return tempBean;
+		return dao.getTablesList();
 	}
 
 	@Override
 	public void addTable(TableBean table) {
-		getJdbcTemplate().update("INSERT INTO Table(id, waiterId, occupied) VALUES(?,?,?)",new Object[]{table.getID(), table.getWaiterID(), table.getOccupied()});		
-
-		
+		dao.addTable(table);		
 	}
 
 	@Override
 	public void removeTable(TableBean table) {
-		getJdbcTemplate().update("DELETE FROM Table WHERE id=?", new Object[]{table.getID()});		
+		dao.deleteTable(table);
 	}
 
 	@Override
 	public TableBean findTableById(TableBean table) {
-		TableBean tempBean = (TableBean)getJdbcTemplate().queryForObject("SELECT id, waiterId, occupied FROM Table WHERE id=?", new Object[]{table.getID()}, new TableRowMapper());
-		return tempBean;
+		return dao.getTableById(table);
 	}
 
 	@Override
 	public void editTable(TableBean table) {
-		getJdbcTemplate().update("UPDATE Table SET id=?, waiterId=?, occupied=? WHERE id=?", new Object[]{table.getID(),table.getWaiterID(), table.getOccupied(), table.getID()});
+		dao.updateTable(table);
 	}
 
+	// NEED TO IMPLEMENTS THIS, MAYBE SOMEWHERE ELSE
 	@Override
 	public List<CheckBean> getTableCheckList(int tableId) {
 		List<CheckBean> checkList = new ArrayList<CheckBean>();
@@ -52,7 +55,7 @@ public class TableService extends JdbcDaoSupport implements ITableService {
 		
 		return checkList;		
 	}
-
+	// NEED TO IMPLEMENTS THIS, MAYBE SOMEWHERE ELSE
 	@Override
 	public CheckBean getSpecificCheck(long checkId) {
 		// TODO Auto-generated method stub

@@ -21,27 +21,25 @@ public class TableDAOImpl extends JdbcDaoSupport implements ITableDAO {
 	}
 
 	@Override
-	public java.util.List<TableBean> getTablesList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<TableBean> getTablesList() {
+		List<TableBean> tempBean = getJdbcTemplate().query("SELECT id, waiterId, occupied FROM Table", new TableRowMapper());
+		return tempBean;
 	}
 
 	@Override
 	public TableBean getTableById(TableBean table) {
-		// TODO Auto-generated method stub
-		return null;
+		TableBean tempBean = (TableBean)getJdbcTemplate().queryForObject("SELECT id, waiterId, occupied FROM Table WHERE id=?", new Object[]{table.getID()}, new TableRowMapper());
+		return tempBean;
 	}
 
 	@Override
 	public void deleteTable(TableBean table) {
-		// TODO Auto-generated method stub
-		
+		getJdbcTemplate().update("DELETE FROM Table WHERE id=?", new Object[]{table.getID()});		
 	}
 
 	@Override
 	public void updateTable(TableBean table) {
-		// TODO Auto-generated method stub
-		
+		getJdbcTemplate().update("UPDATE Table SET id=?, waiterId=?, occupied=? WHERE id=?", new Object[]{table.getID(),table.getWaiterID(), table.getOccupied(), table.getID()});
 	}
 
 	@Override
@@ -52,8 +50,7 @@ public class TableDAOImpl extends JdbcDaoSupport implements ITableDAO {
 
 	@Override
 	public void addTable(TableBean table) {
-		// TODO Auto-generated method stub
-		
+		getJdbcTemplate().update("INSERT INTO Table(id, waiterId, occupied) VALUES(?,?,?)",new Object[]{table.getID(), table.getWaiterID(), table.getOccupied()});		
 	}
 
 }

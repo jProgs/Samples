@@ -9,6 +9,14 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
+	<bean id="IWaiterDAO" class="com.cs400.waitermate.dao.waiter.WaiterDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="ITableDAO" class="com.cs400.waitermate.dao.table.TableDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		

@@ -6,36 +6,39 @@ import com.cs400.waitermate.beans.FoodBean;
 import com.cs400.waitermate.beans.WaiterBean;
 import com.cs400.waitermate.dao.foodorder.FoodOrderRowMapper;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 
-public class WaiterService extends JdbcDaoSupport implements IWaiterService {
+public class WaiterService implements IWaiterService {
+	
+	private ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/Spring-Module.xml");
+	private IWaiterDAO dao = (IWaiterDAO) context.getBean("IWaiterDAO");
 
 	@Override
 	public List<WaiterBean> listWaiters() {
-		List<WaiterBean> tempBean = getJdbcTemplate().query("SELECT id, fName, lName, admin FROM Waiter", new WaiterRowMapper());
-		return tempBean;
+		return dao.getWaitersList();
 	}
 
 	@Override
 	public void addWaiter(WaiterBean waiter) {
-		getJdbcTemplate().update("INSERT INTO WaiterOrder(id, fName, lName, admin) VALUES(?,?,?,?)",new Object[]{waiter.getID(),waiter.getFname(), waiter.getLname(), waiter.getAdmin()});				
+		dao.addWaiter(waiter);
 	}
 
 	@Override
 	public void removeWaiter(WaiterBean waiter) {
-		getJdbcTemplate().update("DELETE FROM Waiter WHERE id=?", new Object[]{waiter.getID()});
+		dao.deleteWaiter(waiter);
 	}
 
 	@Override
 	public WaiterBean findWaiterById(WaiterBean waiter) {
-		WaiterBean tempBean = (WaiterBean)getJdbcTemplate().queryForObject("SELECT id, fName, lName, admin FROM Waiter WHERE id=?", new Object[]{waiter.getID()}, new WaiterRowMapper());
-		return tempBean;
+		return dao.getWaiterById(waiter);
 	}
 
 	@Override
 	public void editWaiter(WaiterBean waiter) {
-		getJdbcTemplate().update("UPDATE FoodOrder SET id=?, comment=?, check=?, sideId=?, menuId=? WHERE id=?", new Object[]{waiter.getID(),waiter.getFname(), waiter.getLname(), waiter.getAdmin(), waiter.getID()});		
+		dao.updateWaiter(waiter);
 	}
 
 	@Override
