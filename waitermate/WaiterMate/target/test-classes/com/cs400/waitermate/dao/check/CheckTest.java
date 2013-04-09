@@ -59,6 +59,8 @@ public class CheckTest {
 	
 	@Test
 	public void testDeleteCheck(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/Spring-Module.xml");	
+		CheckDAOImpl testService = (CheckDAOImpl) context.getBean("ICheckDAO");
 		
 	}
 	
