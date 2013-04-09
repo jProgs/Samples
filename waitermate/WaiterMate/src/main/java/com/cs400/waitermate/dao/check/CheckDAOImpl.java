@@ -21,25 +21,25 @@ public class CheckDAOImpl extends JdbcDaoSupport implements ICheckDAO {
 
 	@Override
 	public List<CheckBean> getCheckList() {
-		List<CheckBean> tempBean = getJdbcTemplate().query("SELECT id, tableId, open, subtotal, tip, tax FROM Check", new CheckRowMapper());
+		List<CheckBean> tempBean = getJdbcTemplate().query("SELECT id, tableId, open, subtotal, tip, tax FROM MyCheck", new CheckRowMapper());
 		return tempBean;
 	}
 
 	@Override
 	public CheckBean getCheckById(CheckBean check) {
-		CheckBean tempBean = (CheckBean)getJdbcTemplate().queryForObject("SELECT id, tableId, open, subtotal, tip, tax FROM Check WHERE id=?", new Object[]{check.getID()}, new CheckRowMapper());
+		CheckBean tempBean = (CheckBean)getJdbcTemplate().queryForObject("SELECT id, tableId, open, subtotal, tip, tax FROM MyCheck WHERE id=?", new Object[]{check.getID()}, new CheckRowMapper());
 		return tempBean;
 	}
 
 	@Override
 	public void deleteCheck(CheckBean check) {
-		getJdbcTemplate().update("DELETE FROM Check WHERE id=?", new Object[]{check.getID()});
+		getJdbcTemplate().update("DELETE FROM MyCheck WHERE id=?", new Object[]{check.getID()});
 		
 	}
 
 	@Override
 	public void updateCheck(CheckBean check) {
-		getJdbcTemplate().update("UPDATE Check SET id=?, tableId=?, open=?, subtotal=?, tip=?, tax=? WHERE id=?", new Object[]{ check.getID(), check.getTable(), check.getOpen(), check.getSubtotal(), check.getTip(), check.getTax(), check.getID()});
+		getJdbcTemplate().update("UPDATE MyCheck SET id=?, tableId=?, open=?, subtotal=?, tip=?, tax=? WHERE id=?", new Object[]{ check.getID(), check.getTable(), check.getOpen(), check.getSubtotal(), check.getTip(), check.getTax(), check.getID()});
 		
 	}
 
@@ -51,7 +51,7 @@ public class CheckDAOImpl extends JdbcDaoSupport implements ICheckDAO {
 
 	@Override
 	public void addCheck(CheckBean check) {
-		getJdbcTemplate().update("INSERT INTO Check(id, tableId, open, subtotal, tip, tax) VALUES(?,?,?,?,?,?)",new Object[]{check.getID(),check.getTable(), check.getOpen(), check.getSubtotal(), check.getTip(), check.getTax()});		
+		getJdbcTemplate().update("INSERT INTO MyCheck(id, tableId, open, subtotal, tip, tax) VALUES(?,?,?,?,?,?)",new Object[]{check.getID(),check.getTable(), check.getOpen(), check.getSubtotal(), check.getTip(), check.getTax()});		
 	}
 
 }
