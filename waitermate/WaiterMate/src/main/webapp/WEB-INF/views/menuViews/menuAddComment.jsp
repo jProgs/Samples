@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Menu Add Comment</title>
-	<link rel="stylesheet" type="text/css" href="/finalLab/src/main/webapp/resources/styles/style.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/waitermate/src/main/webapp/resources/styles/styles.css" media="screen" />
 </head>
 <body>
 <article id="divPage">
