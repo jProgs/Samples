@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import javax.sql.DataSource;
 
-import com.cs400.waitermate.beans.OrderBean;
-import com.cs400.waitermate.dao.order.OrderRowMapper;
-import com.cs400.waitermate.dao.order.IOrderDAO;
+import com.cs400.waitermate.beans.FoodBean;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 
@@ -18,33 +16,31 @@ public class FoodOrderDAOImpl extends JdbcDaoSupport implements IFoodOrderDAO {
 	
 
 	@Override
-	public HashMap<String, OrderBean> getOrders() {
+	public HashMap<String, FoodBean> getOrders() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<OrderBean> getOrderList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<FoodBean> getOrderList() {
+		List<FoodBean> tempBean = getJdbcTemplate().query("SELECT id, menuId, comment, check, sideId FROM FoodOrder", new FoodOrderRowMapper());
+		return tempBean;
 	}
 
 	@Override
-	public OrderBean getOrderById(OrderBean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public FoodBean getOrderById(FoodBean order) {
+		FoodBean tempBean = (FoodBean)getJdbcTemplate().queryForObject("SELECT id, comment, check, sideId, menuId FROM FoodOrder WHERE id=?", new Object[]{order.getID()}, new FoodOrderRowMapper());
+		return tempBean;
 	}
 
 	@Override
-	public void deleteOrder(OrderBean order) {
-		// TODO Auto-generated method stub
-		
+	public void deleteOrder(FoodBean order) {
+		getJdbcTemplate().update("DELETE FROM FoodOrder WHERE id=?", new Object[]{order.getID()});
 	}
 
 	@Override
-	public void updateOrder(OrderBean order) {
-		// TODO Auto-generated method stub
-		
+	public void updateOrder(FoodBean order) {
+		getJdbcTemplate().update("UPDATE FoodOrder SET id=?, comment=?, check=?, sideId=?, menuId=? WHERE id=?", new Object[]{order.getID(),order.getComment(), order.getCheck(), order.getSideID(), order.getMenuID(), order.getID()});
 	}
 
 	@Override
@@ -54,9 +50,8 @@ public class FoodOrderDAOImpl extends JdbcDaoSupport implements IFoodOrderDAO {
 	}
 
 	@Override
-	public void addOrder(OrderBean order) {
-		// TODO Auto-generated method stub
-		
+	public void addOrder(FoodBean order) {
+		getJdbcTemplate().update("INSERT INTO FoodOrder(id, comment, check, sideId, menuId) VALUES(?,?,?,?,?)",new Object[]{order.getID(),order.getComment(), order.getCheck(), order.getSideID(), order.getMenuID()});
 	}
 
 }

@@ -1,16 +1,21 @@
 package com.cs400.waitermate.dao.menu;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import com.cs400.waitermate.beans.MenuBean;
+import com.cs400.waitermate.beans.MenuItemBean;
 
-public class MenuDAOImpl implements IMenuDAO {
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
-	@Override
+public class MenuDAOImpl extends JdbcDaoSupport implements IMenuDAO {
+
+	/*@Override
 	public void setDataSource(DataSource dataSource) {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 
 	@Override
 	public void updateMenu(MenuBean menu) {
@@ -20,8 +25,10 @@ public class MenuDAOImpl implements IMenuDAO {
 
 	@Override
 	public MenuBean loadMenu() {
-		// TODO Auto-generated method stub
-		return null;
+		List<MenuItemBean> tempBean = getJdbcTemplate().query("SELECT id, name, price, category FROM MenuItem", new MenuItemRowMapper());
+		MenuBean newBean = new MenuBean();
+		newBean.setMenu(tempBean);
+		return newBean;
 	}
 
 }
