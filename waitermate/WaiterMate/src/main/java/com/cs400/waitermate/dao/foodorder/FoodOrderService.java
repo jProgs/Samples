@@ -4,37 +4,43 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.cs400.waitermate.beans.FoodBean;
-import com.cs400.waitermate.dao.foodorder.FoodOrderRowMapper;
+import com.cs400.waitermate.dao.foodorder.IFoodOrderDAO;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 public class FoodOrderService extends JdbcDaoSupport implements IFoodOrderService {
 
+	private ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/Spring-Module.xml");
+	private IFoodOrderDAO dao = (IFoodOrderDAO) context.getBean("IFoodOrderDAO");
+	
 	@Override
 	public List<FoodBean> listOrders() {
-		List<FoodBean> tempBean = getJdbcTemplate().query("SELECT id, menuId, comment, check, sideId FROM FoodOrder", new FoodOrderRowMapper());
-		return tempBean;
+		List<FoodBean> tempbean = new ArrayList<FoodBean>();
+		tempbean = dao.getOrderList();
+		return tempbean;
 	}
 
 	@Override
 	public void addOrder(FoodBean order) {
-		getJdbcTemplate().update("INSERT INTO FoodOrder(id, comment, check, sideId, menuId) VALUES(?,?,?,?,?)",new Object[]{order.getID(),order.getComment(), order.getCheck(), order.getSideID(), order.getMenuID()});		
+		dao.addOrder(order);	
 	}
 
 	@Override
 	public void removeOrder(FoodBean order) {
-		getJdbcTemplate().update("DELETE FROM FoodOrder WHERE id=?", new Object[]{order.getID()});
+		dao.deleteOrder(order);
 	}
 
 	@Override
 	public FoodBean findOrdrById(FoodBean order) {
-		FoodBean tempBean = (FoodBean)getJdbcTemplate().queryForObject("SELECT id, comment, check, sideId, menuId FROM FoodOrder WHERE id=?", new Object[]{order.getID()}, new FoodOrderRowMapper());
+		FoodBean tempBean = dao.getOrderById(order);
 		return tempBean;
 	}
 
 	@Override
 	public void editOrder(FoodBean order) {
-		getJdbcTemplate().update("UPDATE FoodOrder SET id=?, comment=?, check=?, sideId=?, menuId=? WHERE id=?", new Object[]{order.getID(),order.getComment(), order.getCheck(), order.getSideID(), order.getMenuID(), order.getID()});
+		dao.updateOrder(order);
 		
 	}
 
