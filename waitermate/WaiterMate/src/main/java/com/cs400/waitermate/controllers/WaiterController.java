@@ -47,7 +47,7 @@ public class WaiterController {
 	@Inject
 	private static IWaiterService waiterService;
 	{
-		waiterService = new WaiterServiceMock();		
+		waiterService = new WaiterService();		
 	}
 	
 	@Inject 
@@ -125,7 +125,8 @@ public class WaiterController {
 			ModelAndView mav1 = new ModelAndView("waiterViews/waiterHome", "command", new TableBean());
 			WaiterBean wb = new WaiterBean();
 			wb = waiterService.findWaiterById(waiterBean);						
-			currentWaiter = wb;				
+			currentWaiter = wb;			
+			// NEED TO FETCH THE TABLES LIST AND EVERYTHING FOR THE INDIVIDUAL HERE
 			mav1.addObject("currentWaiter", currentWaiter);
 			return mav1;
 		}else{

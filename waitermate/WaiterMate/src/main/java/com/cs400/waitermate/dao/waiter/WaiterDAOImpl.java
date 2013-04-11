@@ -38,7 +38,7 @@ public class WaiterDAOImpl extends JdbcDaoSupport implements IWaiterDAO {
 
 	@Override
 	public void updateWaiter(WaiterBean waiter) {
-		getJdbcTemplate().update("UPDATE FoodOrder SET id=?, comment=?, check=?, sideId=?, menuId=? WHERE id=?", new Object[]{waiter.getID(),waiter.getFname(), waiter.getLname(), waiter.getAdmin(), waiter.getID()});		
+		getJdbcTemplate().update("UPDATE Waiter SET id=?, fName=?, lName=?, admin=? WHERE id=?", new Object[]{waiter.getID(),waiter.getFname(), waiter.getLname(), waiter.getAdmin(), waiter.getID()});		
 		
 	}
 
@@ -53,5 +53,35 @@ public class WaiterDAOImpl extends JdbcDaoSupport implements IWaiterDAO {
 		getJdbcTemplate().update("INSERT INTO Waiter(id, fName, lName, admin) VALUES(?,?,?,?)",new Object[]{waiter.getID(),waiter.getFname(), waiter.getLname(), waiter.getAdmin()});				
 		
 	}
+
+	@Override
+	public boolean testWaiterLogIn(WaiterBean waiter) {
+		String sql = "select COUNT(id) from Waiter where id=\"" + waiter.getID() + "\"";
+		int num = 0; //getJdbcTemplate().execute(sql);
+		num = getJdbcTemplate().queryForInt(sql);
+		
+		if(num == 1){
+			return true;
+		}
+		else{
+			return false;
+		}		
+		
+	}
+
+	@Override
+	public boolean testWaiterAdminLogIn(WaiterBean waiter) {
+		String sql = "select COUNT(id) from Waiter where id=\"" + waiter.getID() + "\" and admin=\"1\"";
+		int num = 0;
+		num = getJdbcTemplate().queryForInt(sql);
+		if(num ==1){
+			return true;
+		}else{
+			return false;
+		}
+				
+	}
+	
+	
 
 }

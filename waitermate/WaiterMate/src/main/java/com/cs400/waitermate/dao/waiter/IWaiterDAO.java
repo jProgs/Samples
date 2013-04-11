@@ -24,5 +24,9 @@ public interface IWaiterDAO {
 	public int getWaiterCount();
 		
 	public void addWaiter(WaiterBean waiter);
+	
+	public boolean testWaiterLogIn(WaiterBean waiter);
+	
+	public boolean testWaiterAdminLogIn(WaiterBean waiter);
 
 }
