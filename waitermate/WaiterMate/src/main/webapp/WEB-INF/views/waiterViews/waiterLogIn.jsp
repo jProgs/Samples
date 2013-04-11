@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Waiter Log In</title>
-	<link rel="stylesheet" type="text/css" href="/waitermate/src/main/webapp/resources/styles/styles.css" media="screen" />
+	<!-- <link rel="stylesheet" type="text/css" href="/waitermate/src/main/webapp/resources/styles/styles.css" media="screen" /> -->
 </head>
 <body>
 <article id="divPage">

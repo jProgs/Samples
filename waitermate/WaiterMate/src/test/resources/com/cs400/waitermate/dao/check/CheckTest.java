@@ -19,7 +19,7 @@ public class CheckTest {
 		ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/Spring-Module.xml");
 		
 		CheckBean testCheck = new CheckBean();
-		testCheck.setID(3);
+		testCheck.setID(4);
 		testCheck.setOpen(true);
 		testCheck.setSubtotal(new Float(0));
 		testCheck.setTable(1);

@@ -50,7 +50,7 @@ public class WaiterDAOImpl extends JdbcDaoSupport implements IWaiterDAO {
 
 	@Override
 	public void addWaiter(WaiterBean waiter) {
-		getJdbcTemplate().update("INSERT INTO WaiterOrder(id, fName, lName, admin) VALUES(?,?,?,?)",new Object[]{waiter.getID(),waiter.getFname(), waiter.getLname(), waiter.getAdmin()});				
+		getJdbcTemplate().update("INSERT INTO Waiter(id, fName, lName, admin) VALUES(?,?,?,?)",new Object[]{waiter.getID(),waiter.getFname(), waiter.getLname(), waiter.getAdmin()});				
 		
 	}
 
