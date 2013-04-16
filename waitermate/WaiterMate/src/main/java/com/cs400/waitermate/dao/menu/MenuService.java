@@ -28,9 +28,11 @@ public class MenuService extends JdbcDaoSupport implements IMenuService {
 
 	@Override
 	public String lookupOrderName(OrderBean order) {
-		for(MenuItem mi: this.menu){
-			
+		for(MenuItemBean mib: this.menu){
+			if(order.getMenuID() == mib.getID())
+				return mib.getName();
 		}
+		return "";
 		
 	}
 	

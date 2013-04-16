@@ -143,7 +143,7 @@ public class WaiterController {
 						cb.setOrdersList(orderService.getOrdersByCheck(cb));
 						
 						for(OrderBean ob: cb.getOrdersList()){
-							//ob.setName(menuService.)
+							ob.setName(menuService.lookupOrderName(ob));
 						}
 						
 						
