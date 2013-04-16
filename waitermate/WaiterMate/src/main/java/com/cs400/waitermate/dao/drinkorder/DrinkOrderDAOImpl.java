@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import javax.sql.DataSource;
 
+import com.cs400.waitermate.beans.CheckBean;
 import com.cs400.waitermate.beans.DrinkBean;
 import com.cs400.waitermate.beans.OrderBean;
 import com.cs400.waitermate.dao.order.OrderRowMapper;
@@ -26,13 +27,13 @@ public class DrinkOrderDAOImpl extends JdbcDaoSupport implements IDrinkOrderDAO 
 
 	@Override
 	public List<DrinkBean> getOrderList() {
-		List<DrinkBean> tempBean = getJdbcTemplate().query("SELECT id, comment, check, abv, menuId FROM DrinkOrder", new DrinkOrderRowMapper());
+		List<DrinkBean> tempBean = getJdbcTemplate().query("SELECT id, comments, mycheck, abv, menuId FROM DrinkOrder", new DrinkOrderRowMapper());
 		return tempBean;
 	}
 
 	@Override
 	public DrinkBean getOrderById(DrinkBean order) {
-		DrinkBean tempBean = (DrinkBean)getJdbcTemplate().queryForObject("SELECT id, comment, check, abv, menuId FROM DrinkOrder WHERE id=?", new Object[]{order.getID()}, new DrinkOrderRowMapper());
+		DrinkBean tempBean = (DrinkBean)getJdbcTemplate().queryForObject("SELECT id, comments, mycheck, abv, menuId FROM DrinkOrder WHERE id=?", new Object[]{order.getID()}, new DrinkOrderRowMapper());
 		return tempBean;
 	}
 
@@ -43,7 +44,7 @@ public class DrinkOrderDAOImpl extends JdbcDaoSupport implements IDrinkOrderDAO 
 
 	@Override
 	public void updateOrder(DrinkBean order) {
-		getJdbcTemplate().update("UPDATE DrinkOrder SET id=?, comment=?, check=?, abv=?, menuId=? WHERE id=?", new Object[]{order.getID(),order.getComment(), order.getCheck(), order.getAbv(), order.getMenuID(), order.getID()});		
+		getJdbcTemplate().update("UPDATE DrinkOrder SET id=?, comments=?, mycheck=?, abv=?, menuId=? WHERE id=?", new Object[]{order.getID(),order.getComment(), order.getCheck(), order.getAbv(), order.getMenuID(), order.getID()});		
 	}
 
 	@Override
@@ -54,8 +55,14 @@ public class DrinkOrderDAOImpl extends JdbcDaoSupport implements IDrinkOrderDAO 
 
 	@Override
 	public void addOrder(DrinkBean order) {
-		getJdbcTemplate().update("INSERT INTO DrinkOrder(id, comment, check, abv, menuId) VALUES(?,?,?,?,?)",new Object[]{order.getID(),order.getComment(), order.getCheck(), order.getAbv(), order.getMenuID()});
+		getJdbcTemplate().update("INSERT INTO DrinkOrder(id, comments, mycheck, abv, menuId) VALUES(?,?,?,?,?)",new Object[]{order.getID(),order.getComment(), order.getCheck(), order.getAbv(), order.getMenuID()});
 		
+	}
+
+	@Override
+	public List<DrinkBean> getDrinkListByCheck(CheckBean check) {
+		List<DrinkBean> drinkList = getJdbcTemplate().query("SELECT id, comments, mycheck, abv, menuId FROM DrinkOrder WHERE mycheck=?", new Object[]{check.getID()}, new DrinkOrderRowMapper());
+		return drinkList;
 	}
 
 }

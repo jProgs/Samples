@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.cs400.waitermate.beans.CheckBean;
 import com.cs400.waitermate.beans.DrinkBean;
 import com.cs400.waitermate.dao.drinkorder.DrinkOrderDAOImpl;
 
@@ -62,7 +63,7 @@ public class DrinkOrderTest {
     
     DrinkOrderDAOImpl testService = (DrinkOrderDAOImpl) context.getBean("IDrinkOrderDAO");
     DrinkBean newDrink = new DrinkBean();
-    newDrink.setID(400);
+    newDrink.setID(405);
     newDrink.setName("Pig blood");
     newDrink.setAbv(0);
     newDrink.setCategory("Blood");
@@ -72,16 +73,32 @@ public class DrinkOrderTest {
     newDrink.setCheck(1);
     testService.addOrder(newDrink);
     
-    newDrink.setName("Bacon");
+    newDrink.setAbv(1);
     
     testService.updateOrder(newDrink);
     
     DrinkBean testBean = new DrinkBean();
-    testBean.setID(200);
+    testBean.setID(405);
     testBean = testService.getOrderById(testBean);
     
-    Assert.assertEquals(true, testBean.getName().equals("Bacon"));
+    Assert.assertEquals(true, testBean.getAbv() == 1);
     
     testService.deleteOrder(newDrink);
+  }
+  
+  
+  @Test
+  public void testGetFoodListByCheck(){
+	  
+	  	ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/Spring-Module.xml");	    
+	    DrinkOrderDAOImpl testService = (DrinkOrderDAOImpl) context.getBean("IDrinkOrderDAO");
+	    
+	    CheckBean cb = new CheckBean();
+	    cb.setID(1);
+	    
+	    List<DrinkBean> drinks = testService.getDrinkListByCheck(cb);
+	    
+	    Assert.assertEquals(true, drinks.size() > 0);
+	    
   }
 }

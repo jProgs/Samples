@@ -3,6 +3,8 @@ package com.cs400.waitermate.dao.order;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
+
+import com.cs400.waitermate.beans.CheckBean;
 import com.cs400.waitermate.beans.OrderBean;
 
 public class OrderServiceMock implements IOrderService {
@@ -48,6 +50,12 @@ public class OrderServiceMock implements IOrderService {
 	public void cancelOrder(long orderId, long checkId) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<OrderBean> getOrdersByCheck(CheckBean check) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

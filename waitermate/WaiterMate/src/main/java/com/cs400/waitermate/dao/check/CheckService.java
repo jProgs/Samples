@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.cs400.waitermate.beans.CheckBean;
+import com.cs400.waitermate.beans.TableBean;
 import com.cs400.waitermate.dao.check.CheckRowMapper;
 
 public class CheckService implements ICheckService {
@@ -50,6 +51,11 @@ public class CheckService implements ICheckService {
 		// TODO Figure out how to map results to a long
 		//long checkID = getJdbcTemplate().query("SELECT MAX(ID) FROM Check");
 		return 0;
+	}
+
+	@Override
+	public List<CheckBean> getCheckListByTable(TableBean table) {
+		return dao.getCheckListByTable(table);
 	}
 
 }

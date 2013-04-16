@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.HashMap;
 import javax.sql.DataSource;
 import com.cs400.waitermate.beans.CheckBean;
-
+import com.cs400.waitermate.beans.TableBean;
 
 public interface ICheckDAO {
 
@@ -16,4 +16,5 @@ public interface ICheckDAO {
 	public void updateCheck(CheckBean check);
 	public int getCheckCount();
 	public void addCheck(CheckBean check);
+	public List<CheckBean> getCheckListByTable(TableBean table);
 }

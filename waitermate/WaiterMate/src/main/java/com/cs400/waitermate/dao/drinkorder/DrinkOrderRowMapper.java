@@ -11,8 +11,8 @@ public class DrinkOrderRowMapper implements RowMapper{
 	public DrinkBean mapRow(ResultSet rs, int rowNum) throws SQLException{
 		DrinkBean bean = new DrinkBean();
 		bean.setID(rs.getLong("id"));
-		bean.setCheck(rs.getLong("check"));
-		bean.setComment(rs.getString("comment"));
+		bean.setCheck(rs.getLong("mycheck"));
+		bean.setComment(rs.getString("comments"));
 		bean.setAbv(rs.getDouble("abv"));
 		bean.setMenuID(rs.getInt("menuId"));
 		return bean;

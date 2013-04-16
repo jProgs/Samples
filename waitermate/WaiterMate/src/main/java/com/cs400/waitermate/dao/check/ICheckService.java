@@ -2,6 +2,7 @@ package com.cs400.waitermate.dao.check;
 
 import java.util.List;
 import com.cs400.waitermate.beans.CheckBean;
+import com.cs400.waitermate.beans.TableBean;
 
 public interface ICheckService {
 
@@ -11,4 +12,5 @@ public interface ICheckService {
 	public CheckBean findCheckById(CheckBean check);
 	public void editCheck(CheckBean check);
 	public long getNextCheckId();
+	public List<CheckBean> getCheckListByTable(TableBean table);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Date;
 import java.util.ArrayList;
 import com.cs400.waitermate.beans.CheckBean;
+import com.cs400.waitermate.beans.TableBean;
 
 
 
@@ -52,5 +53,13 @@ public class CheckServiceMock implements ICheckService{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public List<CheckBean> getCheckListByTable(TableBean table) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

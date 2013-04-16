@@ -8,7 +8,7 @@ import com.cs400.waitermate.beans.CheckBean;
 public class TableBean {
 	private int ID;
 	private Boolean occupied;
-	private List<CheckBean> checkList;
+	private List<CheckBean> checkList = new ArrayList<CheckBean>();
 	private int waiterID;
 	
 	
@@ -22,7 +22,12 @@ public class TableBean {
 		return checkList;
 	}
 	public void setCheckList(List<CheckBean> checkList) {
-		this.checkList = checkList;
+		//for(CheckBean cb: checkList){
+		System.out.println("setchecklist: " + checkList);
+		for(int i = 0; i<checkList.size(); i++){
+			System.out.println("Boopity bop?");
+			this.checkList.add(checkList.get(i));
+		}
 	}
 	public int getID() {
 		return ID;

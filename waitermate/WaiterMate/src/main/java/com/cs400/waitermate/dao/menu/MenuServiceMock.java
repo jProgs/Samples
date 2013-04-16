@@ -2,6 +2,7 @@ package com.cs400.waitermate.dao.menu;
 
 import com.cs400.waitermate.beans.MenuBean;
 import com.cs400.waitermate.beans.MenuItemBean;
+import com.cs400.waitermate.beans.OrderBean;
 
 public class MenuServiceMock implements IMenuService {
 
@@ -28,6 +29,12 @@ public class MenuServiceMock implements IMenuService {
 		menu.updateCategoryList();
 		
 		return menu;
+	}
+
+	@Override
+	public String lookupOrderName(OrderBean order) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

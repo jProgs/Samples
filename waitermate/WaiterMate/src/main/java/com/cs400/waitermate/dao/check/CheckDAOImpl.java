@@ -6,8 +6,12 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import com.cs400.waitermate.beans.CheckBean;
+import com.cs400.waitermate.beans.DrinkBean;
+import com.cs400.waitermate.beans.TableBean;
 import com.cs400.waitermate.dao.check.CheckRowMapper;
 import com.cs400.waitermate.dao.check.ICheckDAO;
+import com.cs400.waitermate.dao.drinkorder.DrinkOrderRowMapper;
+
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 
@@ -52,6 +56,15 @@ public class CheckDAOImpl extends JdbcDaoSupport implements ICheckDAO {
 	@Override
 	public void addCheck(CheckBean check) {
 		getJdbcTemplate().update("INSERT INTO MyCheck(id, tableId, open, subtotal, tip, tax) VALUES(?,?,?,?,?,?)",new Object[]{check.getID(),check.getTable(), check.getOpen(), check.getSubtotal(), check.getTip(), check.getTax()});		
+	}
+
+	@Override
+	public List<CheckBean> getCheckListByTable(TableBean table) {
+		List<CheckBean> checkList = new ArrayList<CheckBean>();
+		checkList = getJdbcTemplate().query("SELECT id, tableId, open, subtotal, tip, tax FROM MyCheck WHERE tableId=?", new Object[]{table.getID()}, new CheckRowMapper());
+		return checkList;
+		
+		
 	}
 
 }

@@ -53,25 +53,25 @@ public class WaiterController {
 	@Inject 
 	private static ITableService tableService;
 	{
-		tableService = new TableServiceMock();
+		tableService = new TableService();
 	}
 	
 	@Inject
 	private static ICheckService checkService;
 	{
-		checkService = new CheckServiceMock();
+		checkService = new CheckService();
 	}
 	
 	@Inject
 	private static IOrderService orderService;
 	{
-		orderService = new OrderServiceMock();
+		orderService = new OrderService();
 	}
 	
 	@Inject
 	private static IMenuService menuService;
 	{
-		menuService = new MenuServiceMock();		
+		menuService = new MenuService();		
 	}
 	
 	@Inject
@@ -100,6 +100,7 @@ public class WaiterController {
 	@Inject private static MenuBean currentMenu;
 	{
 		currentMenu = new MenuBean();
+		currentMenu = menuService.loadMenu();
 	}
 	
 	private WaiterBean reloadCurrentWaiter()
@@ -126,8 +127,32 @@ public class WaiterController {
 			WaiterBean wb = new WaiterBean();
 			wb = waiterService.findWaiterById(waiterBean);						
 			currentWaiter = wb;			
-			// NEED TO LOAD WAITER TABLES AND ALL INFORMATION HERE PREFERABLY
-			//currentWaiter.setCurrentTables(tableService.)
+			
+			
+						
+			currentWaiter.setCurrentTables(tableService.getTablesByWaiter(currentWaiter));
+			
+			
+			
+			
+			
+			for(TableBean tb: currentWaiter.getCurrentTables()){
+				tb.setCheckList(checkService.getCheckListByTable(tb));
+				if(tb.getCheckList().size() > 0){
+					for(CheckBean cb: tb.getCheckList()){
+						cb.setOrdersList(orderService.getOrdersByCheck(cb));
+						
+						for(OrderBean ob: cb.getOrdersList()){
+							//ob.setName(menuService.)
+						}
+						
+						
+					}
+				}
+				
+			}		
+			
+			// END LOADING CURRENT WAITER INFO
 			mav1.addObject("currentWaiter", currentWaiter);
 			return mav1;
 		}else{
@@ -139,7 +164,9 @@ public class WaiterController {
 	@RequestMapping("/waiterTablePage")
 	public ModelAndView goToWaiterTablePage(HttpServletRequest request, HttpServletResponse response){		
 		int tableId = Integer.parseInt(request.getParameter("tableId"));
-		System.out.println(currentWaiter.getCurrentTables().get(0).getCheckList().size());
+		TableBean tb = new TableBean();
+		tb.setID(tableId);
+		
 		currentTable = currentWaiter.getSpecificTable(tableId);		
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		mav.addObject("currentWaiter", currentWaiter);

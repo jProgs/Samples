@@ -65,7 +65,9 @@ public class TableService implements ITableService {
 
 	@Override
 	public List<TableBean> getTablesByWaiter(WaiterBean waiter) {
-		return dao.getTablesByWaiter(waiter);
+		List<TableBean> tableList = new ArrayList<TableBean>();
+		tableList = dao.getTablesByWaiter(waiter);
+		return tableList;
 	}
 
 }

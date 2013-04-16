@@ -88,5 +88,7 @@ public class TableTest {
 		Assert.assertEquals(true, wb.getCurrentTables().size() > 0);
 		
 	}
+	
+	
 
 }

@@ -3,6 +3,8 @@ package com.cs400.waitermate.dao.foodorder;
 import java.util.List;
 import java.util.HashMap;
 import javax.sql.DataSource;
+
+import com.cs400.waitermate.beans.CheckBean;
 import com.cs400.waitermate.beans.FoodBean;
 
 public interface IFoodOrderDAO {
@@ -14,5 +16,6 @@ public interface IFoodOrderDAO {
 	public void updateOrder(FoodBean order);
 	public int getOrderCount();
 	public void addOrder(FoodBean order);
+	public List<FoodBean> getFoodsListByCheck(CheckBean check);
 
 }

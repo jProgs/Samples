@@ -17,6 +17,18 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
+	<bean id="IFoodOrderDAO" class="com.cs400.waitermate.dao.foodorder.FoodOrderDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="IDrinkOrderDAO" class="com.cs400.waitermate.dao.drinkorder.DrinkOrderDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="IMenuDAO" class="com.cs400.waitermate.dao.menu.MenuDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">		
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
