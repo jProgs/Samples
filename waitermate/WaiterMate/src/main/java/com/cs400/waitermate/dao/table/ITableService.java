@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cs400.waitermate.beans.TableBean;
 import com.cs400.waitermate.beans.CheckBean;
+import com.cs400.waitermate.beans.WaiterBean;
 
 public interface ITableService {
 
@@ -15,4 +16,5 @@ public interface ITableService {
 	//public List<CheckBean>
 	public List<CheckBean> getTableCheckList(int tableId);
 	public CheckBean getSpecificCheck(long checkId);
+	public List<TableBean> getTablesByWaiter(WaiterBean waiter);
 }

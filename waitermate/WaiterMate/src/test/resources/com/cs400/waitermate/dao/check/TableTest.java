@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.cs400.waitermate.beans.TableBean;
+import com.cs400.waitermate.beans.WaiterBean;
 import com.cs400.waitermate.dao.table.TableDAOImpl;
 
 public class TableTest {
@@ -21,7 +22,7 @@ public class TableTest {
 		TableBean newTable = new TableBean();
 		newTable.setID(100);
 		newTable.setOccupied(true);
-		newTable.setWaiterID(1);
+		newTable.setWaiterID(12345);
 
 		TableDAOImpl testService = (TableDAOImpl) context.getBean("ITableDAO");
 		testService.addTable(newTable);
@@ -60,7 +61,7 @@ public class TableTest {
 		TableDAOImpl testService = (TableDAOImpl) context.getBean("ITableDAO");
 		newTable.setID(200);
 		newTable.setOccupied(true);
-		newTable.setWaiterID(1);
+		newTable.setWaiterID(12345);
 
 		testService.addTable(newTable);
 
@@ -75,6 +76,17 @@ public class TableTest {
 		Assert.assertEquals(true, testBean.getOccupied()==false);
 
 		testService.deleteTable(newTable);
+	}
+	
+	@Test
+	public void testGetTableListByWaiter(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/Spring-Module.xml");
+		TableDAOImpl testService = (TableDAOImpl) context.getBean("ITableDAO");		
+		WaiterBean wb = new WaiterBean();
+		wb.setID(12345);		
+		wb.setCurrentTables(testService.getTablesByWaiter(wb));
+		Assert.assertEquals(true, wb.getCurrentTables().size() > 0);
+		
 	}
 
 }

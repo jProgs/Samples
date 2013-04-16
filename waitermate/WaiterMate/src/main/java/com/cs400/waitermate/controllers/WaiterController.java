@@ -126,7 +126,8 @@ public class WaiterController {
 			WaiterBean wb = new WaiterBean();
 			wb = waiterService.findWaiterById(waiterBean);						
 			currentWaiter = wb;			
-			// NEED TO FETCH THE TABLES LIST AND EVERYTHING FOR THE INDIVIDUAL HERE
+			// NEED TO LOAD WAITER TABLES AND ALL INFORMATION HERE PREFERABLY
+			//currentWaiter.setCurrentTables(tableService.)
 			mav1.addObject("currentWaiter", currentWaiter);
 			return mav1;
 		}else{

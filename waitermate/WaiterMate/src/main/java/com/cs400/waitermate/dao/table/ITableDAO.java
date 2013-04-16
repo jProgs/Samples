@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import javax.sql.DataSource;
 import com.cs400.waitermate.beans.TableBean;
+import com.cs400.waitermate.beans.WaiterBean;
 
 public interface ITableDAO {
 	
@@ -15,6 +16,7 @@ public interface ITableDAO {
 	public void updateTable(TableBean table);
 	public int getTableCount();
 	public void addTable(TableBean table); 
+	public List<TableBean> getTablesByWaiter(WaiterBean waiter);
 	
 
 }

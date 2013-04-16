@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import com.cs400.waitermate.beans.FoodBean;
 import com.cs400.waitermate.beans.TableBean;
 import com.cs400.waitermate.beans.CheckBean;
+import com.cs400.waitermate.beans.WaiterBean;
 import com.cs400.waitermate.dao.check.ICheckDAO;
 import com.cs400.waitermate.dao.foodorder.FoodOrderRowMapper;
 
@@ -60,6 +61,11 @@ public class TableService implements ITableService {
 	public CheckBean getSpecificCheck(long checkId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<TableBean> getTablesByWaiter(WaiterBean waiter) {
+		return dao.getTablesByWaiter(waiter);
 	}
 
 }

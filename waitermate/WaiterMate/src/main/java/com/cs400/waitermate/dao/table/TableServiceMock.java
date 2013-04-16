@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cs400.waitermate.beans.CheckBean;
 import com.cs400.waitermate.beans.TableBean;
+import com.cs400.waitermate.beans.WaiterBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +74,12 @@ public class TableServiceMock implements ITableService{
 	@Override
 	public CheckBean getSpecificCheck(long checkId) {
 		CheckBean check = new CheckBean();
+		return null;
+	}
+
+	@Override
+	public List<TableBean> getTablesByWaiter(WaiterBean waiter) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
