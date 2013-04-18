@@ -17,4 +17,5 @@ public interface ICheckDAO {
 	public int getCheckCount();
 	public void addCheck(CheckBean check);
 	public List<CheckBean> getCheckListByTable(TableBean table);
+	public long insertBlankCheckForWaiter(CheckBean check);
 }

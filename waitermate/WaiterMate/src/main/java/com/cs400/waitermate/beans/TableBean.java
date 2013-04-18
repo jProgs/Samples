@@ -22,10 +22,9 @@ public class TableBean {
 		return checkList;
 	}
 	public void setCheckList(List<CheckBean> checkList) {
-		//for(CheckBean cb: checkList){
-		System.out.println("setchecklist: " + checkList);
-		for(int i = 0; i<checkList.size(); i++){
-			System.out.println("Boopity bop?");
+		
+		
+		for(int i = 0; i<checkList.size(); i++){			
 			this.checkList.add(checkList.get(i));
 		}
 	}

@@ -55,7 +55,7 @@ public class DrinkOrderDAOImpl extends JdbcDaoSupport implements IDrinkOrderDAO 
 
 	@Override
 	public void addOrder(DrinkBean order) {
-		getJdbcTemplate().update("INSERT INTO DrinkOrder(id, comments, mycheck, abv, menuId) VALUES(?,?,?,?,?)",new Object[]{order.getID(),order.getComment(), order.getCheck(), order.getAbv(), order.getMenuID()});
+		getJdbcTemplate().update("INSERT INTO DrinkOrder(comments, mycheck, abv, menuId) VALUES(?,?,?,?,?)",new Object[]{order.getComment(), order.getCheck(), order.getAbv(), order.getMenuID()});
 		
 	}
 

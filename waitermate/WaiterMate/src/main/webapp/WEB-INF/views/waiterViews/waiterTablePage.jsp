@@ -17,6 +17,7 @@
 	<section id="divContent">
 	
 	<h2>${currentWaiter.fname} ${currentWaiter.lname}</h2>	
+	<h3>Table ${currentTable.ID}</h3>
 	
 	<!-- CLICK THESE TO EXIT THE TABLE OR WAITER -->
 	<table>

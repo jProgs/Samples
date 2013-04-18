@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cs400.waitermate.dao.waiter.IWaiterService;
 import com.cs400.waitermate.dao.waiter.WaiterService;
 import com.cs400.waitermate.dao.waiter.WaiterServiceMock;
+import com.cs400.waitermate.beans.DrinkBean;
+import com.cs400.waitermate.beans.FoodBean;
 import com.cs400.waitermate.beans.WaiterBean;
 
 import com.cs400.waitermate.dao.table.ITableService;
@@ -28,6 +30,10 @@ import com.cs400.waitermate.beans.TableBean;
 import com.cs400.waitermate.dao.check.ICheckService;
 import com.cs400.waitermate.dao.check.CheckService;
 import com.cs400.waitermate.dao.check.CheckServiceMock;
+import com.cs400.waitermate.dao.drinkorder.DrinkOrderService;
+import com.cs400.waitermate.dao.drinkorder.IDrinkOrderService;
+import com.cs400.waitermate.dao.foodorder.FoodOrderService;
+import com.cs400.waitermate.dao.foodorder.IFoodOrderService;
 import com.cs400.waitermate.beans.CheckBean;
 
 import com.cs400.waitermate.dao.order.IOrderService;
@@ -69,6 +75,18 @@ public class WaiterController {
 	}
 	
 	@Inject
+	private static IDrinkOrderService drinkOrderService;
+	{
+		drinkOrderService = new DrinkOrderService();
+	}
+	
+	@Inject
+	private static IFoodOrderService foodOrderService;
+	{
+		foodOrderService = new FoodOrderService();
+	}
+	
+	@Inject
 	private static IMenuService menuService;
 	{
 		menuService = new MenuService();		
@@ -101,11 +119,27 @@ public class WaiterController {
 	{
 		currentMenu = new MenuBean();
 		currentMenu = menuService.loadMenu();
+		currentMenu.updateCategoryList();
 	}
 	
 	private WaiterBean reloadCurrentWaiter()
 	{
-		WaiterBean waiter = waiterService.findWaiterById(currentWaiter);
+		WaiterBean waiter = new WaiterBean();
+		waiter.setID(currentWaiter.getID());
+		waiter = waiterService.findWaiterById(waiter);
+		waiter.setCurrentTables(tableService.getTablesByWaiter(waiter));
+		for(TableBean tb: currentWaiter.getCurrentTables()){
+			tb.setCheckList(checkService.getCheckListByTable(tb));
+			if(tb.getCheckList().size() > 0){
+				for(CheckBean cb: tb.getCheckList()){
+					cb.setOrdersList(orderService.getOrdersByCheck(cb));
+					
+					for(OrderBean ob: cb.getOrdersList()){
+						ob.setName(menuService.lookupOrderName(ob));
+					}	
+				}
+			}				
+		}		
 		return waiter;
 	}
 	
@@ -127,14 +161,7 @@ public class WaiterController {
 			WaiterBean wb = new WaiterBean();
 			wb = waiterService.findWaiterById(waiterBean);						
 			currentWaiter = wb;			
-			
-			
-						
 			currentWaiter.setCurrentTables(tableService.getTablesByWaiter(currentWaiter));
-			
-			
-			
-			
 			
 			for(TableBean tb: currentWaiter.getCurrentTables()){
 				tb.setCheckList(checkService.getCheckListByTable(tb));
@@ -144,15 +171,12 @@ public class WaiterController {
 						
 						for(OrderBean ob: cb.getOrdersList()){
 							ob.setName(menuService.lookupOrderName(ob));
-						}
-						
-						
+						}	
 					}
-				}
-				
+				}				
 			}		
 			
-			// END LOADING CURRENT WAITER INFO
+			
 			mav1.addObject("currentWaiter", currentWaiter);
 			return mav1;
 		}else{
@@ -165,8 +189,7 @@ public class WaiterController {
 	public ModelAndView goToWaiterTablePage(HttpServletRequest request, HttpServletResponse response){		
 		int tableId = Integer.parseInt(request.getParameter("tableId"));
 		TableBean tb = new TableBean();
-		tb.setID(tableId);
-		
+		tb.setID(tableId);		
 		currentTable = currentWaiter.getSpecificTable(tableId);		
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		mav.addObject("currentWaiter", currentWaiter);
@@ -177,8 +200,7 @@ public class WaiterController {
 	@RequestMapping(value = "/waiterTablePagePost", method = RequestMethod.POST)
 	public ModelAndView goToWaiterHomePost(@ModelAttribute("tableBean")TableBean tableBean, Model model){
 		tableBean.setWaiterID(currentWaiter.getID());
-		tableService.addTable(tableBean);		
-		//currentTable = currentWaiter.getSpecificTable(tableBean.getID());		
+		tableService.addTable(tableBean);					
 		currentWaiter.addTableToWaiter(tableBean);
 		currentTable = tableBean;		
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
@@ -201,15 +223,25 @@ public class WaiterController {
 	
 	@RequestMapping("/addCheck")
 	public ModelAndView addCheck(HttpServletRequest request, HttpServletResponse response){
-		//long checkId = checkService.getNextCheckId();
-		long checkId = 10101;
-		CheckBean cb = new CheckBean(currentTable.getID(), checkId);	
-		checkService.addCheck(cb);
-		currentWaiter = this.reloadCurrentWaiter();
+		
+		CheckBean cb = new CheckBean();	
+		cb.setTable(currentTable.getID());
+		cb.setID(checkService.insertBlankCheckForWaiter(cb));	
+		currentTable.addCheckToTable(cb);	
+		
+		System.out.println("printing check id's");
+		for(CheckBean check: currentTable.getCheckList())
+		{
+			System.out.println(check.getID());
+		}
+		
+		currentWaiter.replaceTableById(currentTable);
+		
+		//currentWaiter = this.reloadCurrentWaiter();
 		currentTable = currentWaiter.getSpecificTable(currentTable.getID());
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		mav.addObject("currentWaiter", currentWaiter);
-		mav.addObject("currentTable", currentTable);
+		mav.addObject("currentTable", currentTable);		
 		return mav;
 	}
 	
@@ -279,9 +311,10 @@ public class WaiterController {
 		ModelAndView mav = new ModelAndView("menuViews/menuHome", "command", new OrderBean());
 		long checkId = Long.parseLong(request.getParameter("checkId"));
 		currentCheck = currentTable.getSpecificCheck(checkId);
-		//mav.addObject("currentCheck", currentCheck);
+		mav.addObject("currentCheck", currentCheck);
 		// FETCH THE MENU FROM THE DATABASE IF IT ISN'T ALREADY LOADED
-		//mav.addObject("menuCategoriesList", currentMenu.getMenuCategoriesList());		
+		currentMenu.updateCategoryList();
+		mav.addObject("menuCategoriesList", currentMenu.getMenuCategoriesList());		
 		mav.addObject("menu", currentMenu);
 		System.out.println(currentMenu.getMenuCategoriesList().size() + " --- size of categories list");
 		return mav;
@@ -307,8 +340,31 @@ public class WaiterController {
 	public ModelAndView readyToAddOrder(@ModelAttribute("orderBean")OrderBean orderBean, Model model){
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		OrderBean order = orderBean;
+		if(order.getCategory().equalsIgnoreCase("Beers") || order.getCategory().equalsIgnoreCase("Non Alcoholic Drinks")){
+			DrinkBean db = new DrinkBean();
+			db.setName(order.getName());
+			db.setPrice(order.getPrice());
+			db.setCategory(order.getCategory());
+			db.setComment(order.getComment());
+			db.setAbv(0);
+			db.setMenuID(currentMenu.getOrderMenuItemID(order));
+			db.setCheck(currentCheck.getID());
+			drinkOrderService.addOrder(db);		
+			
+		}else{
+			FoodBean fb = new FoodBean();
+			fb.setName(order.getName());
+			fb.setPrice(order.getPrice());
+			fb.setCategory(order.getCategory());
+			fb.setComment(order.getComment());
+			fb.setSideID(1);
+			fb.setMenuID(currentMenu.getOrderMenuItemID(order));
+			fb.setCheck(currentCheck.getID());
+			foodOrderService.addOrder(fb);
+		}
 		currentCheck.addOrder(order);
 		currentTable.replaceCheck(currentCheck);
+		currentWaiter.replaceTableById(currentTable);
 		currentCheck.updateMoneyTotals();
 		mav.addObject("currentWaiter", currentWaiter);
 		mav.addObject("currentTable", currentTable);

@@ -84,4 +84,16 @@ public class WaiterBean {
 		this.currentTables.add(table);		
 	}
 	
+	public WaiterBean replaceTableById(TableBean table){
+		for(TableBean tb: this.getCurrentTables()){
+			if(tb.getID() == table.getID())
+			{
+				tb = table;
+				return this;
+			}
+			
+		}
+		return this;
+	}
+	
 }

@@ -34,24 +34,50 @@ public class MenuBean {
 	
 	public void updateCategoryList() {
 
-		boolean alreadyOnList;
+		this.menuCategoriesList.clear();
+		////////////////
 		for (MenuItemBean mib : menu) {
-			alreadyOnList = false;
+			this.addCategoryIfNotOnList(mib);
+		}
+		
+		////////////////
+		/*
+		boolean alreadyOnList = false;
+		
+		for (MenuItemBean mib : menu) {			
 			for (String s : this.menuCategoriesList) {
-				if (alreadyOnList == false) {
-					if (mib.getCategory() == s) {
-						alreadyOnList = true;
-					}
+				if(mib.getCategory() == s){
+					alreadyOnList = true;
 				}
-				
-			}// end menuCategoriesList iteration
-			// add it to the category to the list if it wasn't already there
-			if (alreadyOnList == false) {
+			}
+			if(alreadyOnList == false){
 				this.menuCategoriesList.add(mib.getCategory());
 			}
-		}// end MenuItemBean iteration
-
-	}// end updateCategoryList()
+				
+		}// end MenuItemBean iteration*/
+		
+		
+	}
+	
+	private void addCategoryIfNotOnList(MenuItemBean mib){
+		System.out.println("at add category if not on list");
+		boolean alreadyOnList = false;
+		for(String s: this.menuCategoriesList)
+		{
+			System.out.println(s + "   " + mib.getCategory());
+			if(s.equalsIgnoreCase(mib.getCategory())){
+				alreadyOnList = true;
+				System.out.println("shouldnt be added to the list");
+			}
+		}
+		
+		if(alreadyOnList ==  false)
+		{
+			this.menuCategoriesList.add(mib.getCategory());
+		}
+		
+		
+	}
 	
 	public void addMenuItem(MenuItemBean mib){
 		this.menu.add(mib);
@@ -78,6 +104,15 @@ public class MenuBean {
 		}	
 		
 		return ob;
+	}
+	
+	public int getOrderMenuItemID(OrderBean ob){
+		for(MenuItemBean mib: menu){
+			if(ob.getName().equalsIgnoreCase(mib.getName())){
+				return mib.getID();
+			}
+		}
+		return 0;
 	}
 
 }

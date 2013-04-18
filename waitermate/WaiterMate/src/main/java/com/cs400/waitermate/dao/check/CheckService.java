@@ -58,4 +58,9 @@ public class CheckService implements ICheckService {
 		return dao.getCheckListByTable(table);
 	}
 
+	@Override
+	public long insertBlankCheckForWaiter(CheckBean check) {
+		return dao.insertBlankCheckForWaiter(check);
+	}
+
 }

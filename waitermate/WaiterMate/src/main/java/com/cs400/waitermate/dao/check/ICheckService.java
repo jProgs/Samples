@@ -13,4 +13,5 @@ public interface ICheckService {
 	public void editCheck(CheckBean check);
 	public long getNextCheckId();
 	public List<CheckBean> getCheckListByTable(TableBean table);
+	public long insertBlankCheckForWaiter(CheckBean check);
 }

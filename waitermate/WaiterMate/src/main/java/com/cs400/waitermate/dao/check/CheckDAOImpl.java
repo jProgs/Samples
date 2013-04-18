@@ -1,5 +1,6 @@
 package com.cs400.waitermate.dao.check;
 
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
@@ -11,8 +12,10 @@ import com.cs400.waitermate.beans.TableBean;
 import com.cs400.waitermate.dao.check.CheckRowMapper;
 import com.cs400.waitermate.dao.check.ICheckDAO;
 import com.cs400.waitermate.dao.drinkorder.DrinkOrderRowMapper;
+import com.mysql.jdbc.PreparedStatement;
 
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 
 
 public class CheckDAOImpl extends JdbcDaoSupport implements ICheckDAO {
@@ -64,6 +67,26 @@ public class CheckDAOImpl extends JdbcDaoSupport implements ICheckDAO {
 		checkList = getJdbcTemplate().query("SELECT id, tableId, open, subtotal, tip, tax FROM MyCheck WHERE tableId=?", new Object[]{table.getID()}, new CheckRowMapper());
 		return checkList;
 		
+		
+	}
+
+	@Override
+	public long insertBlankCheckForWaiter(CheckBean check) {
+		
+		
+		
+		
+		getJdbcTemplate().update("INSERT INTO MyCheck(tableId, open, subtotal, tip, tax) VALUES (?, 1, 0, 0, 0)", new Object[]{check.getTable()});
+		long checkId = (long) getJdbcTemplate().queryForInt("Select MAX(id) from MyCheck");
+		//long checkId = getJdbcTemplate().queryForInt("mysql_insert_id()", );
+		//long checkId = (long) getJdbcTemplate().queryForInt("SELECT last_insert_id()");
+		//int checkIntId = getJdbcTemplate().queryForInt("SELECT last_insert_id() FROM MyCheck");
+		
+		
+		System.out.println("OUR CHECK ID AT CHECKDAOIMPL IS " + checkId );
+		
+		
+		return checkId;
 		
 	}
 

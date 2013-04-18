@@ -60,6 +60,12 @@ public class CheckServiceMock implements ICheckService{
 		return null;
 	}
 
+	@Override
+	public long insertBlankCheckForWaiter(CheckBean check) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 
 }
