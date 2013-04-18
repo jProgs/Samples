@@ -395,7 +395,13 @@ public class WaiterController {
 	@RequestMapping("/kitchenHome")
 	public ModelAndView kitchenHome(){
 		ModelAndView mav = new ModelAndView("kitchenViews/kitchenHome");
-		mav.addObject("allOrders", orderService.listOrders());
+		List<FoodBean> allOrders = new ArrayList<FoodBean>();
+		allOrders = foodOrderService.listOrders();
+		for(FoodBean fb: allOrders){
+			//System.out.println(menuService.lookupOrderName(fb));
+			fb.setName(menuService.lookupOrderName(fb));
+		}
+		mav.addObject("allOrders", allOrders);
 		return mav;		
 	}
 	

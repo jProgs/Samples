@@ -20,13 +20,15 @@
 	
 		<table border="1">
 		<tr>
-			<td>TABLE</td>
-			<td>ORDER</td>
-			<td>COMMENT</td>
+			<td>COMPLETE</td>
+			<td>CHECK</td>
+			<td>ORDER NAME</td>
+			<td>COMMENTS</td>
 		</tr>
 			<c:forEach items="${allOrders}" var="order">
 				<tr>
 					<td><a href="/waitermate/orderUp?orderId=${order.ID}">FINISHED</a></td>
+					
 					<td>${order.check}</td>
 					<td>${order.name}</td>
 					<td>${order.comment}</td>					
