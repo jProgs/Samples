@@ -40,21 +40,6 @@ public class MenuBean {
 			this.addCategoryIfNotOnList(mib);
 		}
 		
-		////////////////
-		/*
-		boolean alreadyOnList = false;
-		
-		for (MenuItemBean mib : menu) {			
-			for (String s : this.menuCategoriesList) {
-				if(mib.getCategory() == s){
-					alreadyOnList = true;
-				}
-			}
-			if(alreadyOnList == false){
-				this.menuCategoriesList.add(mib.getCategory());
-			}
-				
-		}// end MenuItemBean iteration*/
 		
 		
 	}
@@ -67,7 +52,7 @@ public class MenuBean {
 			System.out.println(s + "   " + mib.getCategory());
 			if(s.equalsIgnoreCase(mib.getCategory())){
 				alreadyOnList = true;
-				System.out.println("shouldnt be added to the list");
+				
 			}
 		}
 		
@@ -84,10 +69,10 @@ public class MenuBean {
 	}
 	
 	public OrderBean createOrderFromName(String name){
-		System.out.println("in createOrderFromName");
+		
 		OrderBean ob = new OrderBean();
 		ob.setName(name);
-		System.out.println(ob.getName() + " is the name of my order");
+		
 		
 		// NEED TO PUT THIS IN SOME KIND OF TRY CATCH FOR IF THE MENU HASNT BEEN CREATED YET
 		for(MenuItemBean mib: menu)

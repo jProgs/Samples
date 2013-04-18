@@ -40,7 +40,10 @@ public class MenuService extends JdbcDaoSupport implements IMenuService {
 	public Float lookupOrderPrice(OrderBean order){
 		for(MenuItemBean mib: this.menu){
 			if(order.getMenuID() == mib.getID())
+			{
+				System.out.println("the price should be " + mib.getPrice());
 				return mib.getPrice();
+			}
 		}
 		return new Float(0);
 	}

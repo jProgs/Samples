@@ -37,4 +37,10 @@ public class MenuServiceMock implements IMenuService {
 		return null;
 	}
 
+	@Override
+	public Float lookupOrderPrice(OrderBean order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

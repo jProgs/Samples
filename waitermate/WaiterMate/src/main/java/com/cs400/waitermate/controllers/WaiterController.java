@@ -172,7 +172,9 @@ public class WaiterController {
 						
 						for(OrderBean ob: cb.getOrdersList()){
 							ob.setName(menuService.lookupOrderName(ob));
+							ob.setPrice(menuService.lookupOrderPrice(ob));
 						}	
+						cb.updateMoneyTotals();
 					}
 				}				
 			}		
