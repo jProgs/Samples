@@ -52,7 +52,15 @@ public class FoodOrderDAOImpl extends JdbcDaoSupport implements IFoodOrderDAO {
 
 	@Override
 	public void addOrder(FoodBean order) {
-		getJdbcTemplate().update("INSERT INTO FoodOrder(id, comments, mycheck, sideId, menuId) VALUES(?,?,?,?,?)",new Object[]{order.getID(),order.getComment(), order.getCheck(), order.getSideID(), order.getMenuID()});
+		getJdbcTemplate().update("INSERT INTO FoodOrder(comments, mycheck, sideId, menuId) VALUES(?,?,?,?)",new Object[]{order.getComment(), order.getCheck(), order.getSideID(), order.getMenuID()});
+	}
+	
+	@Override
+	public long addOrderGetId(FoodBean order){
+		getJdbcTemplate().update("INSERT INTO FoodOrder(comments, mycheck, sideId, menuId) VALUES(?,?,?,?)",new Object[]{order.getComment(), order.getCheck(), order.getSideID(), order.getMenuID()});
+		long id = (long) getJdbcTemplate().queryForInt("Select MAX(id) from FoodOrder");		
+		return id;
+		
 	}
 
 	@Override

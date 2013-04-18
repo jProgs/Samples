@@ -11,5 +11,5 @@ public interface IFoodOrderService {
 	public FoodBean findOrdrById(FoodBean order);
 	public void editOrder(FoodBean order);
 	public void cancelOrder(long orderId, long checkId);
-
+	long addOrderGetId(FoodBean order);
 }

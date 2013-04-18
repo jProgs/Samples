@@ -72,22 +72,10 @@ public class CheckDAOImpl extends JdbcDaoSupport implements ICheckDAO {
 
 	@Override
 	public long insertBlankCheckForWaiter(CheckBean check) {
-		
-		
-		
-		
 		getJdbcTemplate().update("INSERT INTO MyCheck(tableId, open, subtotal, tip, tax) VALUES (?, 1, 0, 0, 0)", new Object[]{check.getTable()});
-		long checkId = (long) getJdbcTemplate().queryForInt("Select MAX(id) from MyCheck");
-		//long checkId = getJdbcTemplate().queryForInt("mysql_insert_id()", );
-		//long checkId = (long) getJdbcTemplate().queryForInt("SELECT last_insert_id()");
-		//int checkIntId = getJdbcTemplate().queryForInt("SELECT last_insert_id() FROM MyCheck");
-		
-		
+		long checkId = (long) getJdbcTemplate().queryForInt("Select MAX(id) from MyCheck");		
 		System.out.println("OUR CHECK ID AT CHECKDAOIMPL IS " + checkId );
-		
-		
 		return checkId;
-		
 	}
 
 }

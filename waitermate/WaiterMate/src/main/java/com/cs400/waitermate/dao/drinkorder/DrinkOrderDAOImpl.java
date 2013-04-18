@@ -55,7 +55,14 @@ public class DrinkOrderDAOImpl extends JdbcDaoSupport implements IDrinkOrderDAO 
 
 	@Override
 	public void addOrder(DrinkBean order) {
-		getJdbcTemplate().update("INSERT INTO DrinkOrder(comments, mycheck, abv, menuId) VALUES(?,?,?,?,?)",new Object[]{order.getComment(), order.getCheck(), order.getAbv(), order.getMenuID()});
+		getJdbcTemplate().update("INSERT INTO DrinkOrder(comments, mycheck, abv, menuId) VALUES(?,?,?,?)",new Object[]{order.getComment(), order.getCheck(), order.getAbv(), order.getMenuID()});
+		
+	}
+	
+	public long addOrderGetId(DrinkBean order){
+		getJdbcTemplate().update("INSERT INTO DrinkOrder(comments, mycheck, abv, menuId) VALUES(?,?,?,?)",new Object[]{order.getComment(), order.getCheck(), order.getAbv(), order.getMenuID()});
+		long id = (long) getJdbcTemplate().queryForInt("Select MAX(id) from DrinkOrder");		
+		return id;
 		
 	}
 
@@ -64,5 +71,8 @@ public class DrinkOrderDAOImpl extends JdbcDaoSupport implements IDrinkOrderDAO 
 		List<DrinkBean> drinkList = getJdbcTemplate().query("SELECT id, comments, mycheck, abv, menuId FROM DrinkOrder WHERE mycheck=?", new Object[]{check.getID()}, new DrinkOrderRowMapper());
 		return drinkList;
 	}
+	
+	
+	
 
 }

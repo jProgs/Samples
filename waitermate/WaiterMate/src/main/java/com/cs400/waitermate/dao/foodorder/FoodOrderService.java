@@ -50,4 +50,9 @@ public class FoodOrderService extends JdbcDaoSupport implements IFoodOrderServic
 		
 	}
 
+	@Override
+	public long addOrderGetId(FoodBean order) {
+		return dao.addOrderGetId(order);
+	}
+
 }

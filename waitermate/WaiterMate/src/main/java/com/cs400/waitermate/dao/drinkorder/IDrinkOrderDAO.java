@@ -17,5 +17,5 @@ public interface IDrinkOrderDAO {
 	public int getOrderCount();
 	public void addOrder(DrinkBean order);
 	public List<DrinkBean> getDrinkListByCheck(CheckBean check);
-
+	public long addOrderGetId(DrinkBean order);
 }

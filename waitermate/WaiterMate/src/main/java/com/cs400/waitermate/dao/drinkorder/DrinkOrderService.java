@@ -53,4 +53,9 @@ public class DrinkOrderService extends JdbcDaoSupport implements IDrinkOrderServ
 		
 	}
 
+	@Override
+	public long addOrderGetId(DrinkBean order) {
+		return dao.addOrderGetId(order);
+	}
+
 }

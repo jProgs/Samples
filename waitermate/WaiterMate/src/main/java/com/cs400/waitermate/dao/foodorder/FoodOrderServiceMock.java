@@ -43,4 +43,10 @@ public class FoodOrderServiceMock implements IFoodOrderService {
 		
 	}
 
+	@Override
+	public long addOrderGetId(FoodBean order) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

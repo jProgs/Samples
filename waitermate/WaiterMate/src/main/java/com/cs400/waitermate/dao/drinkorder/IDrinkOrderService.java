@@ -12,5 +12,5 @@ public interface IDrinkOrderService {
 	public DrinkBean findOrdrById(DrinkBean order);
 	public void editOrder(DrinkBean order);
 	public void cancelOrder(long orderId, long checkId);
-
+	public long addOrderGetId(DrinkBean order);
 }

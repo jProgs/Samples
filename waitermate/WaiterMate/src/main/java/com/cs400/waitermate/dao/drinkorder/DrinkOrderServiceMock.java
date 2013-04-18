@@ -43,4 +43,10 @@ public class DrinkOrderServiceMock implements IDrinkOrderService {
 		
 	}
 
+	@Override
+	public long addOrderGetId(DrinkBean order) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

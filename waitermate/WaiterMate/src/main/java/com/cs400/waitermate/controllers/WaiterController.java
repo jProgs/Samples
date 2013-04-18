@@ -136,6 +136,7 @@ public class WaiterController {
 					
 					for(OrderBean ob: cb.getOrdersList()){
 						ob.setName(menuService.lookupOrderName(ob));
+						ob.setPrice(menuService.lookupOrderPrice(ob));
 					}	
 				}
 			}				
@@ -349,7 +350,9 @@ public class WaiterController {
 			db.setAbv(0);
 			db.setMenuID(currentMenu.getOrderMenuItemID(order));
 			db.setCheck(currentCheck.getID());
-			drinkOrderService.addOrder(db);		
+			db.setID(drinkOrderService.addOrderGetId(db));
+			System.out.println("the drink has the id of " + db.getID());
+			currentCheck.addOrder(db);
 			
 		}else{
 			FoodBean fb = new FoodBean();
@@ -360,9 +363,11 @@ public class WaiterController {
 			fb.setSideID(1);
 			fb.setMenuID(currentMenu.getOrderMenuItemID(order));
 			fb.setCheck(currentCheck.getID());
-			foodOrderService.addOrder(fb);
+			fb.setID(foodOrderService.addOrderGetId(fb));
+			
+			currentCheck.addOrder(fb);
 		}
-		currentCheck.addOrder(order);
+		//currentCheck.addOrder(order);
 		currentTable.replaceCheck(currentCheck);
 		currentWaiter.replaceTableById(currentTable);
 		currentCheck.updateMoneyTotals();
