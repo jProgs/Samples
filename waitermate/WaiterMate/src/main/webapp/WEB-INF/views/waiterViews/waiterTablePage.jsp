@@ -22,8 +22,8 @@
 	<!-- CLICK THESE TO EXIT THE TABLE OR WAITER -->
 	<table>
 	<tr>
-	<td class="regularTableTD"><a href="/waitermate/exitTable">Exit Table</a></td>
-	<td class="regularTableTD"><a href="/waitermate/exitWaiter">Exit Waiter</a></td>
+	<td class="regularTableTD"><a href="/waitermate/exitTable">EXIT TABLE</a></td>
+	<td class="regularTableTD"><a href="/waitermate/exitWaiter">EXIT WAITER</a></td>
 	</tr>
 	</table>
 	<br />

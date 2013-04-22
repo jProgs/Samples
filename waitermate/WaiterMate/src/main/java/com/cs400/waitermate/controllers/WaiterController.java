@@ -267,8 +267,7 @@ public class WaiterController {
 	@RequestMapping("/payCheck")
 	public ModelAndView payCheck(HttpServletRequest request, HttpServletResponse response){
 		ModelAndView mav = new ModelAndView("waiterViews/waiterPayCheck", "command", new CheckBean());
-		long checkId = Long.parseLong(request.getParameter("checkId"));
-		System.out.println("paying check " + checkId);
+		long checkId = Long.parseLong(request.getParameter("checkId"));		
 		currentCheck = currentTable.getSpecificCheck(checkId);
 		mav.addObject("currentCheck", currentCheck);
 		return mav;
@@ -281,7 +280,7 @@ public class WaiterController {
 		currentCheck.reCalculateTotal();
 		// NEED TO SAVE THE CHANGES TO THE DATABASE HERE
 		// FOR REAL
-		//System.out.println("the tip is " + currentCheck.getTip());		
+			
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		mav.addObject("currentWaiter", currentWaiter);
 		mav.addObject("currentTable", currentTable);		
