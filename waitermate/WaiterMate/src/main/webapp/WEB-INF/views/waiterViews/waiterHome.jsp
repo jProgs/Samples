@@ -4,7 +4,8 @@
 <html>
 <head>
 	<title>Waiter Home</title>
-	<!-- <link rel="stylesheet" type="text/css" href="/waitermate/src/main/webapp/resources/styles/styles.css" media="screen" /> -->
+	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
+	
 </head>
 <body>
 <article id="divPage">
@@ -24,11 +25,12 @@
 			<tr>
 				<td><form:label path="ID">New Table Number: </form:label></td>
 				<td><form:input path="ID" /> </td>
+				<td><input type="submit" value="Enter" /></td>
 				
 				<form:hidden path="waiterID" value="${waiterID}"/>
 			</tr>
 			
-			<tr><td><input type="submit" value="Enter" /></td></tr>
+			
 		
 		</table>
 	</form:form>

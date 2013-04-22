@@ -5,6 +5,7 @@
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
+	<link href='http://fonts.googleapis.com/css?family=Black+Ops+One' rel='stylesheet' type='text/css' >
 </head>
 <body>
 <article id="divPage">
@@ -14,9 +15,7 @@
 	<section id="divNav">
 		<aside id="divNav"><jsp:include page="/WEB-INF//partials/nav.jsp"></jsp:include></aside>
 	</section>
-	<section id="divContent">
-	
-	
+	<section id="divContent" class="divContent">
 	
 	</section>
 

@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Kitchen Home</title>
-	<link rel="stylesheet" type="text/css" href="/waitermate/src/main/webapp/resources/styles/styles.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
 </head>
 <body>
 <article id="divPage">
@@ -18,15 +18,15 @@
 	
 	<h2><a href="/waitermate/kitchenHome">REFRESH</a></h2>
 	
-		<table border="1">
-		<tr>
+		<table  class="kitchenTable">
+		<tr class="kitchenTableLabels">
 			<td>COMPLETE</td>
 			<td>CHECK</td>
 			<td>ORDER NAME</td>
 			<td>COMMENTS</td>
 		</tr>
 			<c:forEach items="${allOrders}" var="order">
-				<tr>
+				<tr class="kitchenTableOrdersTR">
 					<td><a href="/waitermate/orderUp?orderId=${order.ID}">FINISHED</a></td>
 					
 					<td>${order.check}</td>

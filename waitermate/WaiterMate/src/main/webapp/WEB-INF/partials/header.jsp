@@ -1,1 +1,1 @@
-<h1>WaiterMate</h1>
+<h1 class="headerH1">WaiterMate</h1>

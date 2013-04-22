@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Waiter Table Page</title>
-	<!-- <link rel="stylesheet" type="text/css" href="/waitermate/src/main/webapp/resources/styles/styles.css" media="screen" /> -->
+	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
 </head>
 <body>
 <article id="divPage">
@@ -22,8 +22,8 @@
 	<!-- CLICK THESE TO EXIT THE TABLE OR WAITER -->
 	<table>
 	<tr>
-	<td><a href="/waitermate/exitTable">Exit Table</a></td>
-	<td><a href="/waitermate/exitWaiter">Exit Waiter</a></td>
+	<td class="regularTableTD"><a href="/waitermate/exitTable">Exit Table</a></td>
+	<td class="regularTableTD"><a href="/waitermate/exitWaiter">Exit Waiter</a></td>
 	</tr>
 	</table>
 	<br />
@@ -36,32 +36,32 @@
 			<c:forEach items="${currentTable.checkList}" var="check">
 				<table>
 					<tr>
-						<td>Check ID: ${check.ID}</td>
+						<td class="regularTableInfo">Check ID: ${check.ID}</td>
 						<td><a href="/waitermate/addOrder?checkId=${check.ID}">Add Order</a></td>
 					</tr>
 					<c:forEach items="${check.ordersList}" var="order">
 						<tr>
 							<td><a href="/waitermate/cancelOrderOnCheck?checkId=${check.ID}&orderId=${order.ID}">XXX</a></td>
-							<td>${order.name}</td>
-							<td>${order.price}</td>
-							<td>${order.comment}</td>
+							<td class="regularTableInfo">${order.name}</td>
+							<td class="regularTableInfo">${order.price}</td>
+							<td class="regularTableInfo">${order.comment}</td>
 						</tr>
 					</c:forEach>
 				</table>
 				<table>
 					<tr>
-						<td>SubTotal: ${check.subtotal}</td>
-						<td>Tax: ${check.tax}</td>
-						<td>Tip: ${check.tip}</td>
-						<td>Total: ${check.total}</td>
+						<td class="regularTableInfo">SubTotal: ${check.subtotal}</td>
+						<td class="regularTableInfo">Tax: ${check.tax}</td>
+						<td class="regularTableInfo">Tip: ${check.tip}</td>
+						<td class="regularTableInfo">Total: ${check.total}</td>
 					</tr>
 				</table>
 				<table>
 					<tr>
-						<td><a href="/waitermate/payCheck?checkId=${check.ID}">PAYCHECK</a></td>
-						<td><a href="/waitermate/addTip?checkId=${check.ID}">ADD TIP</a></td>
+						<td class="regularTableTD"><a href="/waitermate/payCheck?checkId=${check.ID}">PAYCHECK</a></td>
+						<td class="regularTableTD"><a href="/waitermate/addTip?checkId=${check.ID}">ADD TIP</a></td>
 						<c:if test="${check.open == false}">
-							<td><a>CLOSE CHECK</a></td>
+							<td class="closeCheck"><a>CLOSE CHECK</a></td>
 						</c:if>
 					</tr>
 				</table>

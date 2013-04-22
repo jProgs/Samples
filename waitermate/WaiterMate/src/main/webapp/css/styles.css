@@ -1,7 +1,121 @@
 body
 {
-background-color:yellow;
+background-color:#202638;
 }
+
+a{
+	text-decoration: none;
+	
+}
+
+a:hover {
+	color: #ffff00;
+}
+
+a {
+	color: #ffffff;
+}
+
+a.navAnchor {
+	font-size: 20px;
+	
+}
+
+td.navTD {
+	padding: 10px;
+}
+
+
+
+h1.headerH1 {
+	/*font-fmaily: 'Black Ops One', cursive;*/
+	color: #A3A3FF;
+	text-align: center;
+	font-size: 36px;
+}
+
+div.navDIV {
+	text-align: center;
+}
+
+table.navTable{
+	background-color: #A3A3FF; 
+	
+}
+
+p.instructions {
+	color:ffffff;
+}
+
+form {
+	color:ffffff;
+}
+
+form tr td {
+	color:ffffff;
+}
+
+label{
+	color:ffffff;
+}
+
+h2 {
+	color: #A3A3FF;
+}
+
+h3 {
+	color: #A3A3FF;
+}
+
+td.regularTableTD{
+	padding: 5px;
+}
+
+td.regularTableInfo{
+	color: #00FF00;
+}
+
+td.closeCheck a {
+	color: #FF4500;
+}
+
+tr.kitchenTableLabels{
+	color: #ffd700;
+	
+}
+
+tr.kitchenTableLabels td{
+	padding: 10px;
+	
+}
+
+tr.kitchenTableOrdersTR{
+	color: #00FF00;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+div.footerDIV{
+	background-color: #A3A3FF;
+	text-align: center;
+}
+
+
 /*
 h1
 {

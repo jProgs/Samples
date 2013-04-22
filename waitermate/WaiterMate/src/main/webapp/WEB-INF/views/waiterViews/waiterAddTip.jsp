@@ -4,7 +4,8 @@
 <html>
 <head>
 	<title>Waiter Add Tip</title>
-	<!-- <link rel="stylesheet" type="text/css" href="/waitermate/src/main/webapp/resources/styles/styles.css" media="screen" /> -->
+	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
+	
 </head>
 <body>
 <article id="divPage">
@@ -23,8 +24,9 @@
 			<tr>
 				<td><form:label path="tip">Tip: </form:label></td>
 				<td><form:input path="tip"/> </td>
+				<td><input type="submit" value="Enter" /></td>
 			</tr>			
-			<tr><td><input type="submit" value="Enter" /></td></tr>		
+					
 		</table>
 	</form:form>
 	

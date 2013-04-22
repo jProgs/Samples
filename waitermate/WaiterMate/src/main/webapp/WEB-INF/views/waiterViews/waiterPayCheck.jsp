@@ -3,7 +3,8 @@
 <%@ page session="false" %>
 <html>
 <head>
-<title>Waiter Pay Check</title>
+	<title>Waiter Pay Check</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
 
 <script type="text/javascript">
 	
@@ -53,9 +54,9 @@
 		<section id="divContent">
 <!-- TOTALS FOR THE BILL -->
 			<table>
-				<tr><td>Subtotal: </td><td>${currentCheck.subtotal}</td></tr>
-				<tr><td>Tax: </td><td>${currentCheck.tax}</td></tr>
-				<tr><td>Total: </td><td>${currentCheck.total}</td></tr>				
+				<tr><td class="regularTableInfo">Subtotal: </td><td class="regularTableInfo">${currentCheck.subtotal}</td></tr>
+				<tr><td class="regularTableInfo">Tax: </td><td class="regularTableInfo">${currentCheck.tax}</td></tr>
+				<tr><td class="regularTableInfo">Total: </td><td class="regularTableInfo">${currentCheck.total}</td></tr>				
 			</table>
 <!-- FORMS FOR AMOUNT TENDERED, ADDING A TIP -->
 			<form>
@@ -86,10 +87,9 @@
 					<tr>
 						<td><form:label path="tip" >TIP: </form:label></td>
 						<td><form:input path="tip" id="tip" /></td>
-					</tr>
-					<tr>
 						<td><input type="submit" value="Enter" /></td>
 					</tr>
+					
 				</form:form>
 			</table>
 		</section>

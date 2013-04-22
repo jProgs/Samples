@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Waiter Log In</title>
-	<link rel="stylesheet" type="text/css" href="/WEB-INF/styles/styles.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
 </head>
 <body>
 <article id="divPage">
@@ -23,8 +23,9 @@
 			<tr>
 				<td><form:label path="ID">Social Last 5: </form:label></td>
 				<td><form:input path="ID" /> </td>
+				<td><input type="submit" value="Enter" /></td>
 			</tr>			
-			<tr><td><input type="submit" value="Enter" /></td></tr>		
+					
 		</table>
 	</form:form>
 	

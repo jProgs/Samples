@@ -1,8 +1,10 @@
-<table>
+<div class="navDIV">
+<table class="navTable">
 <tr>
-<td><a href="/waitermate/waiterLogIn">Waiters</a></td>
-<td><a href="/waitermate/kitchenHome">Kitchen</a></td>
-<td><a href="/waitermate/barHome">Bar</a></td>
-<td><a href="/waitermate/adminLogin">Administrator</a></td>
+<td class="navTD"><a href="/waitermate/waiterLogIn" class="navAnchor">Waiters</a></td>
+<td class="navTD"><a href="/waitermate/kitchenHome" class="navAnchor">Kitchen</a></td>
+<td class="navTD"><a href="/waitermate/barHome" class="navAnchor">Bar</a></td>
+<td class="navTD"><a href="/waitermate/adminLogin" class="navAnchor">Administrator</a></td>
 </tr>
 </table>
+</div>
