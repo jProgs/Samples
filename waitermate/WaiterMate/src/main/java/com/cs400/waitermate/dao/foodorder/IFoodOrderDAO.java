@@ -18,5 +18,6 @@ public interface IFoodOrderDAO {
 	public void addOrder(FoodBean order);
 	public List<FoodBean> getFoodsListByCheck(CheckBean check);
 	long addOrderGetId(FoodBean order);
+	public void changeToOrderUp(FoodBean fb);
 
 }

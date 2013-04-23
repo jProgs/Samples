@@ -49,4 +49,10 @@ public class FoodOrderServiceMock implements IFoodOrderService {
 		return 0;
 	}
 
+	@Override
+	public void changeToOrderUp(FoodBean fb) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

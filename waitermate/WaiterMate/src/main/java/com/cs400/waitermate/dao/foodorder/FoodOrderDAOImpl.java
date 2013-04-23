@@ -69,4 +69,10 @@ public class FoodOrderDAOImpl extends JdbcDaoSupport implements IFoodOrderDAO {
 		return foodList;
 	}
 
+	@Override
+	public void changeToOrderUp(FoodBean fb) {
+		getJdbcTemplate().update("update foodorder set comments=\"READY\" where id=?;", new Object[]{fb.getID()});
+		
+	}
+
 }

@@ -55,4 +55,10 @@ public class FoodOrderService extends JdbcDaoSupport implements IFoodOrderServic
 		return dao.addOrderGetId(order);
 	}
 
+	@Override
+	public void changeToOrderUp(FoodBean fb) {
+		dao.changeToOrderUp(fb);
+		
+	}
+
 }

@@ -131,17 +131,16 @@ public class WaiterController {
 		waiter.setCurrentTables(tableService.getTablesByWaiter(waiter));
 		for(TableBean tb: waiter.getCurrentTables()){
 			tb.setCheckList(checkService.getCheckListByTable(tb));
-			System.out.println("reloading the current waiter --> " + tb.getID() + " - table " + tb.getCheckList().size() + " checks");
 			if(tb.getCheckList().size() > 0){
 				for(CheckBean cb: tb.getCheckList()){
 					cb.setOrdersList(orderService.getOrdersByCheck(cb));
-					System.out.println("there are " + cb.getOrdersList().size() + " orders on the list of check " + cb.getID());
 					
 					for(OrderBean ob: cb.getOrdersList()){
-						//ob.setName(menuService.lookupOrderName(ob));
-						//ob.setPrice(menuService.lookupOrderPrice(ob));
-						//ob.setCategory(menuService.lookupOrderName(ob));
-						ob = menuService.lookupNamePriceCategory(ob);
+						ob.setName(menuService.lookupOrderName(ob));
+						ob.setPrice(menuService.lookupOrderPrice(ob));
+						ob.setCategory(menuService.lookupOrderName(ob));
+						//ob = menuService.lookupNamePriceCategory(ob);
+						System.out.println(ob.getName());
 					}	
 					cb.updateMoneyTotals();
 				}
@@ -202,7 +201,8 @@ public class WaiterController {
 		int tableId = Integer.parseInt(request.getParameter("tableId"));
 		TableBean tb = new TableBean();
 		tb.setID(tableId);		
-		currentTable = currentWaiter.getSpecificTable(tableId);			
+		currentTable = currentWaiter.getSpecificTable(tableId);		
+		System.out.println(currentTable.getCheckList().get(0).getOrdersList().get(0).getName());
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		mav.addObject("currentWaiter", currentWaiter);
 		mav.addObject("currentTable", currentTable);		
@@ -246,11 +246,7 @@ public class WaiterController {
 		cb.setID(checkService.insertBlankCheckForWaiter(cb));	
 		currentTable.addCheckToTable(cb);	
 		
-		System.out.println("printing check id's");
-		for(CheckBean check: currentTable.getCheckList())
-		{
-			System.out.println(check.getID());
-		}
+		
 		
 		currentWaiter.replaceTableById(currentTable);
 		
@@ -288,11 +284,7 @@ public class WaiterController {
 		// in case they already started cooking it.	
 		currentWaiter = this.reloadCurrentWaiter();
 		currentTable = currentWaiter.getSpecificTable(currentTable.getID());	
-		System.out.println("999999999999999999999999");
-		System.out.println(currentTable.getID() + " -- id of current table");
-		System.out.println(currentWaiter.getCurrentTables().size() + "  - tables");
-		System.out.println(currentTable.getCheckList().size() + "  - checks at table");
-		System.out.println("22222222222222222222222222");
+		
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		mav.addObject("currentWaiter", currentWaiter);
 		mav.addObject("currentTable", currentTable);		
@@ -404,7 +396,6 @@ public class WaiterController {
 		currentMenu.updateCategoryList();
 		mav.addObject("menuCategoriesList", currentMenu.getMenuCategoriesList());		
 		mav.addObject("menu", currentMenu);
-		System.out.println(currentMenu.getMenuCategoriesList().size() + " --- size of categories list");
 		return mav;
 	}
 	
@@ -492,10 +483,19 @@ public class WaiterController {
 	
 
 	@RequestMapping("/orderUp")
-	public ModelAndView orderUp(HttpServletRequest request, HttpServletResponse response){		
-		ModelAndView mav = new ModelAndView("kitchenViews/kitchenHome");
+	public ModelAndView orderUp(HttpServletRequest request, HttpServletResponse response){	
 		long orderId = Long.parseLong(request.getParameter("orderId"));
-		mav.addObject("allOrders", orderService.listOrders());
+		FoodBean fb = new FoodBean();
+		fb.setID(orderId);
+		foodOrderService.changeToOrderUp(fb);
+		
+		ModelAndView mav = new ModelAndView("kitchenViews/kitchenHome");
+		List<FoodBean> allOrders = new ArrayList<FoodBean>();
+		allOrders = foodOrderService.listOrders();
+		for(FoodBean foodb: allOrders){
+			foodb.setName(menuService.lookupOrderName(foodb));
+		}
+		mav.addObject("allOrders", allOrders);
 		return mav;
 	}
 	
