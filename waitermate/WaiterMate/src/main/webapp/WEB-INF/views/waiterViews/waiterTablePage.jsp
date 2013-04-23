@@ -27,7 +27,9 @@
 	</tr>
 	</table>
 	<br />
-	
+	<a href="/waitermate/closeThisTable">CLOSE THIS TABLE</a>
+	<br />
+	<br />
 	<a href="/waitermate/addCheck">ADD A NEW CHECK</a>
 	
 	<br />
@@ -41,10 +43,11 @@
 					</tr>
 					<c:forEach items="${check.ordersList}" var="order">
 						<tr>
-							<td><a href="/waitermate/cancelOrderOnCheck?checkId=${check.ID}&orderId=${order.ID}">XXX</a></td>
+							<td><a href="/waitermate/cancelOrderOnCheck?category=${order.category}&orderId=${order.ID}">XXX</a></td>
 							<td class="regularTableInfo">${order.name}</td>
 							<td class="regularTableInfo">${order.price}</td>
 							<td class="regularTableInfo">${order.comment}</td>
+							<td class="regularTableInfo">${order.category}</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -61,7 +64,7 @@
 						<td class="regularTableTD"><a href="/waitermate/payCheck?checkId=${check.ID}">PAYCHECK</a></td>
 						<td class="regularTableTD"><a href="/waitermate/addTip?checkId=${check.ID}">ADD TIP</a></td>
 						<c:if test="${check.open == false}">
-							<td class="closeCheck"><a>CLOSE CHECK</a></td>
+							<td class="closeCheck"><a href="/waitermate/closeCheck?checkId=${check.ID}">CLOSE CHECK</a></td>
 						</c:if>
 					</tr>
 				</table>

@@ -43,4 +43,16 @@ public class MenuServiceMock implements IMenuService {
 		return null;
 	}
 
+	@Override
+	public String lookupOrderCategory(OrderBean order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OrderBean lookupNamePriceCategory(OrderBean order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

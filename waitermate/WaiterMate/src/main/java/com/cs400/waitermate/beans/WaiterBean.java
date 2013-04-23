@@ -96,4 +96,12 @@ public class WaiterBean {
 		return this;
 	}
 	
+	public void removeTableFromList(TableBean tb){
+		for(TableBean table: this.getCurrentTables()){
+			if(tb.getID() == table.getID()){
+				this.getCurrentTables().remove(table);
+			}
+		}
+	}
+	
 }

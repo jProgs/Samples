@@ -135,9 +135,12 @@ public class WaiterController {
 					cb.setOrdersList(orderService.getOrdersByCheck(cb));
 					
 					for(OrderBean ob: cb.getOrdersList()){
-						ob.setName(menuService.lookupOrderName(ob));
-						ob.setPrice(menuService.lookupOrderPrice(ob));
+						//ob.setName(menuService.lookupOrderName(ob));
+						//ob.setPrice(menuService.lookupOrderPrice(ob));
+						//ob.setCategory(menuService.lookupOrderName(ob));
+						ob = menuService.lookupNamePriceCategory(ob);
 					}	
+					cb.updateMoneyTotals();
 				}
 			}				
 		}		
@@ -159,8 +162,9 @@ public class WaiterController {
 		if(waiterService.testWaiterLogIn(waiterBean))
 		{
 			ModelAndView mav1 = new ModelAndView("waiterViews/waiterHome", "command", new TableBean());
-			WaiterBean wb = new WaiterBean();
-			wb = waiterService.findWaiterById(waiterBean);						
+			/*
+			//WaiterBean wb = new WaiterBean();
+			//wb = waiterService.findWaiterById(waiterBean);						
 			currentWaiter = wb;			
 			currentWaiter.setCurrentTables(tableService.getTablesByWaiter(currentWaiter));
 			
@@ -178,7 +182,9 @@ public class WaiterController {
 					}
 				}				
 			}		
-			
+			*/
+			currentWaiter.setID(waiterBean.getID());
+			currentWaiter = this.reloadCurrentWaiter();
 			
 			mav1.addObject("currentWaiter", currentWaiter);
 			return mav1;
@@ -193,7 +199,7 @@ public class WaiterController {
 		int tableId = Integer.parseInt(request.getParameter("tableId"));
 		TableBean tb = new TableBean();
 		tb.setID(tableId);		
-		currentTable = currentWaiter.getSpecificTable(tableId);		
+		currentTable = currentWaiter.getSpecificTable(tableId);			
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		mav.addObject("currentWaiter", currentWaiter);
 		mav.addObject("currentTable", currentTable);		
@@ -213,14 +219,19 @@ public class WaiterController {
 	
 	@RequestMapping("/exitTable")
 	public ModelAndView exitTable(HttpServletRequest request, HttpServletResponse response){
-		ModelAndView mav = new ModelAndView("waiterViews/waiterHome", "command", new TableBean());	
+		ModelAndView mav = new ModelAndView("waiterViews/waiterHome", "command", new TableBean());
+		currentTable = new TableBean();
+		currentCheck = new CheckBean();
 		mav.addObject("currentWaiter", currentWaiter);
 		return mav;
 	}
 	
 	@RequestMapping("/exitWaiter")
 	public ModelAndView exitWaiter(HttpServletRequest request, HttpServletResponse response){
-		// STORE INFORMATION ABOUT THIS WAITER AND HIS OBJECTS IN THE DATABASE BEFORE WE LEAVE
+		currentWaiter = new WaiterBean();
+		currentTable = new TableBean();
+		currentCheck = new CheckBean();
+		
 		return new ModelAndView("waiterViews/waiterLogIn", "command", new WaiterBean());
 	}
 	
@@ -251,8 +262,24 @@ public class WaiterController {
 	@RequestMapping("/cancelOrderOnCheck")
 	public ModelAndView cancelOrderOnCheck(HttpServletRequest request, HttpServletResponse response){		
 		long orderId = Integer.parseInt(request.getParameter("orderId"));
-		long checkId = Long.parseLong(request.getParameter("checkId"));
-		orderService.cancelOrder(orderId, checkId);
+		String category = request.getParameter("category");
+		if(category.equalsIgnoreCase("Beers") || category.equalsIgnoreCase("Non Alcoholic Drinks")){	
+			DrinkBean db = new DrinkBean();
+			db.setID(orderId);
+			drinkOrderService.removeOrder(db);
+		}else
+		{
+			FoodBean fb = new FoodBean();
+			fb.setID(orderId);
+			foodOrderService.removeOrder(fb);
+		}
+		
+		
+		
+		
+		
+		 
+		//orderService.cancelOrder(orderId, checkId);
 		// in orderservice, the cancel order needs to change the comment in the order to "cancelled" and nothing else 
 		// so that we can make changes to the table in the kitchen, they can then be notified of the difference
 		// in case they already started cooking it.	
@@ -277,10 +304,8 @@ public class WaiterController {
 	public ModelAndView payCheckCompleted(@ModelAttribute("checkBean")CheckBean checkBean, Model model){
 		currentCheck.setTip(checkBean.getTip() + currentCheck.getTip());
 		currentCheck.setOpen(false);
-		currentCheck.reCalculateTotal();
-		// NEED TO SAVE THE CHANGES TO THE DATABASE HERE
-		// FOR REAL
-			
+		currentCheck.reCalculateTotal();		
+		checkService.editCheck(currentCheck);
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		mav.addObject("currentWaiter", currentWaiter);
 		mav.addObject("currentTable", currentTable);		
@@ -300,12 +325,65 @@ public class WaiterController {
 	public ModelAndView attTipCompleted(@ModelAttribute("checkBean")CheckBean checkBean, Model model){
 		currentCheck.setTip(checkBean.getTip() + currentCheck.getTip());
 		currentCheck.reCalculateTotal();
-		// NEED TO SAVE THE CHANGES TO THE DATABASE HERE
-		// FOR REAL DUDES
+		checkService.editCheck(currentCheck);
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		mav.addObject("currentWaiter", currentWaiter);
 		mav.addObject("currentTable", currentTable);
 		return mav;
+	}
+	
+	@RequestMapping("/closeCheck")
+	public ModelAndView closeCheck(HttpServletRequest request, HttpServletResponse response){
+		// set up the current check with all of the orders in it
+		currentCheck.setID(Long.parseLong(request.getParameter("checkId")));
+		currentCheck = checkService.findCheckById(currentCheck);
+		currentCheck.setOrdersList(orderService.getOrdersByCheck(currentCheck));
+		
+		// take note of the current table id so we can go back and reload it
+		int tableNow = currentTable.getID();
+		
+		for(OrderBean ob: currentCheck.getOrdersList()){
+			ob.setCategory(menuService.lookupOrderCategory(ob));			
+			if(ob.getCategory().equalsIgnoreCase("Beers") || ob.getCategory().equalsIgnoreCase("Non Alcoholic Drinks"))
+			{
+				DrinkBean db = new DrinkBean();
+				db.setID(ob.getID());
+				drinkOrderService.removeOrder(db);
+				
+			}
+			else
+			{
+				FoodBean fb = new FoodBean();
+				fb.setID(ob.getID());
+				foodOrderService.removeOrder(fb);	
+			}				
+		}
+		
+		checkService.removeCheck(currentCheck);		
+		currentWaiter = this.reloadCurrentWaiter();
+		currentTable = currentWaiter.getSpecificTable(tableNow);
+		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
+		mav.addObject("currentWaiter", currentWaiter);
+		mav.addObject("currentTable", currentTable);
+		return mav;
+	}
+	
+	@RequestMapping("/closeThisTable")
+	public ModelAndView closeThisTable(HttpServletRequest request, HttpServletResponse response){
+		if(currentTable.getCheckList().size() == 0)
+		{
+			tableService.removeTable(currentTable);
+			currentWaiter = this.reloadCurrentWaiter();
+			ModelAndView mav = new ModelAndView("waiterViews/waiterHome", "command", new TableBean());
+			mav.addObject("currentWaiter", currentWaiter);
+			return mav;			
+		}else
+		{
+			ModelAndView mav2 = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
+			mav2.addObject("currentWaiter", currentWaiter);
+			mav2.addObject("currentTable", currentTable);
+			return mav2;
+		}
 	}
 	
 	@RequestMapping("/addOrder")

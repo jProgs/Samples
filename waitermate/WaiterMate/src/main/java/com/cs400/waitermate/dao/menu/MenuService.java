@@ -47,5 +47,30 @@ public class MenuService extends JdbcDaoSupport implements IMenuService {
 		}
 		return new Float(0);
 	}
+
+	@Override
+	public String lookupOrderCategory(OrderBean order) {
+		for(MenuItemBean mib: this.menu){
+			if(order.getMenuID() == mib.getID()){
+				return mib.getCategory();
+			}
+		}
+		return "";
+	}
+
+	@Override
+	public OrderBean lookupNamePriceCategory(OrderBean order) {
+		OrderBean orderToReturn = new OrderBean();
+		for(MenuItemBean mib: this.menu){
+			if(order.getMenuID() == mib.getID()){
+				orderToReturn.setName(mib.getName());
+				orderToReturn.setPrice(mib.getPrice());
+				orderToReturn.setCategory(mib.getCategory());				
+				return orderToReturn;
+			}
+		}
+		return orderToReturn;
+	}
+	
 	
 }

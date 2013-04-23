@@ -12,4 +12,6 @@ public interface IMenuService {
 	public MenuBean loadMenu();
 	public String lookupOrderName(OrderBean order);
 	Float lookupOrderPrice(OrderBean order);
+	public String lookupOrderCategory(OrderBean order);
+	public OrderBean lookupNamePriceCategory(OrderBean order);
 }

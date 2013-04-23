@@ -80,5 +80,12 @@ public class TableBean {
 		}
 	}
 	
+	public void removeCheckFromTable(CheckBean check){
+		for(CheckBean myCheck: this.getCheckList()){
+			if(myCheck.getID() == check.getID())
+				this.checkList.remove(myCheck);
+		}
+	}
+	
 	
 }
