@@ -77,16 +77,15 @@ public class OrderService implements IOrderService {
 		 foods = foodDAO.getFoodsListByCheck(check);
 		 //allOrdersList = drinks;
 		 
-		 for(DrinkBean db: drinks){
-			 allOrdersList.add(db);
-			 
+		 for(DrinkBean db: drinks){			
+			 allOrdersList.add(db);			 
 		 }
 		 
 		 for(FoodBean fb: foods){
 			 allOrdersList.add(fb);
 		 }
-		 
-		 System.out.println(allOrdersList.toString());
+		 System.out.println("in mothe rfucking order service");
+		 System.out.println(allOrdersList.toString() + allOrdersList.size());
 		 return allOrdersList;
 	}
 

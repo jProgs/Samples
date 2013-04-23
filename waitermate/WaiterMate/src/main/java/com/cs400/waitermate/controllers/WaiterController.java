@@ -124,15 +124,18 @@ public class WaiterController {
 	
 	private WaiterBean reloadCurrentWaiter()
 	{
+		System.out.println("at reload current waiter");
 		WaiterBean waiter = new WaiterBean();
 		waiter.setID(currentWaiter.getID());
 		waiter = waiterService.findWaiterById(waiter);
 		waiter.setCurrentTables(tableService.getTablesByWaiter(waiter));
-		for(TableBean tb: currentWaiter.getCurrentTables()){
+		for(TableBean tb: waiter.getCurrentTables()){
 			tb.setCheckList(checkService.getCheckListByTable(tb));
+			System.out.println("reloading the current waiter --> " + tb.getID() + " - table " + tb.getCheckList().size() + " checks");
 			if(tb.getCheckList().size() > 0){
 				for(CheckBean cb: tb.getCheckList()){
 					cb.setOrdersList(orderService.getOrdersByCheck(cb));
+					System.out.println("there are " + cb.getOrdersList().size() + " orders on the list of check " + cb.getID());
 					
 					for(OrderBean ob: cb.getOrdersList()){
 						//ob.setName(menuService.lookupOrderName(ob));
@@ -284,7 +287,12 @@ public class WaiterController {
 		// so that we can make changes to the table in the kitchen, they can then be notified of the difference
 		// in case they already started cooking it.	
 		currentWaiter = this.reloadCurrentWaiter();
-		currentTable = currentWaiter.getSpecificTable(currentTable.getID());			
+		currentTable = currentWaiter.getSpecificTable(currentTable.getID());	
+		System.out.println("999999999999999999999999");
+		System.out.println(currentTable.getID() + " -- id of current table");
+		System.out.println(currentWaiter.getCurrentTables().size() + "  - tables");
+		System.out.println(currentTable.getCheckList().size() + "  - checks at table");
+		System.out.println("22222222222222222222222222");
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		mav.addObject("currentWaiter", currentWaiter);
 		mav.addObject("currentTable", currentTable);		
