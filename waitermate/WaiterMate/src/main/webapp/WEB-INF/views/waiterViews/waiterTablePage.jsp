@@ -47,7 +47,7 @@
 							<td class="regularTableInfo">${order.name}</td>
 							<td class="regularTableInfo">${order.price}</td>
 							<td class="regularTableInfo">${order.comment}</td>
-							<td class="regularTableInfo">${order.category}</td>
+						<!--  	<td class="regularTableInfo">${order.category}</td>-->
 						</tr>
 					</c:forEach>
 				</table>

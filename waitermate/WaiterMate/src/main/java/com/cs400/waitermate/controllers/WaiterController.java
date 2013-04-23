@@ -202,7 +202,7 @@ public class WaiterController {
 		TableBean tb = new TableBean();
 		tb.setID(tableId);		
 		currentTable = currentWaiter.getSpecificTable(tableId);		
-		System.out.println(currentTable.getCheckList().get(0).getOrdersList().get(0).getName());
+		
 		ModelAndView mav = new ModelAndView("waiterViews/waiterTablePage", "command", new CheckBean());
 		mav.addObject("currentWaiter", currentWaiter);
 		mav.addObject("currentTable", currentTable);		
