@@ -17,28 +17,28 @@
 	<section id="divContent">
 	
 	<h2><a href="/waitermate/kitchenHome">REFRESH</a></h2>
-	
-		<table  class="kitchenTable">
-		<tr class="kitchenTableLabels">
-			<td>COMPLETE</td>
-			<td>CHECK</td>
-			<td>ORDER NAME</td>
-			<td>COMMENTS</td>
-		</tr>
-			<c:forEach items="${allOrders}" var="order">
-				<tr class="kitchenTableOrdersTR">
-					<td><a href="/waitermate/orderUp?orderId=${order.ID}">FINISHED</a></td>
-					
-					<td>${order.check}</td>
-					<td>${order.name}</td>
-					<td>${order.comment}</td>					
-				</tr>
-			</c:forEach>
 
-		</table>
-	
-	
-	</section>
+			<table class="kitchenTable">
+				<tr class="kitchenTableLabels">
+					<td>COMPLETE</td>
+					<td>CHECK</td>
+					<td>ORDER NAME</td>
+					<td>COMMENTS</td>
+				</tr>
+				<c:forEach items="${allOrders}" var="order">
+					<c:if test="${order.comment != 'READY'}">
+						<tr class="kitchenTableOrdersTR">
+							<td><a href="/waitermate/orderUp?orderId=${order.ID}">FINISHED</a></td>
+							<td>${order.check}</td>
+							<td>${order.name}</td>
+							<td>${order.comment}</td>
+						</tr>
+					</c:if>
+				</c:forEach>
+			</table>
+
+
+		</section>
 	<section id="divFooter">
 		<jsp:include page="/WEB-INF/partials/footer.jsp"></jsp:include>
 	</section>

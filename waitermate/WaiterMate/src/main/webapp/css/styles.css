@@ -94,10 +94,17 @@ tr.kitchenTableOrdersTR{
 
 }
 
+table.closeTableAddCheckTABLE td{
+	padding: 8px;
+}
 
+table.exitTableExitWaiterTABLE td{
+	padding: 8px;
+}
 
-
-
+table.kitchenTable td{
+	padding: 6px;
+}
 
 
 

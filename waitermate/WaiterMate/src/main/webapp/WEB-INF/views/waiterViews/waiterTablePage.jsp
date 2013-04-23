@@ -20,18 +20,24 @@
 	<h3>Table ${currentTable.ID}</h3>
 	
 	<!-- CLICK THESE TO EXIT THE TABLE OR WAITER -->
-	<table>
-	<tr>
-	<td class="regularTableTD"><a href="/waitermate/exitTable">EXIT TABLE</a></td>
-	<td class="regularTableTD"><a href="/waitermate/exitWaiter">EXIT WAITER</a></td>
-	</tr>
-	</table>
-	<br />
-	<a href="/waitermate/closeThisTable">CLOSE THIS TABLE</a>
-	<br />
-	<br />
-	<a href="/waitermate/addCheck">ADD A NEW CHECK</a>
-	
+			<table class="exitTableExitWaiterTABLE">
+				<tr>
+					<td class="regularTableTD"><a href="/waitermate/exitTable">EXIT
+							TABLE</a></td>
+					<td class="regularTableTD"><a href="/waitermate/exitWaiter">EXIT
+							WAITER</a></td>
+				</tr>
+			</table>
+			<br />
+			<table class="closeTableAddCheckTABLE">
+				<tr>
+					<td><a href="/waitermate/closeThisTable">CLOSE THIS TABLE</a></td>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>				
+					<td><a href="/waitermate/addCheck">ADD A NEW CHECK</a></td>
+				</tr>
+			</table>
+
+		
 	<br />
 	<br />
 
